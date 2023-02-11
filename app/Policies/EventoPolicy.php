@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Evento;
 use App\Models\User;
-use App\Models\Vacante;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class VacantePolicy
+class EventoPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class VacantePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Vacante $vacante)
+    public function view(User $user, Evento $evento)
     {
         //
     }
@@ -48,10 +48,10 @@ class VacantePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Vacante $vacante)
+    public function update(User $user, Evento $evento)
     {
         //
     }
@@ -60,10 +60,10 @@ class VacantePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Vacante $vacante)
+    public function delete(User $user, Evento $evento)
     {
         //
     }
@@ -72,10 +72,10 @@ class VacantePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Vacante $vacante)
+    public function restore(User $user, Evento $evento)
     {
         //
     }
@@ -84,10 +84,10 @@ class VacantePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Vacante $vacante)
+    public function forceDelete(User $user, Evento $evento)
     {
         //
     }

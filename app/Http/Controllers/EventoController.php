@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vacante;
-use App\Http\Requests\StoreVacanteRequest;
-use App\Http\Requests\UpdateVacanteRequest;
+use App\Models\Evento;
+use App\Http\Requests\StoreEventoRequest;
+use App\Http\Requests\UpdateEventoRequest;
 
-class VacanteController extends Controller
+class EventoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,15 +26,16 @@ class VacanteController extends Controller
     public function create()
     {
         //
+        return view('evento.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVacanteRequest  $request
+     * @param  \App\Http\Requests\StoreEventoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreVacanteRequest $request)
+    public function store(StoreEventoRequest $request)
     {
         //
     }
@@ -42,10 +43,10 @@ class VacanteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function show(Vacante $vacante)
+    public function show(Evento $evento)
     {
         //
     }
@@ -53,10 +54,10 @@ class VacanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vacante $vacante)
+    public function edit(Evento $evento)
     {
         //
     }
@@ -64,11 +65,11 @@ class VacanteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVacanteRequest  $request
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Http\Requests\UpdateEventoRequest  $request
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateVacanteRequest $request, Vacante $vacante)
+    public function update(UpdateEventoRequest $request, Evento $evento)
     {
         //
     }
@@ -76,10 +77,10 @@ class VacanteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vacante  $vacante
+     * @param  \App\Models\Evento  $evento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacante $vacante)
+    public function destroy(Evento $evento)
     {
         //
     }

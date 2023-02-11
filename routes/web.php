@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,26 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+#https://laravel.com/docs/9.x/routing#route-groups
+Route::controller(EventoController::class)->group( function (){
+
+    #https://laravel.com/docs/9.x/routing#named-routes
+    #https://laravel.com/docs/9.x/routing#route-group-controllers
+    Route::name('evento.')->group( function (){
+
+        Route::get('/evento','index')->name('index');
+
+        Route::get('/evento/create','create')->name('create');
+        Route::post('/evento','store')->name('store');
+
+        Route::get('/evento/edit/{id}','edit')->name('edit');
+        Route::post('/evento/update/{id}','update')->name('update');
+
+        Route::delete('/evento/destroy/{id}','destroy')->name('destroy');
+
+    });
+
+
+});
+
