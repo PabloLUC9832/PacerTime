@@ -27,7 +27,7 @@ return new class extends Migration
             $table->text('imagen')->nullable();
 
             //$table->unsignedBigInteger('sub_evento_id');
-            $table->foreignId('sub_evento_id')->constrained();
+            //$table->foreignId('sub_evento_id')->constrained();
 
             $table->timestamps();
             $table->softDeletes();

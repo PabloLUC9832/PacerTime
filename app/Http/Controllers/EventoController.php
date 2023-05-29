@@ -32,89 +32,6 @@ class EventoController extends Controller
     public function store(StoreEventoRequest $request)
     {
 
-        $nInputs = (int) $request->clicks;
-
-        //$subEvento = new SubEvento();
-        //con foreach
-        /*
-        for ($i = 1; $i <= $nInputs; $i++) {
-            $dis = "distancia{$i}";
-            $subEvento = new SubEvento();
-            $subEvento->distancia = $request->distancia+$i;
-            $subEvento->categoria = $request->categoria+$i;
-            $subEvento->precio = $request->precio+$i;
-            $subEvento->rama = $request->rama+$i;
-            //$subEvento->save();
-            //var_dump($request->distancia);
-            //var_dump($dis);
-            //
-        }
-         */
-
-        //$subEvento->save();
-
-
-        /*
-        $subEvento = new SubEvento();
-        $subEvento->distancia = $request->distancia;
-        $subEvento->categoria = $request->categoria;
-        $subEvento->precio = $request->precio;
-        $subEvento->rama = $request->rama;
-*/
-        //var_dump($request->clicks);
-        //var_dump($nInputs);
-        //var_dump($request->distancia1);
-        //print_r($request);
-
-        //for ($i = 1; $i <= $nInputs; $i++) {
-
-        //arrayDistancias
-            /*
-            $subEvento = new SubEvento();
-            foreach ($request->distancia as $dis){
-                //$subEvento = new SubEvento();
-                $subEvento->distancia = $dis;
-            }
-
-            foreach ($request->categoria as $cat){
-                $subEvento->categoria = $cat;
-            }
-
-            foreach ($request->precio as $prec){
-                $subEvento->precio = $prec;
-            }
-
-            foreach ($request->rama as $ram){
-                $subEvento->rama = $ram;
-
-                //var_dump($ram);
-            }
-            $subEvento->save();
-            */
-
-        //}
-        /*
-        foreach ($request->distancia as $dis){
-            $subEvento = new SubEvento();
-            $subEvento->distancia = $dis;
-        }
-
-        foreach ($request->categoria as $cat){
-            $subEvento->categoria = $cat;
-        }
-
-        foreach ($request->precio as $prec){
-            $subEvento->precio = $prec;
-        }
-
-        foreach ($request->rama as $ram){
-            $subEvento->rama = $ram;
-
-            //var_dump($ram);
-        }
-        $subEvento->save();
-        */
-        //$arrDis[] = [];
         foreach ($request->distancia as $dis){
             $arrDis[] = $dis;
             $nueArrDis = array_slice($arrDis,1);
@@ -150,6 +67,25 @@ class EventoController extends Controller
 //            var_dump($dist);
         },$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
 
+        $horaInicioEvento = $request->horaEvento . ":" . $request->minutoEvento. " " . $request->periodoEvento ;
+        $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
+        $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
+
+        $evento = new Evento();
+        $evento->nombre = $request->nombre;
+        $evento->descripcion = $request->descripcion ;
+        $evento->lugarEvento = $request->lugarEvento;
+        $evento->fechaInicioEvento = $request->fechaInicioEvento;
+        $evento->fechaFinEvento = $request->fechaFinEvento;
+        $evento->horaEvento = $horaInicioEvento ; //cehcar
+        $evento->lugarEntregaKits = $request->lugarEntregaKits ;
+        $evento->fechaInicioEntregaKits = $request->fechaInicioEntregaKits ;
+        $evento->fechaFinEntregaKits = $request->fechaFinEntregaKits ;
+        $evento->horaInicioEntregaKits = $horaInicioEntregaKits ;
+        $evento->horaFinEntregaKits = $horaFinEntregaKits ;
+        $evento->imagen = $request->file ;
+
+        $evento->save();
 
 
 
