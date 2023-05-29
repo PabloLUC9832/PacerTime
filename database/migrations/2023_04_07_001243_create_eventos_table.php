@@ -17,14 +17,18 @@ return new class extends Migration
             $table->text('descripcion');
             $table->text('lugarEvento');
             $table->text('fechaInicioEvento');
-            $table->text('fechaFinEvento');
+            $table->text('fechaFinEvento')->nullable();
             $table->text('horaEvento');
             $table->text('lugarEntregaKits');
             $table->text('fechaInicioEntregaKits');
-            $table->text('fechaFinEntregaKits');
+            $table->text('fechaFinEntregaKits')->nullable();
             $table->text('horaInicioEntregaKits');
             $table->text('horaFinEntregaKits');
-            $table->text('imagen');
+            $table->text('imagen')->nullable();
+
+            //$table->unsignedBigInteger('sub_evento_id');
+            $table->foreignId('sub_evento_id')->constrained();
+
             $table->timestamps();
             $table->softDeletes();
         });
