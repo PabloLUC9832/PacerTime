@@ -110,67 +110,6 @@
                         <div class="border-t border-gray-200"></div>
                     </div>
                 </div>
-                {{--
-                <x-forms.input-field  id="dist" name="distancia" message="Distancia del evento"></x-forms.input-field>
-
-                <x-forms.input-field  name="categoria[]" message="Categoría"></x-forms.input-field>
-
-                <x-forms.input-field  name="precio[]" message="Precio"></x-forms.input-field>
-
-                <x-forms.input-field  name="rama[]" message="Rama"></x-forms.input-field>
-                --}}
-
-                {{--
-
-                <div class="col-span-6 md:grid grid-cols-6 gap-4">
-
-                    <div class="block md:col-start-1">
-                        <label for="distancia" class="block text-sm font-bold text-gray-700">Distancia del evento</label>
-                    </div>
-
-                    <div class="block mt-3 md:col-start-3 col-end-6">
-                        <input type="text" name="distancia[]" id="distancia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-
-                </div>
-
-                <div class="col-span-6 md:grid grid-cols-6 gap-4">
-
-                    <div class="block md:col-start-1">
-                        <label for="categoria" class="block text-sm font-bold text-gray-700">Categoría</label>
-                    </div>
-
-                    <div class="block mt-3 md:col-start-3 col-end-6">
-                        <input type="text" name="categoria[]" id="categoria" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-
-                </div>
-
-                <div class="col-span-6 md:grid grid-cols-6 gap-4">
-
-                    <div class="block md:col-start-1">
-                        <label for="precio" class="block text-sm font-bold text-gray-700">Precio</label>
-                    </div>
-
-                    <div class="block mt-3 md:col-start-3 col-end-6">
-                        <input type="text" name="precio[]" id="precio" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-
-                </div>
-
-                <div class="col-span-6 md:grid grid-cols-6 gap-4">
-
-                    <div class="block md:col-start-1">
-                        <label for="rama" class="block text-sm font-bold text-gray-700">Rama</label>
-                    </div>
-
-                    <div class="block mt-3 md:col-start-3 col-end-6">
-                        <input type="text" name="rama[]" id="rama" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                    </div>
-
-                </div>
-
-                --}}
 
                 <x-forms.input-field  id="distancia" name="distancia[]" message="Distancia del evento"></x-forms.input-field>
 
@@ -196,7 +135,7 @@
                 </div>
 
                 <div id="empty">
-                    <p>No tienes tareas pendientes.</p>
+                    <p></p>
                 </div>
 
                 <input id="clicks" name="clicks" value="XD"/>
