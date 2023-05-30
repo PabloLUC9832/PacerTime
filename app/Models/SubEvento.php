@@ -11,9 +11,11 @@ class SubEvento extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function evento() : BelongsTo
+
+    public function eventos(): HasMany
     {
-        return $this->belongsTo(Evento::class);
+        return $this->hasMany(Evento::class);
     }
+
 
 }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->float('precio',6,2);
             $table->text('rama');
 
+            $table->foreignId('evento_id')->constrained();
+
             $table->timestamps();
         });
     }

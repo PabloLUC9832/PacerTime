@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Evento extends Model
@@ -12,9 +13,9 @@ class Evento extends Model
 
     protected $guarded = [];
 
-    public function subEventos() : HasMany
+    public function subEvento(): BelongsTo
     {
-        return $this->hasMany(SubEvento::class);
+        return $this->belongsTo(SubEvento::class);
     }
 
 
