@@ -7,6 +7,7 @@ use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
 use Illuminate\Support\Facades\DB;
+use PHPUnit\Exception;
 
 class EventoController extends Controller
 {
@@ -53,21 +54,16 @@ class EventoController extends Controller
 
         $evento->save();
 
-        //Para MySql
-        $lastID = DB::select("SELECT LAST_INSERT_ID('eventos')");
-        $myArr = get_object_vars($lastID[0]);
-        $arrayValor = array_values($myArr);
-        $valor = implode("",$arrayValor);
-        $idActual = $valor+1;
-        //print_r($idActual);
-        //die();
-        //Para SQLServer
-        /*
-        $lastID = DB::select("SELECT IDENT_CURRENT('eventos')");
-        $myArr = get_object_vars($lastID[0]);
-        $oo = $myArr[""];
-        $ulti = $oo + 1;
-         */
+
+
+        $ultimoID = DB::table('eventos')
+                      //->select('id')
+                      ->orderBy('id','desc')
+                      ->take(1)
+                      //->get();
+                      ->pluck('id')->toArray();
+
+        $valor = (int) implode("",$ultimoID);
 
         foreach ($request->distancia as $dis){
             $arrDis[] = $dis;
@@ -91,19 +87,17 @@ class EventoController extends Controller
         }
         //print_r($nue);
 
-        array_map(function ($dist,$cate,$preci,$rama) use($idActual){
+        array_map(function ($dist,$cate,$preci,$rama) use($valor){
 
             $subEvento = new SubEvento();
             $subEvento->distancia = $dist;
             $subEvento->categoria = $cate;
             $subEvento->precio = $preci;
             $subEvento->rama = $rama;
-            $subEvento->evento_id = $idActual;
+            $subEvento->evento_id = $valor;
             $subEvento->save();
 
-
-//            var_dump($dist);
-        },$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
+            },$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
 
 
     }
