@@ -1,7 +1,7 @@
 <div class="col-span-6 md:grid grid-cols-6 gap-4">
 
     <div class="block md:col-start-1">
-        <label for="{{$name}}" class="block text-sm font-bold text-gray-700">{{$message}}</label>
+        <label for="{{$id}}" class="block text-sm font-bold text-gray-700">{{$message}}</label>
     </div>
 
     <div class="block mt-3 md:col-start-3 col-end-6">

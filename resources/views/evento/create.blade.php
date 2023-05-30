@@ -24,7 +24,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-1">
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Evento</h3>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Creación de Evento</h3>
                     <p class="mt-1 text-sm text-gray-600">Ingresa la información solicitada a continuación para la creación del evento.</p>
                 </div>
             </div>
@@ -49,6 +49,8 @@
 
                 <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento"></x-forms.input-field>
 
+                <x-forms.input-text-area id="descripcion" name="descripcion" ></x-forms.input-text-area>
+                {{--
                 <div class="col-span-6 md:grid grid-cols-6 gap-4">
 
                     <div class="block md:col-start-1">
@@ -62,6 +64,9 @@
                     </div>
 
                 </div>
+                --}}
+
+
 
                 <x-forms.input-field  name="lugarEvento" id="lugarEvento" message="Lugar del evento"></x-forms.input-field>
 
@@ -88,7 +93,7 @@
                         <div class="border-t border-gray-200"></div>
                     </div>
                 </div>
-
+                {{--
                 <div class="col-span-6 md:grid grid-cols-6 gap-4">
 
                     <div class="block md:col-start-1">
@@ -104,6 +109,10 @@
                     </div>
 
                 </div>
+                --}}
+
+                <x-forms.input-file></x-forms.input-file>
+
 
                 <div class="hidden sm:block" aria-hidden="true">
                     <div class="py-5">
