@@ -45,7 +45,9 @@
 
             <div class="space-y-6 px-4 py-5 sm:p-6">
 
-                 <div class="bg-secondary border border-solid border-white rounded-md p-5">
+                 <!--<div class="bg-secondary border border-solid border-white rounded-md p-5">-->
+                 <!--<div class="bg-secondary border border-solid border-gray-500 rounded-md p-5">-->
+                 <div class="borde-tarjeta">
 
                      <p class="subtitulo">Datos del evento</p>
 
@@ -69,7 +71,7 @@
 
                  </div>
 
-                <div class="bg-secondary border border-solid border-white rounded-md p-5">
+                <div class="borde-tarjeta">
 
                     <p class="subtitulo">Datos de la entrega de kits</p>
 

@@ -4,18 +4,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
+@layer components {
 
-    .titulo-1{
+    .titulo-1 {
         @apply text-xl font-bold leading-6 text-white;
     }
 
-    .subtitulo{
+    .subtitulo {
         @apply mt-2 text-base text-white sm:text-justify;
     }
 
-    .label-input{
+    .label-input {
         @apply block text-sm font-medium text-white;
+    }
+
+    .borde-tarjeta {
+        @apply bg-secondary border border-solid border-zinc-500 rounded-md p-5;
     }
 
 }
