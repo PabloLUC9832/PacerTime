@@ -1,7 +1,6 @@
-<div class="col-span-6 md:grid grid-cols-6 gap-4">
+<div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
     <div class="block md:col-start-1">
-        {{--<label for="descripcion" class="block text-sm font-bold text-gray-700">Descripción</label>--}}
         <label for="descripcion" class="label-input">Descripción</label>
     </div>
 

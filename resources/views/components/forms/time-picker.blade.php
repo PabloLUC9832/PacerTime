@@ -1,7 +1,6 @@
-<div class="col-span-6 md:grid grid-cols-6 gap-4">
+<div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
-    <div class="block md:col-start-1">
-        {{--<label for="hora{{$name}}" class="block text-sm font-bold text-gray-700">{{$message}}</label>--}}
+    <div class="block md:col-start-1 col-end-3">
         <label for="hora{{$name}}" class="label-input">{{$message}}</label>
     </div>
 

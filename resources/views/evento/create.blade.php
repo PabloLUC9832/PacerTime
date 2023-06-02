@@ -90,26 +90,6 @@
 
                 </div>
 
-
-
-                {{--
-                <div class="hidden sm:block" aria-hidden="true">
-                    <div class="py-5">
-                        <div class="border-t border-gray-200"></div>
-                    </div>
-                </div>
-                --}}
-
-                {{--
-                <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits"></x-forms.input-field>
-
-                <x-forms.date-picker name="EntregaKits" message="Fecha de la entrega de kits"></x-forms.date-picker>
-
-                <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits"></x-forms.time-picker>
-
-                <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"></x-forms.time-picker>
-                --}}
-
                 <div class="hidden sm:block" aria-hidden="true">
                     <div class="py-5">
                         <div class="border-t border-gray-200"></div>
