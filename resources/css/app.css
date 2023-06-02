@@ -3,3 +3,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components{
+
+    .titulo-1{
+        @apply text-xl font-bold leading-6 text-white;
+    }
+
+    .subtitulo{
+        @apply mt-2 text-base text-white sm:text-justify;
+    }
+
+    .label-input{
+        @apply block text-sm font-medium text-white;
+    }
+
+}

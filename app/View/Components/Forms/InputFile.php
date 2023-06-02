@@ -8,12 +8,16 @@ use Illuminate\View\Component;
 
 class InputFile extends Component
 {
+
+    public $name;
+    public $id;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($name,$id)
     {
-        //
+        $this->name = $name;
+        $this->id = $id;
     }
 
     /**
