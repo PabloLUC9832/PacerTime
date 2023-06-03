@@ -38,6 +38,19 @@ class EventoController extends Controller
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
 
+        $nameFiles = "";
+
+        if($request->hasFile('files')){
+
+            foreach($request->file('files') as $file){
+                $fileName = time() ."_" . $file->getClientOriginalName();
+                $nameFiles .= $fileName . "-";
+            }
+
+        }
+
+        var_dump($nameFiles);
+
         $evento = new Evento();
         $evento->nombre = $request->nombre;
         $evento->descripcion = $request->descripcion ;
@@ -50,7 +63,8 @@ class EventoController extends Controller
         $evento->fechaFinEntregaKits = $request->fechaFinEntregaKits ;
         $evento->horaInicioEntregaKits = $horaInicioEntregaKits ;
         $evento->horaFinEntregaKits = $horaFinEntregaKits ;
-        $evento->imagen = $request->file ;
+        //$evento->imagen = $request->file ;
+        $evento->imagen = $nameFiles ;
 
         $evento->save();
 

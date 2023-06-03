@@ -63,54 +63,6 @@
 
                 <div class="borde-tarjeta">
 
-                    <p class="subtitulo">Datos de la entrega de kits</p>
-
-                    <x-forms.separator></x-forms.separator>
-
-                    <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits"></x-forms.input-field>
-
-                    <x-forms.date-picker name="EntregaKits" message="Fecha de la entrega de kits"></x-forms.date-picker>
-
-                    <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits"></x-forms.time-picker>
-
-                    <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"></x-forms.time-picker>
-
-
-                </div>
-
-                {{--
-
-                <x-forms.input-field  id="distancia" name="distancia[]" message="Distancia del evento"></x-forms.input-field>
-
-                <x-forms.input-field  id="categoria" name="categoria[]" message="Categoría"></x-forms.input-field>
-
-                <x-forms.input-field  id="precio" name="precio[]" message="Precio"></x-forms.input-field>
-
-                <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
-
-                    <div class="block md:col-start-1">
-                        <label for="rama" class="label-input">Rama</label>
-                    </div>
-
-                    <div class="block mt-3 md:col-start-3 col-end-6">
-
-                        <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-
-
-                            <x-forms.input-radio id="ramaAmbas" name="rama[]" value="Ambas"></x-forms.input-radio>
-                            <x-forms.input-radio id="ramaFemenil" name="rama[]" value="Femenil"></x-forms.input-radio>
-                            <x-forms.input-radio id="ramaVaronil" name="rama[]" value="Varonil"></x-forms.input-radio>
-
-                        </ul>
-
-
-
-                    </div>
-
-                </div>
-                --}}
-                <div class="borde-tarjeta">
-
                     <p class="subtitulo">Categorías del evento</p>
 
                     <x-forms.separator></x-forms.separator>
@@ -155,10 +107,21 @@
                     </ul>
                 </div>
 
-                <div class="hidden sm:block" aria-hidden="true">
-                    <div class="py-5">
-                        <div class="border-t border-gray-200"></div>
-                    </div>
+                <div class="borde-tarjeta">
+
+                    <p class="subtitulo">Datos de la entrega de kits</p>
+
+                    <x-forms.separator></x-forms.separator>
+
+                    <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits"></x-forms.input-field>
+
+                    <x-forms.date-picker name="EntregaKits" message="Fecha de la entrega de kits"></x-forms.date-picker>
+
+                    <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits"></x-forms.time-picker>
+
+                    <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"></x-forms.time-picker>
+
+
                 </div>
 
                 <div id="empty">
