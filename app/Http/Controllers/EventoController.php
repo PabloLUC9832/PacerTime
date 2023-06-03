@@ -33,7 +33,7 @@ class EventoController extends Controller
      */
     public function store(StoreEventoRequest $request)
     {
-
+        /*
         $horaInicioEvento = $request->horaEvento . ":" . $request->minutoEvento. " " . $request->periodoEvento ;
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
@@ -44,7 +44,7 @@ class EventoController extends Controller
         $evento->lugarEvento = $request->lugarEvento;
         $evento->fechaInicioEvento = $request->fechaInicioEvento;
         $evento->fechaFinEvento = $request->fechaFinEvento;
-        $evento->horaEvento = $horaInicioEvento ; //cehcar
+        $evento->horaEvento = $horaInicioEvento ;
         $evento->lugarEntregaKits = $request->lugarEntregaKits ;
         $evento->fechaInicioEntregaKits = $request->fechaInicioEntregaKits ;
         $evento->fechaFinEntregaKits = $request->fechaFinEntregaKits ;
@@ -54,7 +54,7 @@ class EventoController extends Controller
 
         $evento->save();
 
-
+*/
 
         $ultimoID = DB::table('eventos')
                       //->select('id')
@@ -85,8 +85,8 @@ class EventoController extends Controller
             $arrRam[] = $ram;
             $nueArrRam = array_slice($arrRam,1);
         }
-        //print_r($nue);
-
+        print_r($nueArrRam);
+        /*
         array_map(function ($dist,$cate,$preci,$rama) use($valor){
 
             $subEvento = new SubEvento();
@@ -98,7 +98,7 @@ class EventoController extends Controller
             $subEvento->save();
 
             },$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
-
+        */
 
     }
 

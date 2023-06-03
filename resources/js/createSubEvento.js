@@ -1,7 +1,8 @@
 const inputDistancia = document.querySelector("#distancia");
 const inputCategoria = document.querySelector("#categoria");
 const inputPrecio = document.querySelector("#precio");
-const inputRama = document.querySelector("#rama");
+//const inputRama = document.querySelector("#rama");
+const inputRama = document.querySelector(".radio-input");
 
 let clicks = document.querySelector("#clicks");
 

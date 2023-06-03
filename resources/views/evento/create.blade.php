@@ -24,7 +24,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-3">
                 <div class="px-4 sm:px-0">
-                    <h3 class="titulo-1">Creación de Evento</h3>
+                    <h3 class="titulo-1">Creación de evento</h3>
                     <p class="subtitulo">Ingresa la información solicitada a continuación para la creación del evento.</p>
                 </div>
             </div>
@@ -32,11 +32,7 @@
         </div>
     </div>
 
-    <div class="hidden sm:block" aria-hidden="true">
-        <div class="py-5">
-            <div class="border-t border-gray-200"></div>
-        </div>
-    </div>
+    <x-forms.separator></x-forms.separator>
 
     <form action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
 
@@ -45,17 +41,11 @@
 
             <div class="space-y-6 px-4 py-5 sm:p-6">
 
-                 <!--<div class="bg-secondary border border-solid border-white rounded-md p-5">-->
-                 <!--<div class="bg-secondary border border-solid border-gray-500 rounded-md p-5">-->
                  <div class="borde-tarjeta">
 
                      <p class="subtitulo">Datos del evento</p>
 
-                     <div class="hidden sm:block" aria-hidden="true">
-                         <div class="py-5">
-                             <div class="border-t border-gray-200"></div>
-                         </div>
-                     </div>
+                     <x-forms.separator></x-forms.separator>
 
                      <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento"></x-forms.input-field>
 
@@ -75,11 +65,7 @@
 
                     <p class="subtitulo">Datos de la entrega de kits</p>
 
-                    <div class="hidden sm:block" aria-hidden="true">
-                        <div class="py-5">
-                            <div class="border-t border-gray-200"></div>
-                        </div>
-                    </div>
+                    <x-forms.separator></x-forms.separator>
 
                     <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits"></x-forms.input-field>
 
@@ -92,25 +78,62 @@
 
                 </div>
 
-                <div class="hidden sm:block" aria-hidden="true">
-                    <div class="py-5">
-                        <div class="border-t border-gray-200"></div>
-                    </div>
-                </div>
-
-                <div class="hidden sm:block" aria-hidden="true">
-                    <div class="py-5">
-                        <div class="border-t border-gray-200"></div>
-                    </div>
-                </div>
-
                 <x-forms.input-field  id="distancia" name="distancia[]" message="Distancia del evento"></x-forms.input-field>
 
                 <x-forms.input-field  id="categoria" name="categoria[]" message="Categoría"></x-forms.input-field>
 
                 <x-forms.input-field  id="precio" name="precio[]" message="Precio"></x-forms.input-field>
 
-                <x-forms.input-field  id="rama" name="rama[]" message="Rama"></x-forms.input-field>
+
+                {{--
+                <x-forms.input-field id="rama" name="rama[]" message="Rama"></x-forms.input-field>
+                --}}
+
+                <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                    <div class="block md:col-start-1">
+                        <label for="rama" class="label-input">Rama</label>
+                    </div>
+
+                    <div class="block mt-3 md:col-start-3 col-end-6">
+
+                        <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+
+                            {{--
+                            <x-forms.input-radio class="radio-input" id="ambas" name="rama[]" value="Ambas"></x-forms.input-radio>
+                            <x-forms.input-radio class="radio-input" id="femenil" name="rama[]" value="Femenil"></x-forms.input-radio>
+                            <x-forms.input-radio class="radio-input" id="varonil" name="rama[]" value="Varonil"></x-forms.input-radio>
+                            --}}
+
+                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <div class="flex items-center pl-3">
+                                    <input id="ramaAmbas" type="radio" value="Ambas" name="rama[]" class="radio-input">
+                                    <label for="ramaAmbas" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ambas</label>
+                                </div>
+                            </li>
+
+                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <div class="flex items-center pl-3">
+                                    <input id="ramaFemenil" type="radio" value="Femenil" name="rama[]" class="radio-input">
+                                    <label for="ramaFemenil" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Femenil</label>
+                                </div>
+                            </li>
+
+                            <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                <div class="flex items-center pl-3">
+                                    <input id="ramaVaronil" type="radio" value="Varonil" name="rama[]" class="radio-input">
+                                    <label for="ramaVaronil" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Varonil</label>
+                                </div>
+                            </li>
+
+                        </ul>
+
+
+
+                    </div>
+
+                </div>
+
 
 
                 <button id="btn-add">+</button>
