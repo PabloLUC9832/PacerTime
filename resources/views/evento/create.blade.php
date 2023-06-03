@@ -99,12 +99,12 @@
 
                         <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
 
-                            {{--
-                            <x-forms.input-radio class="radio-input" id="ambas" name="rama[]" value="Ambas"></x-forms.input-radio>
-                            <x-forms.input-radio class="radio-input" id="femenil" name="rama[]" value="Femenil"></x-forms.input-radio>
-                            <x-forms.input-radio class="radio-input" id="varonil" name="rama[]" value="Varonil"></x-forms.input-radio>
-                            --}}
 
+                            <x-forms.input-radio id="ramaAmbas" name="rama[]" value="Ambas"></x-forms.input-radio>
+                            <x-forms.input-radio id="ramaFemenil" name="rama[]" value="Femenil"></x-forms.input-radio>
+                            <x-forms.input-radio id="ramaVaronil" name="rama[]" value="Varonil"></x-forms.input-radio>
+
+                            {{--
                             <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
                                 <div class="flex items-center pl-3">
                                     <input id="ramaAmbas" type="radio" value="Ambas" name="rama[]" class="radio-input">
@@ -125,7 +125,7 @@
                                     <label for="ramaVaronil" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Varonil</label>
                                 </div>
                             </li>
-
+                            --}}
                         </ul>
 
 
@@ -139,7 +139,7 @@
                 <button id="btn-add">+</button>
 
                 <div id="li-container">
-                    <ul>
+                    <ul id="listaRamas">
 
                     </ul>
                 </div>

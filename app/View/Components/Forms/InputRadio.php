@@ -9,20 +9,17 @@ use Illuminate\View\Component;
 class InputRadio extends Component
 {
 
-    //public $name;
+    public $name;
     public $id;
     public $value;
-    public $class;
     /**
      * Create a new component instance.
      */
-    //public function __construct($name,$id,$value,$class)
-    public function __construct($id,$value,$class)
+    public function __construct($name,$id,$value)
     {
-        //$this->name = $name;
+        $this->name = $name;
         $this->id = $id;
         $this->value = $value;
-        $this->class = $class;
     }
 
     /**

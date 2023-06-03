@@ -33,7 +33,7 @@ class EventoController extends Controller
      */
     public function store(StoreEventoRequest $request)
     {
-        /*
+
         $horaInicioEvento = $request->horaEvento . ":" . $request->minutoEvento. " " . $request->periodoEvento ;
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
@@ -54,7 +54,7 @@ class EventoController extends Controller
 
         $evento->save();
 
-*/
+
 
         $ultimoID = DB::table('eventos')
                       //->select('id')
@@ -85,8 +85,8 @@ class EventoController extends Controller
             $arrRam[] = $ram;
             $nueArrRam = array_slice($arrRam,1);
         }
-        print_r($nueArrRam);
-        /*
+        //print_r($nueArrRam);
+
         array_map(function ($dist,$cate,$preci,$rama) use($valor){
 
             $subEvento = new SubEvento();
@@ -98,7 +98,7 @@ class EventoController extends Controller
             $subEvento->save();
 
             },$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
-        */
+
 
     }
 

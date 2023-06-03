@@ -2,13 +2,18 @@ const inputDistancia = document.querySelector("#distancia");
 const inputCategoria = document.querySelector("#categoria");
 const inputPrecio = document.querySelector("#precio");
 //const inputRama = document.querySelector("#rama");
-const inputRama = document.querySelector(".radio-input");
+//const inputRama = document.querySelector(".radio-input");
+const inputRamaAmbas = document.querySelector("#ramaAmbas");
+const inputRamaFemenil = document.querySelector("#ramaFemenil");
+const inputRamaVaronil = document.querySelector("#ramaVaronil");
+
 
 let clicks = document.querySelector("#clicks");
 
 const addBtn = document.querySelector("#btn-add");
 
-const ul = document.querySelector("ul");
+//const ul = document.querySelector("ul");
+const ul = document.querySelector("#listaRamas");
 const empty = document.querySelector("#empty");
 var count = 1;
 
@@ -20,7 +25,10 @@ addBtn.addEventListener("click",(e) => {
     const textDistancia = inputDistancia.value;
     const textCategoria = inputCategoria.value;
     const textPrecio = inputPrecio.value;
-    const textRama = inputRama.value;
+    //const textRama = inputRama.value;
+    const textRamaAmbas = inputRamaAmbas.value;
+    const textRamaFemenil = inputRamaFemenil.value;
+    const textRamaVaronil = inputRamaVaronil.value;
 
     if (textDistancia !== "") {
         const li = document.createElement("li");
@@ -38,8 +46,19 @@ addBtn.addEventListener("click",(e) => {
         pPrecio.value = textPrecio;
         pPrecio.name = "precio["+n+"]";
 
-        pRama.value = textRama;
+        if(inputRamaAmbas.checked){
+            pRama.value = textRamaAmbas;
+        }
+        if(inputRamaFemenil.checked){
+            pRama.value = textRamaFemenil;
+        }
+        if(inputRamaVaronil.checked){
+            pRama.value = textRamaVaronil;
+        }
         pRama.name = "rama["+n+"]";
+
+        //pRama.value = textRama;
+        //pRama.name = "rama["+n+"]";
         //p.name = "click"+n;
 
         clicks.value = n;
