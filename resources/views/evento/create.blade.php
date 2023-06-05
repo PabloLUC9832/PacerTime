@@ -41,6 +41,7 @@
 
             <div class="space-y-6 px-4 py-5 sm:p-6">
 
+                <!--Datos del evento-->
                  <div class="borde-tarjeta">
 
                      <p class="subtitulo">Datos del evento</p>
@@ -60,7 +61,9 @@
                     <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
 
                  </div>
+                <!--Fin Datos del evento-->
 
+                <!--Categorías del evento-->
                 <div class="borde-tarjeta">
 
                     <p class="subtitulo">Categorías del evento</p>
@@ -68,10 +71,6 @@
                     <x-forms.separator></x-forms.separator>
 
                     <x-forms.input-field  id="categoria" name="categoria[]" message="Categoría"></x-forms.input-field>
-
-                    {{--
-                    <x-forms.input-field  id="distancia" name="distancia[]" message="Distancia del evento"></x-forms.input-field>
-                    --}}
 
                     <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
@@ -83,9 +82,9 @@
 
                             <div class="flex">
 
-                                <input type="text" name="distancia[]" id="distancia" class="block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="text" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 
-                                <select id="unidadDistancia" name="unidadDistancia[]" class="inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option value="">Selecciona la unidad de longitud</option>
                                     <option value="kilometros">Kilometros</option>
                                     <option value="millas">Millas</option>
@@ -107,7 +106,7 @@
 
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
-                            <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                            <ul class="items-center w-full text-sm text-white bg-primary border border-gray-200 rounded-lg sm:flex">
 
                                 <x-forms.input-radio id="ramaAmbas" name="rama[]" value="Ambas"></x-forms.input-radio>
                                 <x-forms.input-radio id="ramaFemenil" name="rama[]" value="Femenil"></x-forms.input-radio>
@@ -121,10 +120,6 @@
 
                     </div>
 
-                    {{--
-                    <x-forms.input-field  id="precio" name="precio[]" message="Precio"></x-forms.input-field>
-                    --}}
-
                     <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -134,19 +129,18 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <div class="flex">
-                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md">
+                             <span class="inline-flex items-center px-3 text-sm text-white bg-secondary border border-r-0 border-gray-300 rounded-l-md">
                                 $
                              </span>
-                            <input type="text" name="precio[]" id="precio" class="block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <input type="text" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 
                             </div>
                         </div>
 
                     </div>
 
-
-
                 </div>
+                <!--Fin categorías del evento-->
 
 
                 <button id="btn-add">+</button>
@@ -157,6 +151,7 @@
                     </ul>
                 </div>
 
+                <!--Datos de la entraga de kits-->
                 <div class="borde-tarjeta">
 
                     <p class="subtitulo">Datos de la entrega de kits</p>
@@ -173,6 +168,8 @@
 
 
                 </div>
+
+                <!--Fin de la entraga de kits-->
 
                 <div id="empty">
                     <p></p>
