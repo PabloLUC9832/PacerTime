@@ -49,7 +49,7 @@ class EventoController extends Controller
 
         }
 
-        var_dump($nameFiles);
+        //var_dump($nameFiles);
 
         $evento = new Evento();
         $evento->nombre = $request->nombre;
@@ -79,12 +79,21 @@ class EventoController extends Controller
 
         $valor = (int) implode("",$ultimoID);
 
+        foreach ($request->unidadDistancia as $uniDis){
+            $arrUniDis[] = $uniDis;
+            $nueArrUniDis = array_slice($arrUniDis,1);
+            //var_dump($arrDis);
+        }
+
         foreach ($request->distancia as $dis){
             $arrDis[] = $dis;
             $nueArrDis = array_slice($arrDis,1);
             //var_dump($arrDis);
         }
-        //var_dump($arrDis);
+        $nueDistanciaComp = array_merge_recursive($nueArrDis,$nueArrUniDis);
+        //var_dump($nueDistanciaComp);
+        //die();
+
         foreach ($request->categoria as $cat){
             $arrCat[] = $cat;
             $nueArrCat = array_slice($arrCat,1);
@@ -111,7 +120,8 @@ class EventoController extends Controller
             $subEvento->evento_id = $valor;
             $subEvento->save();
 
-            },$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
+            //},$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
+            },$nueDistanciaComp,$nueArrCat,$nueArrPrec,$nueArrRam);
 
 
     }

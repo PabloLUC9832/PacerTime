@@ -1,4 +1,5 @@
 const inputDistancia = document.querySelector("#distancia");
+const inputUnidadDistancia = document.querySelector("#unidadDistancia");
 const inputCategoria = document.querySelector("#categoria");
 const inputPrecio = document.querySelector("#precio");
 //const inputRama = document.querySelector("#rama");
@@ -23,6 +24,7 @@ addBtn.addEventListener("click",(e) => {
 
     let n = count++;
     const textDistancia = inputDistancia.value;
+    const textUndadDistancia = inputUnidadDistancia.value;
     const textCategoria = inputCategoria.value;
     const textPrecio = inputPrecio.value;
     //const textRama = inputRama.value;
@@ -37,7 +39,8 @@ addBtn.addEventListener("click",(e) => {
         const pPrecio = document.createElement("input");
         const pRama = document.createElement("input");
         //p.textContent = text;
-        pDistancia.value = textDistancia;
+        //pDistancia.value = textDistancia;
+        pDistancia.value = textDistancia + " "+textUndadDistancia;
         pDistancia.name = "distancia["+n+"]";
 
         pCategoria.value = textCategoria;
@@ -73,7 +76,7 @@ addBtn.addEventListener("click",(e) => {
         inputDistancia.value = "";
         inputCategoria.value = "";
         inputPrecio.value = "";
-        inputRama.value = "";
+        //inputRama.value = "";
 
         empty.style.display = "none";
     }
