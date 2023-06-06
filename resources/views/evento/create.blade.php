@@ -48,7 +48,7 @@
 
                      <x-forms.separator></x-forms.separator>
 
-                     <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento"></x-forms.input-field>
+                     <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento" class="uppercase"></x-forms.input-field>
 
                      <x-forms.input-text-area id="descripcion" name="descripcion" ></x-forms.input-text-area>
 
@@ -70,7 +70,7 @@
 
                     <x-forms.separator></x-forms.separator>
 
-                    <x-forms.input-field  id="categoria" name="categoria[]" message="Categoría"></x-forms.input-field>
+                    <x-forms.input-field id="categoria" name="categoria[]" message="Categoría" class="uppercase"></x-forms.input-field>
 
                     <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
@@ -86,9 +86,9 @@
 
                                 <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option value="">Selecciona la unidad de longitud</option>
-                                    <option value="kilometros">Kilometros</option>
-                                    <option value="millas">Millas</option>
-                                    <option value="metros">Metros</option>
+                                    <option value="Kilometros">Kilometros</option>
+                                    <option value="Millas">Millas</option>
+                                    <option value="Metros">Metros</option>
                                 </select>
 
                             </div>
@@ -98,7 +98,7 @@
                     </div>
 
 
-                    <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
                             <label for="rama" class="label-input">Rama</label>
@@ -108,9 +108,9 @@
 
                             <ul class="items-center w-full text-sm text-white bg-primary border border-gray-200 rounded-lg sm:flex">
 
-                                <x-forms.input-radio id="ramaAmbas" name="rama[]" value="Ambas"></x-forms.input-radio>
-                                <x-forms.input-radio id="ramaFemenil" name="rama[]" value="Femenil"></x-forms.input-radio>
-                                <x-forms.input-radio id="ramaVaronil" name="rama[]" value="Varonil"></x-forms.input-radio>
+                                <x-forms.input-radio id="ramaAmbas" name="rama[]" value="AMBAS"></x-forms.input-radio>
+                                <x-forms.input-radio id="ramaFemenil" name="rama[]" value="FEMENIL"></x-forms.input-radio>
+                                <x-forms.input-radio id="ramaVaronil" name="rama[]" value="VARONIL"></x-forms.input-radio>
 
                             </ul>
 
@@ -120,7 +120,7 @@
 
                     </div>
 
-                    <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
                             <label for="precio" class="label-input">Precio</label>
@@ -139,17 +139,34 @@
 
                     </div>
 
+                    <div id="empty">
+                        <p></p>
+                    </div>
+
+                    <div class="grid place-items-center">
+
+
+                        <input class="bg-secondary text-white mt-2 w-56" id="clicks" name="clicks" value="    Has agregado 0 categorías" readonly="readonly"/>
+                        <!--<button id="btn-add">+</button>-->
+
+                        <button id="btn-add" class="mt-2 text-white bg-primary-yellow hover:bg-secondary-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                            Añadir categoría
+                            <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <title/> <g id="Complete"> <g data-name="add" id="add-2"> <g> <line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="12" x2="12" y1="19" y2="5"/> <line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="5" x2="19" y1="12" y2="12"/> </g> </g> </g> </svg>
+                        </button>
+
+                    </div>
+
+                    <div id="li-container" class="mt-2">
+                        <ul id="listaRamas">
+
+                        </ul>
+                    </div>
+
                 </div>
                 <!--Fin categorías del evento-->
 
 
-                <button id="btn-add">+</button>
 
-                <div id="li-container">
-                    <ul id="listaRamas">
-
-                    </ul>
-                </div>
 
                 <!--Datos de la entraga de kits-->
                 <div class="borde-tarjeta">
@@ -169,15 +186,23 @@
 
                 </div>
 
-                <!--Fin de la entraga de kits-->
+                <!--Fin de la entrega de kits-->
+                <div class="borde-tarjeta">
 
-                <div id="empty">
-                    <p></p>
+                    <!--<button type="submit">Registrar</button>-->
+
+                    <div class="grid place-items-center md:flex items-center justify-center">
+
+
+                        <button type="button" class="focus:outline-none text-white bg-primary-red hover:bg-secondary-red focus:ring-4 focus:ring-red-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Cancelar</button>
+
+                        <button type="submit" class="focus:outline-none text-white bg-primary-yellow hover:bg-secondary-yellow focus:ring-4 focus:ring-yellow-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Registrar</button>
+
+                    </div>
+
                 </div>
 
-                <input id="clicks" name="clicks" value="XD"/>
 
-                <button type="submit">Enviar</button>
 
             </div>
 

@@ -52,7 +52,7 @@ class EventoController extends Controller
         //var_dump($nameFiles);
 
         $evento = new Evento();
-        $evento->nombre = $request->nombre;
+        $evento->nombre = strtoupper($request->nombre);
         $evento->descripcion = $request->descripcion ;
         $evento->lugarEvento = $request->lugarEvento;
         $evento->fechaInicioEvento = $request->fechaInicioEvento;

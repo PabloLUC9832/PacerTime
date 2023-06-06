@@ -1,4 +1,4 @@
-<div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+<div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
     <div class="block md:col-start-1">
         <label for="descripcion" class="label-input">Descripción</label>

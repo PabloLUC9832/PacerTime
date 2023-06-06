@@ -14,12 +14,14 @@ class InputField extends Component
     public $name;
     public $message;
     public $id;
+    public $class;
 
-    public function __construct($name,$message,$id)
+    public function __construct($name,$message,$id,$class="")
     {
         $this->name = $name;
         $this->message = $message;
         $this->id = $id;
+        $this->class = $class;
     }
 
     /**
