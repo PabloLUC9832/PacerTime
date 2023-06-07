@@ -18,9 +18,11 @@
 </head>
 <body class="bg-primary">
 
+@include('layouts.navigation')
+
 <div class="m-10">
 
-    <div>
+    <div class="space-y-6 px-4 py-5 sm:p-6">
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-3">
                 <div class="px-4 sm:px-0">
@@ -32,7 +34,7 @@
         </div>
     </div>
 
-    <x-forms.separator></x-forms.separator>
+    {{--<x-forms.separator></x-forms.separator>--}}
 
     <form action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
 
