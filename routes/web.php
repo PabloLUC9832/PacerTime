@@ -27,8 +27,24 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
+    Route::controller(EventoController::class)->group(function(){
+
+        Route::name('eventos.')->group(function (){
+
+            Route::get('/eventos','index')->name('index');
+
+            Route::get('/eventos/create','create')->name('create');
+            Route::post('/eventos/','store')->name('store');
+
+        });
+
+    });
+
+
+});
+//Incluir al middleware
+/*
 Route::controller(EventoController::class)->group(function(){
 
     Route::name('eventos.')->group(function (){
@@ -41,6 +57,6 @@ Route::controller(EventoController::class)->group(function(){
     });
 
 });
-
+*/
 
 require __DIR__.'/auth.php';

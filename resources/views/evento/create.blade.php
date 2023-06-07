@@ -150,8 +150,10 @@
 
                         <input class="bg-secondary text-white mt-2 w-56" id="clicks" name="clicks" value="    Has agregado 0 categorías" readonly="readonly"/>
                         <!--<button id="btn-add">+</button>-->
-
-                        <button id="btn-add" class="mt-2 text-white bg-primary-yellow hover:bg-secondary-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                        <!--
+                        <button id="btn-add" class="mt-2 text-white bg-primary-yellow hover:bg-secondary-yellow focus:ring-2 focus:outline-none focus:ring-slate-50 focus:ring-offset-slate-50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                        -->
+                        <button id="btn-add" class="mt-2 btn-ok">
                             Añadir categoría
                             <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <title/> <g id="Complete"> <g data-name="add" id="add-2"> <g> <line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="12" x2="12" y1="19" y2="5"/> <line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="5" x2="19" y1="12" y2="12"/> </g> </g> </g> </svg>
                         </button>
@@ -195,10 +197,10 @@
 
                     <div class="grid place-items-center md:flex items-center justify-center">
 
-                        <a href="{{route('eventos.index')}}" type="button" class="focus:outline-none text-white bg-primary-red hover:bg-secondary-red focus:ring-4 focus:ring-red-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Cancelar</a>
+                        <a href="{{route('eventos.index')}}" type="button" class="btn-cancelar">Cancelar</a>
 
 
-                        <button type="submit" class="focus:outline-none text-white bg-primary-yellow hover:bg-secondary-yellow focus:ring-4 focus:ring-yellow-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 ">Registrar</button>
+                        <button type="submit" class="mr-2 mb-2 btn-ok">Guardar</button>
 
                     </div>
 
