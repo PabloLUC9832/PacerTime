@@ -32,21 +32,25 @@ addBtn.addEventListener("click",(e) => {
     const textRamaFemenil = inputRamaFemenil.value;
     const textRamaVaronil = inputRamaVaronil.value;
 
-    if (textDistancia !== "") {
+    //if (textDistancia !== "") {
+    if (textCategoria !== "" && textDistancia !== "" && textUndadDistancia !=="" && textPrecio!=="" ) {
         const li = document.createElement("li");
 
         const pDistancia = document.createElement("input");
+        const pUnidadDistancia = document.createElement("input");
         const pCategoria = document.createElement("input");
         const pPrecio = document.createElement("input");
         const pRama = document.createElement("input");
 
         pDistancia.setAttribute('class',"bg-primary text-white ");
+        pUnidadDistancia.setAttribute('class',"bg-primary text-white ");
         pCategoria.setAttribute('class',"bg-primary text-white ");
         pPrecio.setAttribute('class',"bg-primary text-white ");
         pRama.setAttribute('class',"bg-primary text-white ");
 
 
         pDistancia.setAttribute('readonly',"readonly");
+        pUnidadDistancia.setAttribute('readonly',"readonly");
         pCategoria.setAttribute('readonly',"readonly");
         pPrecio.setAttribute('readonly',"readonly");
         pRama.setAttribute('readonly',"readonly");
@@ -54,8 +58,12 @@ addBtn.addEventListener("click",(e) => {
 
         //p.textContent = text;
         //pDistancia.value = textDistancia;
-        pDistancia.value = textDistancia + " "+textUndadDistancia;
+        //pDistancia.value = textDistancia + " "+textUndadDistancia;
+        pDistancia.value = textDistancia + " ";
         pDistancia.name = "distancia["+n+"]";
+
+        pUnidadDistancia.value = textUndadDistancia;
+        pUnidadDistancia.name = "unidadDistancia["+n+"]";
 
         pCategoria.value = textCategoria;
         pCategoria.name = "categoria["+n+"]";
@@ -74,25 +82,28 @@ addBtn.addEventListener("click",(e) => {
         }
         pRama.name = "rama["+n+"]";
 
-        //pRama.value = textRama;
-        //pRama.name = "rama["+n+"]";
-        //p.name = "click"+n;
-
         clicks.value = "Has agregado "+ n + " categorías";
 
         li.appendChild(pCategoria);
         li.appendChild(pDistancia);
+        li.appendChild(pUnidadDistancia);
         li.appendChild(pRama);
         li.appendChild(pPrecio);
         li.appendChild(addDeleteBtn());
         ul.appendChild(li);
 
         inputDistancia.value = "";
+        inputUnidadDistancia.value = "";
         inputCategoria.value = "";
         inputPrecio.value = "";
+        inputRamaAmbas.checked = false;
+        inputRamaFemenil.checked = false;
+        inputRamaVaronil.checked = false;
         //inputRama.value = "";
 
-        empty.style.display = "none";
+        //empty.style.display = "none";
+    }else{
+        clicks.value = "Aún faltan campos por llenar.";
     }
 
 
@@ -121,5 +132,3 @@ function addDeleteBtn() {
 
     return deleteBtn;
 }
-
-

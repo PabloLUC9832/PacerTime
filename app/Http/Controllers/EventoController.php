@@ -39,12 +39,6 @@ class EventoController extends Controller
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
 
-        //$nameFiles = "";
-
-
-
-        //var_dump($nameFiles);
-
         $evento = new Evento();
         $evento->nombre = strtoupper($request->nombre);
         $evento->descripcion = $request->descripcion ;
@@ -89,50 +83,26 @@ class EventoController extends Controller
 
         $valor = (int) implode("",$ultimoID);
 
-        foreach ($request->unidadDistancia as $uniDis){
-            $arrUniDis[] = $uniDis;
-            $nueArrUniDis = array_slice($arrUniDis,1);
-            //var_dump($arrDis);
-        }
 
-        foreach ($request->distancia as $dis){
-            $arrDis[] = $dis;
-            $nueArrDis = array_slice($arrDis,1);
-            //var_dump($arrDis);
-        }
-        $nueDistanciaComp = array_merge_recursive($nueArrDis,$nueArrUniDis);
-        //var_dump($nueDistanciaComp);
-        //die();
+        $valoresCategoria = $this->inputsArray($request->categoria);
+        $valoresDistancia = $this->inputsArray($request->distancia);
+        $valoresUnidadDistancia = $this->inputsArray($request->unidadDistancia);
+        $valoresRama = $this->inputsArray($request->rama);
+        $valoresPrecio = $this->inputsArray($request->precio);
 
-        foreach ($request->categoria as $cat){
-            $arrCat[] = $cat;
-            $nueArrCat = array_slice($arrCat,1);
-        }
 
-        foreach ($request->precio as $prec){
-            $arrPrec[] = $prec;
-            $nueArrPrec = array_slice($arrPrec,1);
-        }
-
-        foreach ($request->rama as $ram){
-            $arrRam[] = $ram;
-            $nueArrRam = array_slice($arrRam,1);
-        }
-        //print_r($nueArrRam);
-
-        array_map(function ($dist,$cate,$preci,$rama) use($valor){
+        array_map(function ($cate,$dist,$unidDist,$rama,$precio) use($valor){
 
             $subEvento = new SubEvento();
-            $subEvento->distancia = $dist;
-            $subEvento->categoria = $cate;
-            $subEvento->precio = $preci;
+            $subEvento->distancia = $dist . " " . $unidDist;
+            $subEvento->categoria = strtoupper($cate);
+            $subEvento->precio = $precio;
             $subEvento->rama = $rama;
             $subEvento->evento_id = $valor;
+            //$subEvento->evento_id = 1;
             $subEvento->save();
 
-            //},$nueArrDis,$nueArrCat,$nueArrPrec,$nueArrRam);
-            },$nueDistanciaComp,$nueArrCat,$nueArrPrec,$nueArrRam);
-
+        },$valoresCategoria,$valoresDistancia,$valoresUnidadDistancia,$valoresRama,$valoresPrecio);
 
     }
 
@@ -167,4 +137,21 @@ class EventoController extends Controller
     {
         //
     }
+
+    protected function inputsArray($inputs){
+
+        foreach ($inputs as $input){
+
+            $arrayValores[] = $input;
+            if ($arrayValores[0] == NULL){
+                $nuevoArray = array_slice($arrayValores,1);
+            }else{
+                $nuevoArray = $arrayValores;
+            }
+
+        }
+        return $nuevoArray;
+    }
+
+
 }
