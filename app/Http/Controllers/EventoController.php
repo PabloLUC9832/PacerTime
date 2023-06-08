@@ -7,7 +7,8 @@ use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
 use Illuminate\Support\Facades\DB;
-use PHPUnit\Exception;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class EventoController extends Controller
 {
@@ -38,16 +39,9 @@ class EventoController extends Controller
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
 
-        $nameFiles = "";
+        //$nameFiles = "";
 
-        if($request->hasFile('files')){
 
-            foreach($request->file('files') as $file){
-                $fileName = time() ."_" . $file->getClientOriginalName();
-                $nameFiles .= $fileName . "-";
-            }
-
-        }
 
         //var_dump($nameFiles);
 
@@ -64,7 +58,23 @@ class EventoController extends Controller
         $evento->horaInicioEntregaKits = $horaInicioEntregaKits ;
         $evento->horaFinEntregaKits = $horaFinEntregaKits ;
         //$evento->imagen = $request->file ;
-        $evento->imagen = $nameFiles ;
+        //$evento->imagen = $nameFiles ;
+
+        if($request->hasFile('files')){
+
+            $directory="evento-".$request->nombre;
+            $evento->imagen = $directory;
+
+            Storage::makeDirectory($directory);
+            foreach($request->file('files') as $file){
+                $fileName = time() ."_" . $file->getClientOriginalName();
+                //$nameFiles .= $fileName . "-";
+                $file->storeAs('/'.$directory.'/', $fileName, 'azure');
+            }
+
+        }else{
+            $evento->imagen = "Indisponible";
+        }
 
         $evento->save();
 

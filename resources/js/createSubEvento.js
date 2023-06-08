@@ -101,7 +101,7 @@ addBtn.addEventListener("click",(e) => {
 
 function addDeleteBtn() {
     const deleteBtn = document.createElement("button");
-    deleteBtn.setAttribute('class','mt-2 text-white bg-primary-red hover:bg-secondary-red focus:ring-4 focus:outline-none focus:ring-blue-300 font-sm rounded-lg text-sm px-2.5 py-1');
+    deleteBtn.setAttribute('class','mt-2 text-white bg-red-700 hover:bg-red-500 focus:ring-2 focus:outline-none focus:ring-blue-300 font-sm rounded-lg text-sm px-2.5 py-1');
 
     deleteBtn.id = "delete";
 
