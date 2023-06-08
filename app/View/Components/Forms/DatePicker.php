@@ -13,11 +13,13 @@ class DatePicker extends Component
      */
     public $name;
     public $message;
+    public $required;
 
-    public function __construct($name,$message)
+    public function __construct($name,$message,$required="")
     {
         $this->name = $name;
         $this->message = $message;
+        $this->required = $required;
     }
 
     /**

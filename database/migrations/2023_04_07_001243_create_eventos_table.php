@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('fechaInicioEntregaKits');
             $table->text('fechaFinEntregaKits')->nullable();
             $table->text('horaInicioEntregaKits');
-            $table->text('horaFinEntregaKits');
+            $table->text('horaFinEntregaKits')->nullable();
             $table->text('imagen')->nullable();
 
             //$table->unsignedBigInteger('sub_evento_id');

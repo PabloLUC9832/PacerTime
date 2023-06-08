@@ -15,13 +15,15 @@ class InputField extends Component
     public $message;
     public $id;
     public $class;
+    public $required;
 
-    public function __construct($name,$message,$id,$class="")
+    public function __construct($name,$message,$id,$class="",$required="")
     {
         $this->name = $name;
         $this->message = $message;
         $this->id = $id;
         $this->class = $class;
+        $this->required = $required;
     }
 
     /**

@@ -34,8 +34,6 @@
         </div>
     </div>
 
-    {{--<x-forms.separator></x-forms.separator>--}}
-
     <form action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
@@ -50,15 +48,41 @@
 
                      <x-forms.separator></x-forms.separator>
 
-                     <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento" class="uppercase"></x-forms.input-field>
+                     <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento" class="uppercase" required="required"></x-forms.input-field>
 
-                     <x-forms.input-text-area id="descripcion" name="descripcion" ></x-forms.input-text-area>
+                     <x-forms.input-text-area id="descripcion" name="descripcion" required="required"></x-forms.input-text-area>
 
-                     <x-forms.input-field  name="lugarEvento" id="lugarEvento" message="Lugar del evento"></x-forms.input-field>
+                     <x-forms.input-field  name="lugarEvento" id="lugarEvento" message="Lugar del evento" required="required"></x-forms.input-field>
 
+                     {{--
                      <x-forms.date-picker name="Evento" message="Fecha del evento"></x-forms.date-picker>
+                    --}}
 
-                     <x-forms.time-picker name="Evento" message="Hora de inicio del evento"></x-forms.time-picker>
+                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                         <div class="block md:col-start-1">
+                             <label for="fechaInicioEvento" class="label-input">Fecha del evento</label>
+                         </div>
+
+                         <div class="block mt-3 md:col-start-3 col-end-6">
+
+                             <div class="flex">
+
+                                <x-forms.date-picker name="fechaInicioEvento" message="Fecha de inicio" required="required"></x-forms.date-picker>
+
+                                <span class="mx-4 my-2 text-white text-md">a</span>
+
+                                 <x-forms.date-picker name="fechaFinEvento" message="Fecha de finalización"></x-forms.date-picker>
+
+                             </div>
+
+                         </div>
+
+
+                     </div>
+
+
+                     <x-forms.time-picker name="Evento" message="Hora de inicio del evento" required="required"></x-forms.time-picker>
 
                     <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
 
@@ -72,7 +96,7 @@
 
                     <x-forms.separator></x-forms.separator>
 
-                    <x-forms.input-field id="categoria" name="categoria[]" message="Categoría" class="uppercase"></x-forms.input-field>
+                    <x-forms.input-field id="categoria" name="categoria[]" message="Categoría" class="uppercase" required="required"></x-forms.input-field>
 
                     <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
@@ -84,9 +108,9 @@
 
                             <div class="flex">
 
-                                <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
 
-                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                                     <option value="">Selecciona la unidad de longitud</option>
                                     <option value="Kilometros">Kilometros</option>
                                     <option value="Millas">Millas</option>
@@ -134,7 +158,7 @@
                              <span class="inline-flex items-center px-3 text-sm text-white bg-secondary border border-r-0 border-gray-300 rounded-l-md">
                                 $
                              </span>
-                            <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                            <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" required>
 
                             </div>
                         </div>
@@ -149,10 +173,7 @@
 
 
                         <input class="bg-secondary text-white mt-2 w-56" id="clicks" name="clicks" value="    Has agregado 0 categorías" readonly="readonly"/>
-                        <!--<button id="btn-add">+</button>-->
-                        <!--
-                        <button id="btn-add" class="mt-2 text-white bg-primary-yellow hover:bg-secondary-yellow focus:ring-2 focus:outline-none focus:ring-slate-50 focus:ring-offset-slate-50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-                        -->
+
                         <button id="btn-add" class="mt-2 btn-ok">
                             Añadir categoría
                             <svg class="w-5 h-5 ml-2 -mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <title/> <g id="Complete"> <g data-name="add" id="add-2"> <g> <line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="12" x2="12" y1="19" y2="5"/> <line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" x1="5" x2="19" y1="12" y2="12"/> </g> </g> </g> </svg>
@@ -169,9 +190,6 @@
                 </div>
                 <!--Fin categorías del evento-->
 
-
-
-
                 <!--Datos de la entraga de kits-->
                 <div class="borde-tarjeta">
 
@@ -179,11 +197,35 @@
 
                     <x-forms.separator></x-forms.separator>
 
-                    <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits"></x-forms.input-field>
+                    <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits" required="required"></x-forms.input-field>
 
+                    {{--}}
                     <x-forms.date-picker name="EntregaKits" message="Fecha de la entrega de kits"></x-forms.date-picker>
+                    --}}
 
-                    <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits"></x-forms.time-picker>
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="fechaInicioEvento" class="label-input">Fecha del evento</label>
+                        </div>
+
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+
+                            <div class="flex">
+
+                                <x-forms.date-picker name="fechaInicioEntregaKits" message="Fecha de inicio" required="required"></x-forms.date-picker>
+
+                                <span class="mx-4 my-2 text-white text-md">a</span>
+
+                                <x-forms.date-picker name="fechaFinEntregaKits" message="Fecha de finalización"></x-forms.date-picker>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits" required="required"></x-forms.time-picker>
 
                     <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"></x-forms.time-picker>
 
@@ -192,8 +234,6 @@
 
                 <!--Fin de la entrega de kits-->
                 <div class="borde-tarjeta">
-
-                    <!--<button type="submit">Registrar</button>-->
 
                     <div class="grid place-items-center md:flex items-center justify-center">
 

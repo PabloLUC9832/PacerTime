@@ -6,7 +6,7 @@
 
     <div class="block mt-3 md:col-start-3 col-end-6">
         <div class="mt-1">
-            <textarea id="{{$id}}" name="{{$name}}" rows="3" class="text-white bg-primary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Describe el evento"></textarea>
+            <textarea id="{{$id}}" name="{{$name}}" rows="3" class="text-white bg-primary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Describe el evento" required></textarea>
         </div>
     </div>
 

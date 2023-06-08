@@ -11,13 +11,15 @@ class TimePicker extends Component
 
     public $name;
     public $message;
+    public $required;
     /**
      * Create a new component instance.
      */
-    public function __construct($name,$message)
+    public function __construct($name,$message,$required="")
     {
         $this->name = $name;
         $this->message = $message;
+        $this->required = $required;
     }
 
     /**
