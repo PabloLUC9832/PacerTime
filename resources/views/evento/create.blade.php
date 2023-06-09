@@ -93,13 +93,35 @@
                     <p class="subtitulo">Categorías del evento</p>
 
                     <x-forms.separator></x-forms.separator>
-
+                    {{--
                     <x-forms.input-field id="categoria" name="categoria[]" message="Categoría" class="uppercase"></x-forms.input-field>
+                    --}}
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
-                    <div class="col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+                        <div class="block md:col-start-1">
+                            <label for="categoria" class="label-input">Categoría</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
+                        </div>
+
+
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+                            <input type="text" name="categoria[]" id="categoria" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase">
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="mt-3 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
                             <label for="distancia" class="label-input">Distancia</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
                         </div>
 
                         <div class="block mt-3 md:col-start-3 col-end-6">
@@ -126,6 +148,9 @@
 
                         <div class="block md:col-start-1">
                             <label for="rama" class="label-input">Rama</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
                         </div>
 
                         <div class="block mt-3 md:col-start-3 col-end-6">
@@ -148,6 +173,9 @@
 
                         <div class="block md:col-start-1">
                             <label for="precio" class="label-input">Precio</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
                         </div>
 
                         <div class="block mt-3 md:col-start-3 col-end-6">

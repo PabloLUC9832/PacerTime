@@ -2,7 +2,13 @@
 
     <div class="block md:col-start-1 col-end-3">
         <label for="hora{{$name}}" class="label-input">{{$message}}</label>
+        @if($required)
+            <span class="text-xs italic text-primary-red font-semibold	">
+                Obligatorio
+             </span>
+        @endif
     </div>
+
 
     <div class="block mt-3 md:col-start-3 col-end-6">
 

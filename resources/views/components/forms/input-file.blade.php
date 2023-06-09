@@ -2,6 +2,9 @@
 
     <div class="block md:col-start-1 lg:align-text-bottom">
         <label for="{{$id}}" class="label-input">Imagen</label>
+        <span class="text-xs italic text-primary-red font-semibold	">
+            Obligatorio
+        </span>
     </div>
 
     <div class="block mt-3 md:col-start-3 col-end-6">
