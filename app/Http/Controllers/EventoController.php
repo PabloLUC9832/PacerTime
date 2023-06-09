@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 
 class EventoController extends Controller
 {
@@ -26,7 +25,6 @@ class EventoController extends Controller
     public function create()
     {
         return view('evento.create');
-        //return view('evento.prueba');
     }
 
     /**
@@ -35,10 +33,17 @@ class EventoController extends Controller
     public function store(StoreEventoRequest $request)
     {
 
+        /*
+         * Se concatenan los request de hora,minuto y periodo para guardar la hora completa
+         */
+
         $horaInicioEvento = $request->horaEvento . ":" . $request->minutoEvento. " " . $request->periodoEvento ;
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
 
+        /*
+         * Se guarda el evento
+         */
         $evento = new Evento();
         $evento->nombre = strtoupper($request->nombre);
         $evento->descripcion = $request->descripcion ;
@@ -51,8 +56,12 @@ class EventoController extends Controller
         $evento->fechaFinEntregaKits = $request->fechaFinEntregaKits ;
         $evento->horaInicioEntregaKits = $horaInicioEntregaKits ;
         $evento->horaFinEntregaKits = $horaFinEntregaKits ;
-        //$evento->imagen = $request->file ;
-        //$evento->imagen = $nameFiles ;
+
+        /*
+         * Se verifica si hay archivos. Si los hay, el nombre de la carpeta en Azure es el dato que va a la
+         * columna de la tabla, se crea la carpeta   y  las imagenes se guardan el la carpeta en Azure.
+         *
+         */
 
         if($request->hasFile('files')){
 
@@ -62,7 +71,6 @@ class EventoController extends Controller
             Storage::makeDirectory($directory);
             foreach($request->file('files') as $file){
                 $fileName = time() ."_" . $file->getClientOriginalName();
-                //$nameFiles .= $fileName . "-";
                 $file->storeAs('/'.$directory.'/', $fileName, 'azure');
             }
 
@@ -73,7 +81,10 @@ class EventoController extends Controller
         $evento->save();
 
 
-
+        /*
+         * Se consulta el ultimo id de evento registrado para que se relacione con las categorias /Sub eventos
+         * que estan por registrarse
+         */
         $ultimoID = DB::table('eventos')
                       //->select('id')
                       ->orderBy('id','desc')
@@ -90,7 +101,11 @@ class EventoController extends Controller
         $valoresRama = $this->inputsArray($request->rama);
         $valoresPrecio = $this->inputsArray($request->precio);
 
-
+        /*
+         * El metoodo array map aplica la función a los elementos de los arrays dados.
+         * iterara por los elementos, haciendo lo de la función.
+         * Así logrando guardar cada categoría.
+         */
         array_map(function ($cate,$dist,$unidDist,$rama,$precio) use($valor){
 
             $subEvento = new SubEvento();
@@ -99,7 +114,6 @@ class EventoController extends Controller
             $subEvento->precio = $precio;
             $subEvento->rama = $rama;
             $subEvento->evento_id = $valor;
-            //$subEvento->evento_id = 1;
             $subEvento->save();
 
         },$valoresCategoria,$valoresDistancia,$valoresUnidadDistancia,$valoresRama,$valoresPrecio);
@@ -138,6 +152,21 @@ class EventoController extends Controller
         //
     }
 
+    /**
+     * Función que toma como parametro los inputs request de tipo array.
+     * Lo que hace es iterar los request entonces si el indice 0 es igual null
+     * con la función quita una posición. Evitando así un error de envio de
+     * datos nulos al enviar el Form.
+     * Se usa para la sección de Categorías del evento pues, si el usuario se le olvida
+     * presionar el botón de Añadir categoría, aún así se envie los datos de la categoría.
+     * Y si presiona el botón de Añadir categoría y así poner los datos en la lista, entonces los
+     * inputs quedan vacios por lo que el required no lo solucionaba. Entonces al quedar los inputs vacios
+     * la posición 0 queda vacia y es cuando hace el array_slice.
+     *
+     * @see resources/views/evento/create.blade.php
+     * @param $inputs
+     * @return array
+     */
     protected function inputsArray($inputs){
 
         foreach ($inputs as $input){

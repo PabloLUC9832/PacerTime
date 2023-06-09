@@ -13,6 +13,7 @@
     <div class="block mt-3 md:col-start-3 col-end-6">
 
         <select name="hora{{$name}}" id="hora{{$name}}" class="text-white px-2 outline-none appearance-none bg-primary rounded-md" {{$required}}>
+            <option value="">--</option>
             <option value="01">01</option>
             <option value="02">02</option>
             <option value="03">03</option>
@@ -28,6 +29,7 @@
         </select>
         <span class="px-2 text-white">:</span>
         <select name="minuto{{$name}}" id="minuto{{$name}}" class="text-white px-2 outline-none appearance-none bg-primary rounded-md" {{$required}}>
+            <option value="">--</option>
             <option value="00">00</option>
             <option value="01">01</option>
             <option value="02">02</option>
@@ -90,6 +92,7 @@
             <option value="59">59</option>
         </select>
         <select name="periodo{{$name}}" id="periodo{{$name}}" class="text-white px-2 outline-none appearance-none bg-primary rounded-md" {{$required}}>
+            <option value="">--</option>
             <option value="AM">AM</option>
             <option value="PM">PM</option>
         </select>

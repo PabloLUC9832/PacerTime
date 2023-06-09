@@ -48,12 +48,16 @@
 
                     <x-forms.separator></x-forms.separator>
 
+                    <!--Input nombre del evento-->
                     <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento" class="uppercase" required="required"></x-forms.input-field>
 
+                    <!--Input descripción del evento-->
                     <x-forms.input-text-area id="descripcion" name="descripcion" required="required"></x-forms.input-text-area>
 
+                    <!--Input lugar del evento-->
                     <x-forms.input-field  name="lugarEvento" id="lugarEvento" message="Lugar del evento" required="required"></x-forms.input-field>
 
+                    <!--Fecha del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -63,11 +67,11 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <div class="flex">
-
+                                <!--Input fecha inicial del evento-->
                                 <x-forms.date-picker name="fechaInicioEvento" message="Fecha de inicio" required="required"></x-forms.date-picker>
 
                                 <span class="mx-4 my-2 text-white text-md">a</span>
-
+                                <!--Input fecha final del evento-->
                                 <x-forms.date-picker name="fechaFinEvento" message="Fecha de finalización"></x-forms.date-picker>
 
                             </div>
@@ -77,15 +81,14 @@
 
                     </div>
 
-
+                    <!--Input hora inicial del evento-->
                     <x-forms.time-picker name="Evento" message="Hora de inicio del evento" required="required"></x-forms.time-picker>
 
+                    <!--Input imagen del evento-->
                     <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
 
                 </div>
                 <!--Fin Datos del evento-->
-
-
 
                 <!--Categorías del evento-->
                 <div class="borde-tarjeta">
@@ -93,9 +96,8 @@
                     <p class="subtitulo">Categorías del evento</p>
 
                     <x-forms.separator></x-forms.separator>
-                    {{--
-                    <x-forms.input-field id="categoria" name="categoria[]" message="Categoría" class="uppercase"></x-forms.input-field>
-                    --}}
+
+                    <!--Categorías del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -105,16 +107,14 @@
                             </span>
                         </div>
 
-
+                        <!--Input categoría del evento-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
                             <input type="text" name="categoria[]" id="categoria" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase">
                         </div>
 
                     </div>
 
-
-
-
+                    <!--Distancias y unidad de distancia del evento-->
                     <div class="mt-3 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -127,7 +127,7 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <div class="flex">
-
+                                <!--Input unidad de la distancia del evento-->
                                 <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 
                                 <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
@@ -143,7 +143,7 @@
 
                     </div>
 
-
+                    <!--Ramas del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -153,6 +153,7 @@
                             </span>
                         </div>
 
+                        <!--Inputs ramas del evento-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <ul class="items-center w-full text-sm text-white bg-primary border border-gray-200 rounded-lg sm:flex">
@@ -169,6 +170,7 @@
 
                     </div>
 
+                    <!--Precios del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -178,6 +180,7 @@
                             </span>
                         </div>
 
+                        <!--Input precios del evento-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <div class="flex">
@@ -195,8 +198,8 @@
                         <p></p>
                     </div>
 
+                    <!--Area de numero de categorías agregadas y botón Añadir categoría -->
                     <div class="grid place-items-center">
-
 
                         <input class="bg-secondary text-white mt-2 w-56" id="clicks" name="clicks" value="    Has agregado 0 categorías" readonly="readonly"/>
 
@@ -223,8 +226,10 @@
 
                     <x-forms.separator></x-forms.separator>
 
+                    <!--Input lugar de la entrega de kits-->
                     <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits" required="required"></x-forms.input-field>
 
+                    <!--Fechas de la entrega de kits-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
@@ -235,10 +240,12 @@
 
                             <div class="flex">
 
+                                <!--Fecia inicial de la entrega de kits-->
                                 <x-forms.date-picker name="fechaInicioEntregaKits" message="Fecha de inicio" required="required"></x-forms.date-picker>
 
                                 <span class="mx-4 my-2 text-white text-md">a</span>
 
+                                <!--Fecha final de la entrega de kits-->
                                 <x-forms.date-picker name="fechaFinEntregaKits" message="Fecha de finalización"></x-forms.date-picker>
 
                             </div>
@@ -247,8 +254,10 @@
 
                     </div>
 
+                    <!--Input hora incial de la entrega de kits-->
                     <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits" required="required"></x-forms.time-picker>
 
+                    <!--Input hora final de la entrega de kits-->
                     <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"></x-forms.time-picker>
 
 
@@ -256,7 +265,7 @@
 
                 <!--Fin de la entrega de kits-->
 
-
+                <!--Área de los botones Cancelar y Guardar-->
                 <div class="borde-tarjeta">
 
                     <div class="grid place-items-center md:flex items-center justify-center">
@@ -269,8 +278,6 @@
                     </div>
 
                 </div>
-
-
 
             </div>
 
