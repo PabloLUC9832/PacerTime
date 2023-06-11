@@ -16,7 +16,11 @@ class EventoController extends Controller
      */
     public function index()
     {
-        return view('evento.index');
+
+        $eventos = DB::table('eventos')
+                   ->get();
+
+        return view('evento.index',compact('eventos'));
     }
 
     /**
