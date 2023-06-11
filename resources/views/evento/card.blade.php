@@ -23,7 +23,7 @@
 
 <div class="m-10">
 
-    <div class="grid grid-cols-9 gap-2">
+    <div class="grid grid-cols-6 gap-2 md:grid md:grid-cols-12">
 
        <!--1-->
 
@@ -36,7 +36,7 @@
                 <div class="block border border-gray-200 rounded-lg">
 
 
-                    <img class="object-fit rounded-t-lg h-96 w-full" src="https://pacertime.blob.core.windows.net/files/pacerIm1.jpg">
+                    <img class="object-fit rounded-t-lg h-96 w-full" src="https://pacertime.blob.core.windows.net/files/pacerIm3.jpg">
 
                     <!--Submenu-->
                     <div class="flex justify-end px-4 pt-2">
@@ -91,7 +91,7 @@
                 <div class="block border border-gray-200 rounded-lg">
 
 
-                    <img class="object-fit rounded-t-lg h-96 w-full" src="https://pacertime.blob.core.windows.net/files/pacerIm1.jpg">
+                    <img class="object-fit rounded-t-lg h-96 w-full" src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
 
                     <!--Submenu-->
                     <div class="flex justify-end px-4 pt-2">
