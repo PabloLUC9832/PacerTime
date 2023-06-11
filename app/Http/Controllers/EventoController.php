@@ -16,13 +16,13 @@ class EventoController extends Controller
      */
     public function index()
     {
-        /*
+
         $eventos = DB::table('eventos')
                    ->get();
 
         return view('evento.index',compact('eventos'));
-        */
-        return view('evento.card');
+
+        //return view('evento.card');
 
     }
 

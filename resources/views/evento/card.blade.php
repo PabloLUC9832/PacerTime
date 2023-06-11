@@ -36,7 +36,8 @@
                 <div class="block border border-gray-200 rounded-lg">
 
 
-                    <img class="object-fit rounded-t-lg h-96 w-full" src="https://pacertime.blob.core.windows.net/files/pacerIm3.jpg">
+                    <img data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="https://pacertime.blob.core.windows.net/files/pacerIm3.jpg">
+                    @include('evento.modal-image')
 
                     <!--Submenu-->
                     <div class="flex justify-end px-4 pt-2">
