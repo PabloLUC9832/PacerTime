@@ -11,17 +11,26 @@ class CardEvento extends Component
 
     public $imagen;
     public $nombre;
-    public $descripcion;
+    //public $descripcion;
+    public $fechaInicioEvento;
+    public $fechaFinEvento;
+    public $lugarEvento;
+    public $horaEvento;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($imagen,$nombre,$descripcion)
+    //public function __construct($imagen,$nombre,$descripcion,$fechaInicioEvento,$fechaFinEvento,$lugarEvento,$horaEvento)
+    public function __construct($imagen,$nombre,$fechaInicioEvento,$fechaFinEvento,$lugarEvento,$horaEvento)
     {
         //
         $this->imagen = $imagen;
         $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
+        //$this->descripcion = $descripcion;
+        $this->fechaInicioEvento = $fechaInicioEvento;
+        $this->fechaFinEvento = $fechaFinEvento;
+        $this->lugarEvento = $lugarEvento;
+        $this->horaEvento = $horaEvento;
     }
 
     /**

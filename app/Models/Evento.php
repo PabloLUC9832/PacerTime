@@ -13,10 +13,18 @@ class Evento extends Model
 
     protected $guarded = [];
 
+/*
     public function subEvento(): BelongsTo
     {
         return $this->belongsTo(SubEvento::class);
     }
+*/
+    /*
+    public function subEventos(): HasMany
+    {
+        return $this->hasMany(SubEvento::class);
+    }
+    */
 
 
 

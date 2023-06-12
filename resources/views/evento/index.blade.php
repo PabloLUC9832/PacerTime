@@ -32,7 +32,11 @@
             @foreach($eventos as $evento)
 
 
-                <x-forms.card-evento imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg" nombre="{{$evento->nombre}}" descripcion="{{$evento->descripcion}}">
+                <x-forms.card-evento imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
+                                     nombre="{{$evento->nombre}}"
+                                     fechaInicioEvento="{{$evento->fechaInicioEvento}}" fechaFinEvento="{{$evento->fechaFinEvento}}"
+                                     lugarEvento="{{$evento->lugarEvento}}" horaEvento="{{$evento->horaEvento}}"
+                >
 
                 </x-forms.card-evento>
 

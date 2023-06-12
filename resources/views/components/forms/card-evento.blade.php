@@ -4,7 +4,7 @@
     <div class="flex flex-row">
 
         <!--CARD-->
-        <div class="block border border-gray-200 rounded-lg">
+        <div class="block border border-gray-200 rounded-lg hover:bg-secondary">
 
 
             <img data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="{{$imagen}}">
@@ -39,7 +39,31 @@
 
 
                 <h5 class="text-xl font-bold tracking-tight text-white text-justify">{{$nombre}}</h5>
-                <p class="mb-3 font-normal text-gray-400">{{$descripcion}}</p>
+                {{--<p class="mb-3 font-normal text-gray-400">{{$descripcion}}</p> --}}
+
+                <!--<div class="mt-2 flex items-center p-3 text-base font-bold text-white rounded-lg bg-gray-600 hover:bg-gray-500 group hover:shadow">-->
+                <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Lugar</span>
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm"> {{$lugarEvento}}</span>
+                </div>
+
+                <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Fecha</span>
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">{{$fechaInicioEvento}} - {{$fechaFinEvento}}</span>
+
+                </div>
+
+                <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Hora</span>
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">{{$horaEvento}}</span>
+
+                </div>
 
             </div>
 
