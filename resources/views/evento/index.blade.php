@@ -31,14 +31,30 @@
 
             @foreach($eventos as $evento)
 
+                {{--@foreach($evento->subEventos as $s)--}}
+                {{--
+                    {{$s->distancia}}
+                @endforeach--}}
+
+                @php
+
+                    foreach ($evento->subEventos as $subE) {
+                        $dist[] = $subE->distancia;
+                    }
+                    $distIm = implode(",",$dist);
+                    $distancias = str_replace(","," - ",$distIm);
+                @endphp
 
                 <x-forms.card-evento imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
                                      nombre="{{$evento->nombre}}"
                                      fechaInicioEvento="{{$evento->fechaInicioEvento}}" fechaFinEvento="{{$evento->fechaFinEvento}}"
                                      lugarEvento="{{$evento->lugarEvento}}" horaEvento="{{$evento->horaEvento}}"
+                                     distancia="{{$distancias}}
+                                     "
                 >
 
                 </x-forms.card-evento>
+                {{--@endforeach--}}
 
             @endforeach
 

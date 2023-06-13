@@ -65,6 +65,16 @@
 
                 </div>
 
+                <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Distancias</span>
+
+                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-thin text-white bg-cyan-950 rounded md:text-sm">
+                            {{$distancia}}
+                    </span>
+
+                </div>
+
             </div>
 
         </div>
