@@ -6,7 +6,6 @@
         <!--CARD-->
         <div class="block border border-gray-200 rounded-lg hover:bg-secondary">
 
-
             <img data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="{{$imagen}}">
             @include('evento.modal-image')
 
@@ -20,6 +19,10 @@
                 <!-- Dropdown menu -->
                 <div id="dropdown" class="bg-gray-700 z-10 hidden text-base list-none divide-y divide-gray-100 rounded-lg shadow w-44">
                     <ul class="py-2" aria-labelledby="dropdownButton">
+                        <li>
+                            <p data-drawer-target="drawer-info{{$id}}" data-drawer-show="drawer-info{{$id}}" data-drawer-placement="right" aria-controls="drawer-info{{$id}}" data-drawer-body-scrolling="true"
+                                class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">Ver información</p>
+                        </li>
                         <li>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white">Cambiar imagen</a>
                         </li>
@@ -38,7 +41,7 @@
             <div class="flex flex-col justify-between p-2">
 
 
-                <h5 class="text-xl font-bold tracking-tight text-white text-justify">{{$nombre}}</h5>
+                <h5 data-drawer-target="drawer-info{{$id}}" data-drawer-show="drawer-info{{$id}}" data-drawer-placement="right" aria-controls="drawer-info{{$id}}" data-drawer-body-scrolling="true" class="text-xl font-bold tracking-tight text-white text-justify cursor-pointer" >{{$nombre}}</h5>
                 {{--<p class="mb-3 font-normal text-gray-400">{{$descripcion}}</p> --}}
 
                 <!--<div class="mt-2 flex items-center p-3 text-base font-bold text-white rounded-lg bg-gray-600 hover:bg-gray-500 group hover:shadow">-->

@@ -17,12 +17,13 @@ class CardEvento extends Component
     public $lugarEvento;
     public $horaEvento;
     public $distancia;
+    public $id;
 
     /**
      * Create a new component instance.
      */
     //public function __construct($imagen,$nombre,$descripcion,$fechaInicioEvento,$fechaFinEvento,$lugarEvento,$horaEvento)
-    public function __construct($imagen,$nombre,$fechaInicioEvento,$fechaFinEvento,$lugarEvento,$horaEvento,$distancia)
+    public function __construct($imagen,$nombre,$fechaInicioEvento,$fechaFinEvento,$lugarEvento,$horaEvento,$distancia,$id)
     {
         //
         $this->imagen = $imagen;
@@ -33,6 +34,7 @@ class CardEvento extends Component
         $this->lugarEvento = $lugarEvento;
         $this->horaEvento = $horaEvento;
         $this->distancia = $distancia;
+        $this->id = $id;
     }
 
     /**

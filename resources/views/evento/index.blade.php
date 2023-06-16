@@ -23,18 +23,13 @@
 
 <div class="m-10">
 
-        @if(count($eventos)<=0)
-            No se han encontrado eventos
-        @else
+    @if(count($eventos)<=0)
+        No se han encontrado eventos
+    @else
 
         <div class="grid grid-cols-6 gap-2 md:grid md:grid-cols-12">
 
             @foreach($eventos as $evento)
-
-                {{--@foreach($evento->subEventos as $s)--}}
-                {{--
-                    {{$s->distancia}}
-                @endforeach--}}
 
                 @php
 
@@ -45,7 +40,10 @@
                     $distancias = str_replace(","," - ",$distIm);
                 @endphp
 
-                <x-forms.card-evento imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
+
+
+                <x-forms.card-evento id="{{$evento->id}}"
+                                     imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
                                      nombre="{{$evento->nombre}}"
                                      fechaInicioEvento="{{$evento->fechaInicioEvento}}" fechaFinEvento="{{$evento->fechaFinEvento}}"
                                      lugarEvento="{{$evento->lugarEvento}}" horaEvento="{{$evento->horaEvento}}"
@@ -55,12 +53,12 @@
 
                 </x-forms.card-evento>
                 {{--@endforeach--}}
-
+                @include('evento.modal-info')
             @endforeach
 
         </div>
 
-        @endif
+    @endif
 
 
 
