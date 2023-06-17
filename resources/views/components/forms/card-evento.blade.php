@@ -20,10 +20,6 @@
                 <div id="dropdown" class="bg-gray-700 z-10 hidden text-base list-none divide-y divide-gray-100 rounded-lg shadow w-44">
                     <ul class="py-2" aria-labelledby="dropdownButton">
                         <li>
-                            <p data-drawer-target="drawer-info{{$id}}" data-drawer-show="drawer-info{{$id}}" data-drawer-placement="right" aria-controls="drawer-info{{$id}}" data-drawer-body-scrolling="true"
-                                class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">Ver información</p>
-                        </li>
-                        <li>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white">Cambiar imagen</a>
                         </li>
                         <li>
@@ -41,7 +37,12 @@
             <div class="flex flex-col justify-between p-2">
 
 
-                <h5 data-drawer-target="drawer-info{{$id}}" data-drawer-show="drawer-info{{$id}}" data-drawer-placement="right" aria-controls="drawer-info{{$id}}" data-drawer-body-scrolling="true" class="text-xl font-bold tracking-tight text-white text-justify cursor-pointer" >{{$nombre}}</h5>
+                <h5 data-drawer-target="drawer-info{{$id}}" data-drawer-show="drawer-info{{$id}}" data-drawer-placement="right" aria-controls="drawer-info{{$id}}" data-drawer-body-scrolling="true"
+                    class="inline-flex items-center text-xl font-bold tracking-tight text-white text-justify cursor-pointer" >{{$nombre}}
+
+                    <svg class="w-4 h-4 ml-2" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="#FFFFFF" fill="none"><path d="M55.4,32V53.58a1.81,1.81,0,0,1-1.82,1.82H10.42A1.81,1.81,0,0,1,8.6,53.58V10.42A1.81,1.81,0,0,1,10.42,8.6H32"/><polyline points="40.32 8.6 55.4 8.6 55.4 24.18"/><line x1="19.32" y1="45.72" x2="54.61" y2="8.91"/></svg>
+
+                </h5>
                 {{--<p class="mb-3 font-normal text-gray-400">{{$descripcion}}</p> --}}
 
                 <!--<div class="mt-2 flex items-center p-3 text-base font-bold text-white rounded-lg bg-gray-600 hover:bg-gray-500 group hover:shadow">-->

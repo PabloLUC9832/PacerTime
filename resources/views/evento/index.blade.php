@@ -53,7 +53,12 @@
 
                 </x-forms.card-evento>
                 {{--@endforeach--}}
+                {{--@foreach($evento->subEventos as $subEv)--}}
+
                 @include('evento.modal-info')
+
+                {{--@endforeach--}}
+
             @endforeach
 
         </div>
