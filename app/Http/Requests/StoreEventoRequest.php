@@ -22,11 +22,12 @@ class StoreEventoRequest extends FormRequest
     public function rules(): array
     {
         return [
+
             //evento
             'nombre' => 'required|string|min:1',
             'descripcion' => 'required|string|min:1',
-            'lugarEvento ' => 'required|string|min:1',
-            'fechaInicioEvento  ' => 'required|string|min:1',
+            'lugarEvento' => 'required|string|min:1',
+            'fechaInicioEvento' => 'required|string|min:1',
             'fechaFinEvento' => 'nullable|string|min:1',
             'horaEvento' => 'required|numeric|min:1',
             'minutoEvento' => 'required|numeric|min:1',
@@ -49,6 +50,7 @@ class StoreEventoRequest extends FormRequest
             'rama.*' => 'nullable|string|min:1',
             'precio.*' => 'nullable|numeric|min:1',
             //'' => '',
+
         ];
     }
 
