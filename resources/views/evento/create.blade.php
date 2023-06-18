@@ -34,6 +34,12 @@
         </div>
     </div>
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            @include('components.forms.error-message',['error'=>$error])
+        @endforeach
+    @endif
+
     <form name="myForm" action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf

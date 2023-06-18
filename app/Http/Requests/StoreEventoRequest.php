@@ -22,7 +22,42 @@ class StoreEventoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            //evento
+            'nombre' => 'required|string|min:1',
+            'descripcion' => 'required|string|min:1',
+            'lugarEvento ' => 'required|string|min:1',
+            'fechaInicioEvento  ' => 'required|string|min:1',
+            'fechaFinEvento' => 'nullable|string|min:1',
+            'horaEvento' => 'required|numeric|min:1',
+            'minutoEvento' => 'required|numeric|min:1',
+            'periodoEvento' => 'required|string|min:1',
+            //imagen
+            //entrega de kits
+            'lugarEntregaKits' => 'required|string|min:1',
+            'fechaInicioEntregaKits' => 'required|string|min:1',
+            'fechaFinEntregaKits' => 'nullable|string|min:1',
+            'horaInicioEntregaKits' => 'required|numeric|min:1',
+            'minutoInicioEntregaKits' => 'required|numeric|min:1',
+            'periodoInicioEntregaKits' => 'required|string|min:1',
+            'horaFinEntregaKits' => 'nullable|numeric|min:1',
+            'minutoFinEntregaKits' => 'nullable|numeric|min:1',
+            'periodoFinEntregaKits' => 'nullable|string|min:1',
+            //subevento
+            'categoria.*' => 'nullable|string|min:1',
+            'distancia.*' => 'nullable|numeric|min:1',
+            'unidadDistancia.*' => 'nullable|string|min:1',
+            'rama.*' => 'nullable|string|min:1',
+            'precio.*' => 'nullable|numeric|min:1',
+            //'' => '',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'required' => 'El campo :attribute es obligatorio'
+        ];
+    }
+
+
 }
