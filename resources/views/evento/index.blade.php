@@ -24,7 +24,9 @@
 <div class="m-10">
 
     @if(count($eventos)<=0)
-        No se han encontrado eventos
+        <p class="text-xl font-bold text-white">
+            No se han encontrado eventos :(
+        </p>
     @else
 
         <div class="grid grid-cols-6 gap-2 md:grid md:grid-cols-12">
