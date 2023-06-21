@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/eventos/create','create')->name('create');
             Route::post('/eventos/','store')->name('store');
 
+            //Route::delete('/eventos/destroy/{id}','destroy')->name('destroy');
+            Route::delete('/eventos/destroy/{evento}','destroy')->name('destroy');
+
         });
 
     });

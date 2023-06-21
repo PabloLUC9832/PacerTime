@@ -199,7 +199,6 @@
     <!--EDITAR Y ELIMINAR-->
 
         <div class="grid grid-cols-2 gap-4 mt-1.5 bg-secondary sticky bottom-0">
-        <!--<div class="grid grid-cols-2 gap-4 relative inset-x-0 bottom-0 sticky bottom-0 bg-secondary">-->
 
             <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
 
@@ -210,7 +209,7 @@
                 Editar
             </a>
 
-            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-red hover:bg-secondary-red focus:ring-2 focus:ring-secondary-red focus:outline-none">
+            <button data-modal-toggle="delete-modal{{$evento->id}}" type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-red hover:bg-secondary-red focus:ring-2 focus:ring-secondary-red focus:outline-none">
 
                 <svg class="w-4 h-4 ml-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 12V17" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -222,8 +221,10 @@
 
                 Eliminar
 
-            </a>
+            </button>
+
 
         </div>
 
+            {{--@include('evento.modal-eliminar')--}}
 </div>
