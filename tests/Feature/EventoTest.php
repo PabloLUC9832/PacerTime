@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Database\Seeders\EventoSeeder;
+use Database\Seeders\SubEventoSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -35,6 +37,17 @@ class EventoTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_evento_create()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get('/eventos/create');
+        $response->assertStatus(200);
+        $response->assertViewIs('evento.create');
+    }
+
     /**
      * Función para probar el correcto funcionamiento del método store, usado
      * en el EventoController, función Store, proveniente del formulario evento.create
@@ -46,7 +59,10 @@ class EventoTest extends TestCase
     public function test_evento_store()
     {
         $user = User::factory()->create();
-        //$this->seed();
+        $this->seed(EventoSeeder::class);
+        $this->seed(SubEventoSeeder::class);
+
+        $this->withoutExceptionHandling();
 
         $response = $this->actingAs($user)
                          ->withSession(['banned' => false])
@@ -82,8 +98,9 @@ class EventoTest extends TestCase
 
                          ]);
 
-
-        $response->assertOk();
+        $response->assertStatus(302);
+        //$response->assertOk();
+        $response->assertRedirect('eventos');
 
         /*Nos aseguramos que el registro haya sido guardado*/
         $this->assertDatabaseHas('eventos',[
@@ -99,6 +116,32 @@ class EventoTest extends TestCase
 
         ]);
 
+
+    }
+
+    public function test_evento_destroy()
+    {
+
+        $user = User::factory()->create();
+        //$this->seed(EventoSeeder::class);
+        //$this->seed(SubEventoSeeder::class);
+
+
+        $response = $this->withoutExceptionHandling()
+                         ->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->json('delete','/eventos/destroy/1')
+                         ;
+        $response->assertStatus(302);
+        $response->assertRedirect('eventos');
+
+        //$response->assertViewHas('some_var');
+
+
+        $this->assertDatabaseMissing('eventos', [
+            'id' => '1',
+            //'nombre' => 'BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING',
+        ]);
 
     }
 

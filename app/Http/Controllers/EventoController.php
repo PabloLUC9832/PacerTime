@@ -129,6 +129,9 @@ class EventoController extends Controller
 
         },$valoresCategoria,$valoresDistancia,$valoresUnidadDistancia,$valoresRama,$valoresPrecio);
 
+        return redirect()->route('eventos.index')->with('message','El evento ha sido agregado exitosamente.');
+
+
     }
 
     /**

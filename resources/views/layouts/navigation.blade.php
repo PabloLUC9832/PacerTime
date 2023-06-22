@@ -18,8 +18,8 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('eventos.create')" :active="request()->routeIs('eventos.create')">
-                        {{ __('Crear evento') }}
+                    <x-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
+                        {{ __('Eventos') }}
                     </x-nav-link>
 
                 </div>
@@ -80,8 +80,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('eventos.create')" :active="request()->routeIs('eventos.create')">
-                {{ __('Crear evento') }}
+            <x-responsive-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
+                {{ __('Eventos') }}
             </x-responsive-nav-link>
 
         </div>
