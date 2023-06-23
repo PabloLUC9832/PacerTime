@@ -48,8 +48,6 @@
                     $distancias = str_replace(","," - ",$distIm);
                 @endphp
 
-
-
                 <x-forms.card-evento id="{{$evento->id}}"
                                      imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
                                      nombre="{{$evento->nombre}}"
@@ -58,7 +56,6 @@
                                      distancia="{{$distancias}}
                                      "
                 >
-
                 </x-forms.card-evento>
                 {{--@endforeach--}}
                 {{--@foreach($evento->subEventos as $subEv)--}}

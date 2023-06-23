@@ -55,13 +55,21 @@
                     <x-forms.separator></x-forms.separator>
 
                     <!--Input nombre del evento-->
-                    <x-forms.input-field  name="nombre" id="nombre" message="Nombre del evento" class="uppercase" required="required"></x-forms.input-field>
+                    <x-forms.input-field  name="nombre" id="nombre"
+                                          message="Nombre del evento" class="uppercase"
+                                          required="required" value="{{$evento->nombre}}">
+                    </x-forms.input-field>
 
                     <!--Input descripción del evento-->
-                    <x-forms.input-text-area id="descripcion" name="descripcion" required="required"></x-forms.input-text-area>
+                    <x-forms.input-text-area id="descripcion" name="descripcion"
+                                             required="required" value="{{$evento->descripcion}}">
+                    </x-forms.input-text-area>
 
                     <!--Input lugar del evento-->
-                    <x-forms.input-field  name="lugarEvento" id="lugarEvento" message="Lugar del evento" required="required"></x-forms.input-field>
+                    <x-forms.input-field  name="lugarEvento" id="lugarEvento"
+                                          message="Lugar del evento" required="required"
+                                          value="{{$evento->lugarEvento}}">
+                    </x-forms.input-field>
 
                     <!--Fecha del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
@@ -74,11 +82,15 @@
 
                             <div class="flex">
                                 <!--Input fecha inicial del evento-->
-                                <x-forms.date-picker name="fechaInicioEvento" message="Fecha de inicio" required="required"></x-forms.date-picker>
+                                <x-forms.date-picker name="fechaInicioEvento" message="Fecha de inicio"
+                                                     required="required" value="{{$evento->fechaInicioEvento}}">
+                                </x-forms.date-picker>
 
                                 <span class="mx-4 my-2 text-white text-md">a</span>
                                 <!--Input fecha final del evento-->
-                                <x-forms.date-picker name="fechaFinEvento" message="Fecha de finalización"></x-forms.date-picker>
+                                <x-forms.date-picker name="fechaFinEvento" message="Fecha de finalización"
+                                                     value="{{$evento->fechaFinEvento}}">
+                                </x-forms.date-picker>
 
                             </div>
 
@@ -88,7 +100,9 @@
                     </div>
 
                     <!--Input hora inicial del evento-->
-                    <x-forms.time-picker name="Evento" message="Hora de inicio del evento" required="required"></x-forms.time-picker>
+                    <x-forms.time-picker name="Evento" message="Hora de inicio del evento"
+                                         required="required" value="{{$evento->horaEvento}}">
+                    </x-forms.time-picker>
 
                     <!--Input imagen del evento-->
                     <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
@@ -233,7 +247,10 @@
                     <x-forms.separator></x-forms.separator>
 
                     <!--Input lugar de la entrega de kits-->
-                    <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits" message="Lugar de la entrega de kits" required="required"></x-forms.input-field>
+                    <x-forms.input-field  name="lugarEntregaKits" id="lugarEntregaKits"
+                                          message="Lugar de la entrega de kits" required="required"
+                                          value="{{$evento->lugarEntregaKits}}">
+                    </x-forms.input-field>
 
                     <!--Fechas de la entrega de kits-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
@@ -247,12 +264,16 @@
                             <div class="flex">
 
                                 <!--Fecia inicial de la entrega de kits-->
-                                <x-forms.date-picker name="fechaInicioEntregaKits" message="Fecha de inicio" required="required"></x-forms.date-picker>
+                                <x-forms.date-picker name="fechaInicioEntregaKits" message="Fecha de inicio"
+                                                     required="required" value="{{$evento->fechaInicioEntregaKits}}">
+                                </x-forms.date-picker>
 
                                 <span class="mx-4 my-2 text-white text-md">a</span>
 
                                 <!--Fecha final de la entrega de kits-->
-                                <x-forms.date-picker name="fechaFinEntregaKits" message="Fecha de finalización"></x-forms.date-picker>
+                                <x-forms.date-picker name="fechaFinEntregaKits" message="Fecha de finalización"
+                                                     value="{{$evento->fechaFinEntregaKits}}">
+                                </x-forms.date-picker>
 
                             </div>
 

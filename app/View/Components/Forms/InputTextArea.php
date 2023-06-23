@@ -11,13 +11,15 @@ class InputTextArea extends Component
 
     public $name;
     public $id;
+    public $value;
     /**
      * Create a new component instance.
      */
-    public function __construct($name,$id)
+    public function __construct($name,$id,$value="")
     {
         $this->name = $name;
         $this->id = $id;
+        $this->value = $value;
     }
 
     /**
