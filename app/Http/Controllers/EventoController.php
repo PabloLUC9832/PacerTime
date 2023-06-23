@@ -153,6 +153,7 @@ class EventoController extends Controller
         $tiempoIEK = $this->horMinPer($evento->horaInicioEntregaKits);
         $tiempoFEK = $this->horMinPer($evento->horaFinEntregaKits);
 
+
         return view ('evento.edit',compact('evento','tiempoE','tiempoIEK','tiempoFEK'));
     }
 

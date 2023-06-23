@@ -118,7 +118,7 @@
                     <p class="subtitulo">Categorías del evento</p>
 
                     <x-forms.separator></x-forms.separator>
-
+                    @foreach($evento->subEventos as $subEv)
                     <!--Categorías del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
@@ -131,7 +131,9 @@
 
                         <!--Input categoría del evento-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" name="categoria[]" id="categoria" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase">
+                            <input type="text" name="categoria[]" id="categoria"
+                                   class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase"
+                                   value="{{$subEv->categoria}}">
                         </div>
 
                     </div>
@@ -148,12 +150,19 @@
 
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
+                            @php
+
+                                $distancia=explode(" ",$subEv->distancia);
+
+                            @endphp
+
                             <div class="flex">
                                 <!--Input unidad de la distancia del evento-->
-                                <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                       value="{{ $distancia[0] }}">
 
                                 <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option value="">Selecciona la unidad de longitud</option>
+                                    <option value="">{{ $distancia[1] }}</option>
                                     <option value="Kilometros">Kilometros</option>
                                     <option value="Millas">Millas</option>
                                     <option value="Metros">Metros</option>
@@ -179,10 +188,41 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <ul class="items-center w-full text-sm text-white bg-primary border border-gray-200 rounded-lg sm:flex">
-
-                                <x-forms.input-radio id="ramaAmbas" name="rama[]" value="AMBAS"></x-forms.input-radio>
+                                {{--
+                                <x-forms.input-radio id="ramaAmbas" name="rama[]"value="AMBAS"></x-forms.input-radio>
                                 <x-forms.input-radio id="ramaFemenil" name="rama[]" value="FEMENIL"></x-forms.input-radio>
                                 <x-forms.input-radio id="ramaVaronil" name="rama[]" value="VARONIL"></x-forms.input-radio>
+                                --}}
+
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                                    <div class="flex items-center pl-3">
+
+                                        <input id="ramaAmbas" type="radio" value="AMBAS" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="AMBAS") ? "checked" : "" }}>
+
+                                        <label for="ramaAmbas" class="w-full py-3 ml-2 text-sm font-medium text-white">AMBAS</label>
+
+                                    </div>
+                                </li>
+
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                                    <div class="flex items-center pl-3">
+
+                                        <input id="ramaFemenil" type="radio" value="FEMENIL" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="FEMENIL") ? "checked" : "" }}>
+
+                                        <label for="ramaFemenil" class="w-full py-3 ml-2 text-sm font-medium text-white">FEMENIL</label>
+
+                                    </div>
+                                </li>
+
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
+                                    <div class="flex items-center pl-3">
+
+                                        <input id="ramaVaronil" type="radio" value="VARONIL" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="VARONIL") ? "checked" : "" }}>
+
+                                        <label for="ramaVaronil" class="w-full py-3 ml-2 text-sm font-medium text-white">VARONIL</label>
+
+                                    </div>
+                                </li>
 
                             </ul>
 
@@ -207,13 +247,14 @@
                              <span class="inline-flex items-center px-3 text-sm text-white bg-secondary border border-r-0 border-gray-300 rounded-l-md">
                                 $
                              </span>
-                                <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$subEv->precio}}">
 
                             </div>
                         </div>
 
                     </div>
-
+                    <x-forms.separator></x-forms.separator>
+                    @endforeach
                     <div id="empty">
                         <p></p>
                     </div>

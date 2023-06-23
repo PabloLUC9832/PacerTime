@@ -68,7 +68,7 @@ class EventoTest extends TestCase
                          ->withSession(['banned' => false])
                          ->postJson('/eventos/',[
                             //evento
-                            'nombre' => 'ULTRA TRAIL DEL VENADO',
+                            'nombre' => 'ULTRA TRAIL DEL VENADO 2',
                             'descripcion' => 'ULTRA TRAIL DEL VENADO UÑA DE LAS MEJORES CARRERAS EN ELES DE "NO CUENTES Log VÍAS HAZ Log VÍAS CUENTEN! ATRAPEMOS AL VENADO CONVOCATORIA INFORMACIÓN GENERAL VENADO R • T • H, en colaboración con PACER TIME, invitan a todos los corredores, clubes y equipos deportivos, así como también al público en general, a participar en la 3ra. Edición del ULTRA TRAIL DEL VENADO "UTV", que se realizará en la ciudad de Misantla, Ver.',
 
                             'lugarEvento' => 'Misantla, Ver',
@@ -105,7 +105,7 @@ class EventoTest extends TestCase
         /*Nos aseguramos que el registro haya sido guardado*/
         $this->assertDatabaseHas('eventos',[
 
-            'nombre' => 'ULTRA TRAIL DEL VENADO',
+            'nombre' => 'ULTRA TRAIL DEL VENADO 2',
 
         ]);
 

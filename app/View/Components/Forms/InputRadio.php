@@ -15,7 +15,7 @@ class InputRadio extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct($name,$id,$value)
+    public function __construct($name,$id,$value,$checked="")
     {
         $this->name = $name;
         $this->id = $id;
