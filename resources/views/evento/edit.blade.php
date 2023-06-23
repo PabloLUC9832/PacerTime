@@ -100,8 +100,10 @@
                     </div>
 
                     <!--Input hora inicial del evento-->
+
                     <x-forms.time-picker name="Evento" message="Hora de inicio del evento"
-                                         required="required" value="{{$evento->horaEvento}}">
+                                         required="required" valueHora="{{$tiempoE[0]}}"
+                                         valueMinuto="{{$tiempoE[1]}}" valuePeriodo="{{$tiempoE[2]}}">
                     </x-forms.time-picker>
 
                     <!--Input imagen del evento-->
@@ -183,8 +185,6 @@
                                 <x-forms.input-radio id="ramaVaronil" name="rama[]" value="VARONIL"></x-forms.input-radio>
 
                             </ul>
-
-
 
                         </div>
 
@@ -282,10 +282,18 @@
                     </div>
 
                     <!--Input hora incial de la entrega de kits-->
-                    <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits" required="required"></x-forms.time-picker>
+
+                    <x-forms.time-picker name="InicioEntregaKits" message="Hora de inicio de la entrega de kits"
+                                         required="required" valueHora="{{$tiempoIEK[0]}}"
+                                         valueMinuto="{{$tiempoIEK[1]}}" valuePeriodo="{{$tiempoIEK[2]}}">
+                    </x-forms.time-picker>
 
                     <!--Input hora final de la entrega de kits-->
-                    <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"></x-forms.time-picker>
+
+                    <x-forms.time-picker name="FinEntregaKits" message="Hora de finalización de la entrega de kits"
+                                         valueHora="{{$tiempoFEK[0]}}" valueMinuto="{{$tiempoFEK[1]}}"
+                                         valuePeriodo="{{$tiempoFEK[2]}}">
+                    </x-forms.time-picker>
 
 
                 </div>
@@ -297,7 +305,7 @@
 
                     <div class="grid place-items-center md:flex items-center justify-center">
 
-                        <a href="{{route('eventos.index')}}" type="button" class="btn-cancelar">Cancelar</a>
+                        <a href="{{route('eventos.index')}}" class="btn-cancelar">Cancelar</a>
 
 
                         <button type="submit" class="mr-2 mb-2 btn-ok">Guardar</button>

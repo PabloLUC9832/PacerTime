@@ -148,7 +148,12 @@ class EventoController extends Controller
     public function edit(Evento $evento)
     {
         //
-        return view ('evento.edit',compact('evento'));
+        //$tiempo = list($hora,$minuto,$periodo);
+        $tiempoE = $this->horMinPer($evento->horaEvento);
+        $tiempoIEK = $this->horMinPer($evento->horaInicioEntregaKits);
+        $tiempoFEK = $this->horMinPer($evento->horaFinEntregaKits);
+
+        return view ('evento.edit',compact('evento','tiempoE','tiempoIEK','tiempoFEK'));
     }
 
     /**
@@ -205,5 +210,21 @@ class EventoController extends Controller
         return $nuevoArray;
     }
 
+    protected function horMinPer($horaCom) : array{
+
+        if ($horaCom != null){
+            $hora = explode(":",$horaCom);
+            $min = explode(" ",$hora[1]);
+            $periodo = explode(" ",$horaCom);
+
+        }else{
+            $hora[0] = "--";
+            $min[0] = "--";
+            $periodo[1] = "--";
+
+        }
+
+        return [$hora[0],$min[0],$periodo[1]];
+    }
 
 }

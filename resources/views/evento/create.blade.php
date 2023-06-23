@@ -276,7 +276,7 @@
 
                     <div class="grid place-items-center md:flex items-center justify-center">
 
-                        <a href="{{route('eventos.index')}}" type="button" class="btn-cancelar">Cancelar</a>
+                        <a href="{{route('eventos.index')}}" class="btn-cancelar">Cancelar</a>
 
 
                         <button type="submit" class="mr-2 mb-2 btn-ok">Guardar</button>

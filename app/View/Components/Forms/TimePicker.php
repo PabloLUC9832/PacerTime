@@ -12,16 +12,20 @@ class TimePicker extends Component
     public $name;
     public $message;
     public $required;
-    public $value;
+    public $valueHora;
+    public $valueMinuto;
+    public $valuePeriodo;
     /**
      * Create a new component instance.
      */
-    public function __construct($name,$message,$required="",$value="")
+    public function __construct($name,$message,$required="",$valueHora="",$valueMinuto="",$valuePeriodo="")
     {
         $this->name = $name;
         $this->message = $message;
         $this->required = $required;
-        $this->value = $value;
+        $this->valueHora = $valueHora;
+        $this->valueMinuto = $valueMinuto;
+        $this->valuePeriodo = $valuePeriodo;
     }
 
     /**
