@@ -40,7 +40,7 @@
         @endforeach
     @endif
 
-    <form name="myForm" action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
+    <form name="myForm" action="{{route('eventos.update',$evento->id)}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         <div class="shadow sm:overflow-hidden sm:rounded-md">
@@ -347,7 +347,6 @@
                     <div class="grid place-items-center md:flex items-center justify-center">
 
                         <a href="{{route('eventos.index')}}" class="btn-cancelar">Cancelar</a>
-
 
                         <button type="submit" class="mr-2 mb-2 btn-ok">Guardar</button>
 

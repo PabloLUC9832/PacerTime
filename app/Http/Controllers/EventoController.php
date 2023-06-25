@@ -7,7 +7,7 @@ use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Sto1rage;
 
 class EventoController extends Controller
 {
@@ -163,6 +163,29 @@ class EventoController extends Controller
     public function update(UpdateEventoRequest $request, Evento $evento)
     {
         //
+        $horaInicioEvento = $request->horaEvento . ":" . $request->minutoEvento. " " . $request->periodoEvento ;
+        $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
+        $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
+
+        $evento->update([
+
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion ,
+            'lugarEvento' => $request->lugarEvento ,
+            'fechaInicioEvento' => $request->fechaInicioEvento ,
+            'fechaFinEvento' => $request->fechaFinEvento ,
+            'horaEvento' => $horaInicioEvento ,
+            'lugarEntregaKits' => $request->lugarEntregaKits ,
+            'fechaInicioEntregaKits' => $request->fechaInicioEntregaKits ,
+            'fechaFinEntregaKits' => $request->fechaFinEntregaKits ,
+            'horaInicioEntregaKits' => $horaInicioEntregaKits ,
+            'horaFinEntregaKits' => $horaFinEntregaKits ,
+            'imagen' => $evento->imagen ,
+
+        ]);
+
+        return redirect()->route('eventos.index')->with('message','El evento ha sido actualizado exitosamente.');
+
     }
 
     /**
