@@ -131,7 +131,7 @@
 
                         <!--Input categoría del evento-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" name="categoria[]" id="categoria"
+                            <input type="text" name="categoria{{$subEv->id}}" id="categoria"
                                    class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase"
                                    value="{{$subEv->categoria}}">
                         </div>
@@ -161,7 +161,7 @@
                                 <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                        value="{{ $distancia[0] }}">
 
-                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 rounded-none rounded-r-lg border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                                     <option value="">{{ $distancia[1] }}</option>
                                     <option value="Kilometros">Kilometros</option>
                                     <option value="Millas">Millas</option>

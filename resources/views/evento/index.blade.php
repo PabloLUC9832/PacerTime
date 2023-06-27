@@ -39,45 +39,18 @@
 
             @foreach($eventos as $evento)
 
-                @php
+                @include('evento.card-event')
 
-                    foreach ($evento->subEventos as $subE) {
-                        $dist[] = $subE->distancia;
-                    }
-                    $distIm = implode(",",$dist);
-                    $distancias = str_replace(","," - ",$distIm);
-                @endphp
-
-                <x-forms.card-evento id="{{$evento->id}}"
-                                     imagen="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
-                                     nombre="{{$evento->nombre}}"
-                                     fechaInicioEvento="{{$evento->fechaInicioEvento}}" fechaFinEvento="{{$evento->fechaFinEvento}}"
-                                     lugarEvento="{{$evento->lugarEvento}}" horaEvento="{{$evento->horaEvento}}"
-                                     distancia="{{$distancias}}
-                                     "
-                >
-                </x-forms.card-evento>
-                {{--@endforeach--}}
-                {{--@foreach($evento->subEventos as $subEv)--}}
 
                 @include('evento.modal-info')
                 @include('evento.modal-eliminar')
 
-                {{--@endforeach--}}
 
             @endforeach
 
         </div>
 
     @endif
-
-
-
-
-
-
-
-
 
 
 </div>

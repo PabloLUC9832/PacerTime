@@ -162,7 +162,7 @@ class EventoController extends Controller
      */
     public function update(UpdateEventoRequest $request, Evento $evento)
     {
-        //
+
         $horaInicioEvento = $request->horaEvento . ":" . $request->minutoEvento. " " . $request->periodoEvento ;
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
@@ -184,7 +184,26 @@ class EventoController extends Controller
 
         ]);
 
-        return redirect()->route('eventos.index')->with('message','El evento ha sido actualizado exitosamente.');
+        //Se obtienen los ids de los sub eventos ligados al evento
+        $subs = Evento::find($evento->id)->subEventos;
+        foreach ($subs as $se){
+            $subsId[] = $se->id;
+        }
+        //se contabilizan
+        $nIds = count($subsId);
+        // recorrer el array
+
+        for ($i = 0; $i < $nIds; $i++) {
+
+            $rqId = "categoria$subsId[$i]";
+            $sbEvn = SubEvento::findOrFail($subsId[$i]);
+            $sbEvn->update([
+                'categoria' => strtoupper($request->post($rqId)),
+            ]);
+
+        }
+
+        return redirect()->route('eventos.index')->with('message','El evento ha sido editado exitosamente.');
 
     }
 
@@ -192,15 +211,11 @@ class EventoController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Evento $evento)
-    //public function destroy($id)
     {
         //
-        //$evento = Evento::findOrFail($id);
-
         $evento->delete();
 
         return redirect()->route('eventos.index')->with('message','El evento ha sido eliminado exitosamente.');
-        //return redirect()->route('eventos.index');
 
     }
 

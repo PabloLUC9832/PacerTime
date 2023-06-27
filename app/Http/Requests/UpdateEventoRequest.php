@@ -30,7 +30,7 @@ class UpdateEventoRequest extends FormRequest
             'fechaInicioEvento' => 'required|string|min:1',
             'fechaFinEvento' => 'nullable|string|min:1',
             'horaEvento' => 'required|numeric|min:1',
-            'minutoEvento' => 'required|numeric|min:1',
+            //'minutoEvento' => 'required|numeric|min:1',
             'periodoEvento' => 'required|string|min:1',
             //imagen
             //entrega de kits
@@ -38,10 +38,10 @@ class UpdateEventoRequest extends FormRequest
             'fechaInicioEntregaKits' => 'required|string|min:1',
             'fechaFinEntregaKits' => 'nullable|string|min:1',
             'horaInicioEntregaKits' => 'required|numeric|min:1',
-            'minutoInicioEntregaKits' => 'required|numeric|min:1',
+            //'minutoInicioEntregaKits' => 'required|numeric|min:1',
             'periodoInicioEntregaKits' => 'required|string|min:1',
-            'horaFinEntregaKits' => 'nullable|numeric|min:1',
-            'minutoFinEntregaKits' => 'nullable|numeric|min:1',
+            //'horaFinEntregaKits' => 'nullable|numeric|min:1',
+            //'minutoFinEntregaKits' => 'nullable|numeric|min:1',
             'periodoFinEntregaKits' => 'nullable|string|min:1',
 
         ];
