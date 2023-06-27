@@ -76,7 +76,7 @@ class EventoTest extends TestCase
                             'fechaFinEvento' => '17/07/2023',
 
                             'horaEvento' => '02',
-                            'minutoEvento' => '45',
+                            'minutoEvento' => '00',
                             'periodoEvento' => 'PM',
 
                             'lugarEntregaKits' => 'Misantla, Ver',
@@ -84,7 +84,7 @@ class EventoTest extends TestCase
                             'fechaFinEntregaKits' => '',
 
                             'horaInicioEntregaKits' => '10',
-                            'minutoInicioEntregaKits' => '20',
+                            'minutoInicioEntregaKits' => '00',
                             'periodoInicioEntregaKits' => 'AM',
 
                             'horaFinEntregaKits' => '',
