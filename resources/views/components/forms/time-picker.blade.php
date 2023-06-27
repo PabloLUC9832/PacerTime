@@ -14,7 +14,7 @@
 
         <select name="hora{{$name}}" id="hora{{$name}}" class="text-white px-2 outline-none appearance-none bg-primary rounded-md" {{$required}}>
 
-            <option value="--" {{$valueHora == '--' ? 'selected' : '' }}>01</option>
+            <option value="--" {{$valueHora == '--' ? 'selected' : '' }}>--</option>
             <option value="01" {{$valueHora == '01' ? 'selected' : '' }}>01</option>
             <option value="02" {{$valueHora == '02' ? 'selected' : '' }}>02</option>
             <option value="03" {{$valueHora == '03' ? 'selected' : '' }}>03</option>

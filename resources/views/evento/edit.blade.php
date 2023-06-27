@@ -123,7 +123,7 @@
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
-                            <label for="categoria" class="label-input">Categoría</label>
+                            <label for="categoria{{$subEv->id}}" class="label-input">Categoría</label>
                             <span class="text-xs italic text-primary-red font-semibold	">
                                 Obligatorio
                             </span>
@@ -131,7 +131,7 @@
 
                         <!--Input categoría del evento-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" name="categoria{{$subEv->id}}" id="categoria"
+                            <input type="text" name="categoria{{$subEv->id}}" id="categoria{{$subEv->id}}"
                                    class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase"
                                    value="{{$subEv->categoria}}">
                         </div>
@@ -142,7 +142,7 @@
                     <div class="mt-3 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
-                            <label for="distancia" class="label-input">Distancia</label>
+                            <label for="distancia{{$subEv->id}}" class="label-input">Distancia</label>
                             <span class="text-xs italic text-primary-red font-semibold	">
                                 Obligatorio
                             </span>
@@ -153,19 +153,22 @@
                             @php
 
                                 $distancia=explode(" ",$subEv->distancia);
+                                //dd($distancia[1]);
+                                //die();
 
                             @endphp
 
                             <div class="flex">
                                 <!--Input unidad de la distancia del evento-->
-                                <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                <input type="number" name="distancia{{$subEv->id}}" id="distancia{{$subEv->id}}" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                        value="{{ $distancia[0] }}">
 
-                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 rounded-none rounded-r-lg border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option value="">{{ $distancia[1] }}</option>
-                                    <option value="Kilometros">Kilometros</option>
-                                    <option value="Millas">Millas</option>
-                                    <option value="Metros">Metros</option>
+                                <select id="unidadDistancia{{$subEv->id}}" name="unidadDistancia{{$subEv->id}}" class="text-white bg-primary inline-flex items-center px-3 rounded-none rounded-r-lg border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    {{--<option value="">{{ $distancia[1] }}</option>--}}
+
+                                    <option value="Kilometros" {{$distancia[1] == 'Kilometros' ? 'selected' : '' }}>Kilometros</option>
+                                    <option value="Millas" {{$distancia[1] == 'Millas' ? 'selected' : '' }}>Millas</option>
+                                    <option value="Metros" {{$distancia[1] == 'Metros' ? 'selected' : '' }}>Metros</option>
                                 </select>
 
                             </div>
@@ -188,18 +191,13 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <ul class="items-center w-full text-sm text-white bg-primary border border-gray-200 rounded-lg sm:flex">
-                                {{--
-                                <x-forms.input-radio id="ramaAmbas" name="rama[]"value="AMBAS"></x-forms.input-radio>
-                                <x-forms.input-radio id="ramaFemenil" name="rama[]" value="FEMENIL"></x-forms.input-radio>
-                                <x-forms.input-radio id="ramaVaronil" name="rama[]" value="VARONIL"></x-forms.input-radio>
-                                --}}
 
                                 <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                                     <div class="flex items-center pl-3">
 
-                                        <input id="ramaAmbas" type="radio" value="AMBAS" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="AMBAS") ? "checked" : "" }}>
+                                        <input id="ramaAmbas{{$subEv->id}}" type="radio" value="AMBAS" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="AMBAS") ? "checked" : "" }}>
 
-                                        <label for="ramaAmbas" class="w-full py-3 ml-2 text-sm font-medium text-white">AMBAS</label>
+                                        <label for="ramaAmbas{{$subEv->id}}" class="w-full py-3 ml-2 text-sm font-medium text-white">AMBAS</label>
 
                                     </div>
                                 </li>
@@ -207,9 +205,9 @@
                                 <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                                     <div class="flex items-center pl-3">
 
-                                        <input id="ramaFemenil" type="radio" value="FEMENIL" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="FEMENIL") ? "checked" : "" }}>
+                                        <input id="ramaFemenil{{$subEv->id}}" type="radio" value="FEMENIL" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="FEMENIL") ? "checked" : "" }}>
 
-                                        <label for="ramaFemenil" class="w-full py-3 ml-2 text-sm font-medium text-white">FEMENIL</label>
+                                        <label for="ramaFemenil{{$subEv->id}}" class="w-full py-3 ml-2 text-sm font-medium text-white">FEMENIL</label>
 
                                     </div>
                                 </li>
@@ -217,9 +215,9 @@
                                 <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                                     <div class="flex items-center pl-3">
 
-                                        <input id="ramaVaronil" type="radio" value="VARONIL" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="VARONIL") ? "checked" : "" }}>
+                                        <input id="ramaVaronil{{$subEv->id}}" type="radio" value="VARONIL" name="rama{{$subEv->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2" {{ ($subEv->rama=="VARONIL") ? "checked" : "" }}>
 
-                                        <label for="ramaVaronil" class="w-full py-3 ml-2 text-sm font-medium text-white">VARONIL</label>
+                                        <label for="ramaVaronil{{$subEv->id}}" class="w-full py-3 ml-2 text-sm font-medium text-white">VARONIL</label>
 
                                     </div>
                                 </li>
@@ -234,7 +232,7 @@
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
-                            <label for="precio" class="label-input">Precio</label>
+                            <label for="precio{{$subEv->id}}" class="label-input">Precio</label>
                             <span class="text-xs italic text-primary-red font-semibold	">
                                 Obligatorio
                             </span>
@@ -247,7 +245,7 @@
                              <span class="inline-flex items-center px-3 text-sm text-white bg-secondary border border-r-0 border-gray-300 rounded-l-md">
                                 $
                              </span>
-                                <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$subEv->precio}}">
+                                <input type="number" name="precio{{$subEv->id}}" id="precio{{$subEv->id}}" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$subEv->precio}}">
 
                             </div>
                         </div>

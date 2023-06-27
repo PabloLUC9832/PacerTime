@@ -195,10 +195,20 @@ class EventoController extends Controller
 
         for ($i = 0; $i < $nIds; $i++) {
 
-            $rqId = "categoria$subsId[$i]";
+            $rqCat = "categoria$subsId[$i]";
+
+            $rqDis = "distancia$subsId[$i]";
+            $rqUni = "unidadDistancia$subsId[$i]";
+            $distaCom= $request->post($rqDis) . " ". $request->post($rqUni);
+
+            $rqRam = "rama$subsId[$i]";
+            $rqPre = "precio$subsId[$i]";
             $sbEvn = SubEvento::findOrFail($subsId[$i]);
             $sbEvn->update([
-                'categoria' => strtoupper($request->post($rqId)),
+                'categoria' => strtoupper($request->post($rqCat)),
+                'distancia' => $distaCom,
+                'rama' => $request->post($rqRam),
+                'precio' => $request->post($rqPre),
             ]);
 
         }
