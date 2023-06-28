@@ -186,17 +186,16 @@ class EventoController extends Controller
 
         //Se obtienen los ids de los sub eventos ligados al evento
         $subs = Evento::find($evento->id)->subEventos;
-        //dd(!empty($subs));
-        //die();
 
         if (count($subs) != 0){
+
             foreach ($subs as $se){
                 $subsId[] = $se->id;
             }
             //se contabilizan
             $nIds = count($subsId);
-            // recorrer el array
 
+            // recorrer el array
             for ($i = 0; $i < $nIds; $i++) {
 
                 $rqCat = "categoria$subsId[$i]";
@@ -217,34 +216,6 @@ class EventoController extends Controller
 
             }
         }
-        /*
-        foreach ($subs as $se){
-            $subsId[] = $se->id;
-        }
-        //se contabilizan
-        $nIds = count($subsId);
-        // recorrer el array
-
-        for ($i = 0; $i < $nIds; $i++) {
-
-            $rqCat = "categoria$subsId[$i]";
-
-            $rqDis = "distancia$subsId[$i]";
-            $rqUni = "unidadDistancia$subsId[$i]";
-            $distaCom= $request->post($rqDis) . " ". $request->post($rqUni);
-
-            $rqRam = "rama$subsId[$i]";
-            $rqPre = "precio$subsId[$i]";
-            $sbEvn = SubEvento::findOrFail($subsId[$i]);
-            $sbEvn->update([
-                'categoria' => strtoupper($request->post($rqCat)),
-                'distancia' => $distaCom,
-                'rama' => $request->post($rqRam),
-                'precio' => $request->post($rqPre),
-            ]);
-
-        }
-        */
 
         //Si añadieron una categoría nueva
         $valoresCategoria = $this->inputsArray($request->categoria);
@@ -299,6 +270,23 @@ class EventoController extends Controller
      */
     protected function inputsArray($inputs){
 
+        //dd(empty($inputs[0]));
+        //die();
+        if (!empty($inputs[0])){
+            foreach ($inputs as $input){
+
+                $arrayValores[] = $input;
+                if ($arrayValores[0] == NULL){
+                    $nuevoArray = array_slice($arrayValores,1);
+                }else{
+                    $nuevoArray = $arrayValores;
+                }
+
+            }
+        }else{
+            $nuevoArray = [];
+        }
+        /*
         foreach ($inputs as $input){
 
             $arrayValores[] = $input;
@@ -308,7 +296,8 @@ class EventoController extends Controller
                 $nuevoArray = $arrayValores;
             }
 
-        }
+        }*/
+
         return $nuevoArray;
     }
 

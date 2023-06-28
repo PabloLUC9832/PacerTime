@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Evento;
 use App\Models\User;
 use Database\Seeders\EventoSeeder;
 use Database\Seeders\SubEventoSeeder;
@@ -114,6 +115,97 @@ class EventoTest extends TestCase
             'categoria' => 'LIBRE',
             'distancia' => '5 Kilometros',
 
+        ]);
+
+
+    }
+
+    public function test_evento_edit()
+    {
+        $user = User::factory()->create();
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get('eventos/edit/2');
+        $response->assertStatus(200);
+        $response->assertViewIs('evento.edit');
+
+        //Se comprueba que se vea el nombre del evento
+        $response->assertSee("BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING");
+
+    }
+
+    public function test_evento_upate()
+    {
+
+        $user = User::factory()->create();
+        $evento = Evento::find(2);
+
+        foreach($evento->subEventos as $subEv){
+            $cat[] = $subEv->categoria;
+            $dis[] = $subEv->distancia;
+            $ram[] = $subEv->rama;
+            $pre[] = $subEv->precio;
+            //$dist=explode(" ",$dis);
+        }
+
+        //dd($dis[0]);
+        //die();
+        $response = $this->actingAs($user)
+                         ->withSession(['banned'=> false])
+                         ->postJson('/eventos/update/2',[
+                             'nombre' => $evento->nombre,
+                             'descripcion' => $evento->descripcion,
+                             'lugarEvento' => $evento->lugarEvento,
+                             'fechaInicioEvento' => '09/07/2023',
+                             'fechaFinEvento' => '11/07/2023',
+                             'horaEvento' => '07',
+                             'minutoEvento' => '00',
+                             'periodoEvento' => 'AM',
+                             'lugarEntregaKits' => $evento->lugarEntregaKits,
+                             'fechaInicioEntregaKits' => '01/07/2023',
+                             'fechaFinEntregaKits' => '05/07/2023',
+                             'horaInicioEntregaKits' => '12',
+                             'minutoInicioEntregaKits' => '30',
+                             'periodoInicioEntregaKits' => 'PM',
+                             'horaFinEntregaKits' => '05',
+                             'minutoFinEntregaKits' => '55',
+                             'periodoFinEntregaKits' => 'PM',
+
+                             //subEvento
+                             'categoria5' => 'ELITE VARONIL',
+                             'distancia5' => '67',
+                             'unidadDistancia5' => 'Kilometros',
+                             'rama5' => 'VARONIL',
+                             'precio5' => '500',
+
+                             'categoria6' => 'ELITE FEMENIL',
+                             'distancia6' => '67',
+                             'unidadDistancia6' => 'Kilometros',
+                             'rama6' => 'FEMENIL',
+                             'precio6' => '500',
+
+                             'categoria' => [],
+                             'distancia' => [],
+                             'unidadDistancia' => [],
+                             'rama' => [],
+                             'precio' => [],
+
+                         ])
+                         ;
+        $response->assertStatus(200);
+        $response->assertRedirect('eventos');
+
+        /*Nos aseguramos que el registro haya sido guardado*/
+        $this->assertDatabaseHas('eventos',[
+
+            'id' => 2,
+            'fechaInicioEvento' => '09/07/2023',
+            'fechaFinEvento' => '11/07/2023',
+            'horaEvento' => '07:00 AM',
+            'fechaInicioEntregaKits' => '01/07/2023',
+            'fechaFinEntregaKits' => '05/07/2023',
+            'horaInicioEntregaKits' => '12:30 PM',
+            'horaFinEntregaKits' => '05:55 PM',
         ]);
 
 
