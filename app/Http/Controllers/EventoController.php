@@ -186,6 +186,38 @@ class EventoController extends Controller
 
         //Se obtienen los ids de los sub eventos ligados al evento
         $subs = Evento::find($evento->id)->subEventos;
+        //dd(!empty($subs));
+        //die();
+
+        if (count($subs) != 0){
+            foreach ($subs as $se){
+                $subsId[] = $se->id;
+            }
+            //se contabilizan
+            $nIds = count($subsId);
+            // recorrer el array
+
+            for ($i = 0; $i < $nIds; $i++) {
+
+                $rqCat = "categoria$subsId[$i]";
+
+                $rqDis = "distancia$subsId[$i]";
+                $rqUni = "unidadDistancia$subsId[$i]";
+                $distaCom= $request->post($rqDis) . " ". $request->post($rqUni);
+
+                $rqRam = "rama$subsId[$i]";
+                $rqPre = "precio$subsId[$i]";
+                $sbEvn = SubEvento::findOrFail($subsId[$i]);
+                $sbEvn->update([
+                    'categoria' => strtoupper($request->post($rqCat)),
+                    'distancia' => $distaCom,
+                    'rama' => $request->post($rqRam),
+                    'precio' => $request->post($rqPre),
+                ]);
+
+            }
+        }
+        /*
         foreach ($subs as $se){
             $subsId[] = $se->id;
         }
@@ -212,6 +244,7 @@ class EventoController extends Controller
             ]);
 
         }
+        */
 
         //Si añadieron una categoría nueva
         $valoresCategoria = $this->inputsArray($request->categoria);
