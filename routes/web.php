@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubEventoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,22 +48,18 @@ Route::middleware('auth')->group(function () {
 
     });
 
+    Route::controller(SubEventoController::class)->group(function (){
 
-});
-//Incluir al middleware
-/*
-Route::controller(EventoController::class)->group(function(){
+        Route::name('subeventos.')->group(function (){
 
-    Route::name('eventos.')->group(function (){
+            Route::get('/subevento/delete/{evento}','delete')->name('delete');
+            Route::delete('/subevento/destroy/{subEvento}','destroy')->name('destroy');
 
-        Route::get('/eventos','index')->name('index');
-
-        Route::get('/eventos/create','create')->name('create');
-        Route::post('/eventos/','store')->name('store');
+        });
 
     });
 
+
 });
-*/
 
 require __DIR__.'/auth.php';

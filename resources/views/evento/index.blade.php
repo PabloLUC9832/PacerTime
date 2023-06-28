@@ -43,7 +43,7 @@
 
 
                 @include('evento.modal-info')
-                @include('evento.modal-eliminar')
+                @include('evento.modal-eliminar',['id' => $evento->id, 'nombre' => $evento->nombre, 'ruta' => 'eventos.destroy'])
 
 
             @endforeach

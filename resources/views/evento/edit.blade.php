@@ -34,6 +34,12 @@
         </div>
     </div>
 
+    @if(session()->has('message'))
+        <div class="mx-8">
+            @include('evento.success-message',['message'=> session()->get('message') ])
+        </div>
+    @endif
+
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             @include('components.forms.error-message',['error'=>$error])
@@ -116,6 +122,10 @@
                 <div class="borde-tarjeta">
 
                     <p class="subtitulo">Categorías del evento</p>
+                    <p class="mt-2 text-sm text-white sm:text-justify">
+                        ¿Deseas eliminar alguna categoría? ve a
+                        <a href="{{route('subeventos.delete',$evento->id)}}" class="font-bold text-blue-500 hover:underline">Eliminar categorías</a>
+                    </p>
 
                     <x-forms.separator></x-forms.separator>
                     @foreach($evento->subEventos as $subEv)
@@ -153,8 +163,6 @@
                             @php
 
                                 $distancia=explode(" ",$subEv->distancia);
-                                //dd($distancia[1]);
-                                //die();
 
                             @endphp
 
@@ -164,7 +172,6 @@
                                        value="{{ $distancia[0] }}">
 
                                 <select id="unidadDistancia{{$subEv->id}}" name="unidadDistancia{{$subEv->id}}" class="text-white bg-primary inline-flex items-center px-3 rounded-none rounded-r-lg border-gray-300 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    {{--<option value="">{{ $distancia[1] }}</option>--}}
 
                                     <option value="Kilometros" {{$distancia[1] == 'Kilometros' ? 'selected' : '' }}>Kilometros</option>
                                     <option value="Millas" {{$distancia[1] == 'Millas' ? 'selected' : '' }}>Millas</option>
@@ -251,6 +258,7 @@
                         </div>
 
                     </div>
+
                     <x-forms.separator></x-forms.separator>
                     @endforeach
                     <div id="empty">
