@@ -122,11 +122,12 @@
                 <div class="borde-tarjeta">
 
                     <p class="subtitulo">Categorías del evento</p>
+                    @if(count($evento->subEventos) > 0)
                     <p class="mt-2 text-sm text-white sm:text-justify">
                         ¿Deseas eliminar alguna categoría? ve a
                         <a href="{{route('subeventos.delete',$evento->id)}}" class="font-bold text-blue-500 hover:underline">Eliminar categorías</a>
                     </p>
-
+                    @endif
                     <x-forms.separator></x-forms.separator>
                     @foreach($evento->subEventos as $subEv)
                     <!--Categorías del evento-->
