@@ -213,6 +213,26 @@ class EventoController extends Controller
 
         }
 
+        //Si añadieron una categoría nueva
+        $valoresCategoria = $this->inputsArray($request->categoria);
+        $valoresDistancia = $this->inputsArray($request->distancia);
+        $valoresUnidadDistancia = $this->inputsArray($request->unidadDistancia);
+        $valoresRama = $this->inputsArray($request->rama);
+        $valoresPrecio = $this->inputsArray($request->precio);
+
+        array_map(function ($cate,$dist,$unidDist,$rama,$precio) use($evento){
+
+            $subEvento = new SubEvento();
+            $subEvento->distancia = $dist . " " . $unidDist;
+            $subEvento->categoria = strtoupper($cate);
+            $subEvento->precio = $precio;
+            $subEvento->rama = $rama;
+            $subEvento->evento_id = $evento->id;
+            $subEvento->save();
+
+        },$valoresCategoria,$valoresDistancia,$valoresUnidadDistancia,$valoresRama,$valoresPrecio);
+
+
         return redirect()->route('eventos.index')->with('message','El evento ha sido editado exitosamente.');
 
     }

@@ -262,6 +262,112 @@
 
                     <x-forms.separator></x-forms.separator>
                     @endforeach
+
+                    <!--PARA AÑADIR CATEGORIA-->
+
+                    <!--Categorías del evento-->
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="categoria" class="label-input">Categoría</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
+                        </div>
+
+                        <!--Input categoría del evento-->
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+                            <input type="text" name="categoria[]" id="categoria" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm uppercase">
+                        </div>
+
+                    </div>
+
+                    <!--Distancias y unidad de distancia del evento-->
+                    <div class="mt-3 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="distancia" class="label-input">Distancia</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
+                        </div>
+
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+
+                            <div class="flex">
+                                <!--Input unidad de la distancia del evento-->
+                                <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+
+                                <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    <option value="">Selecciona la unidad de longitud</option>
+                                    <option value="Kilometros">Kilometros</option>
+                                    <option value="Millas">Millas</option>
+                                    <option value="Metros">Metros</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!--Ramas del evento-->
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="rama" class="label-input">Rama</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
+                        </div>
+
+                        <!--Inputs ramas del evento-->
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+
+                            <ul class="items-center w-full text-sm text-white bg-primary border border-gray-200 rounded-lg sm:flex">
+
+                                <x-forms.input-radio id="ramaAmbas" name="rama[]" value="AMBAS"></x-forms.input-radio>
+                                <x-forms.input-radio id="ramaFemenil" name="rama[]" value="FEMENIL"></x-forms.input-radio>
+                                <x-forms.input-radio id="ramaVaronil" name="rama[]" value="VARONIL"></x-forms.input-radio>
+
+                            </ul>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <!--Precios del evento-->
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="precio" class="label-input">Precio</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
+                        </div>
+
+                        <!--Input precios del evento-->
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+
+                            <div class="flex">
+                             <span class="inline-flex items-center px-3 text-sm text-white bg-secondary border border-r-0 border-gray-300 rounded-l-md">
+                                $
+                             </span>
+                                <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <!--PARA AÑADIR CATEGORIA-->
+
+
                     <div id="empty">
                         <p></p>
                     </div>
