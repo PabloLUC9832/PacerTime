@@ -123,14 +123,16 @@ class EventoTest extends TestCase
     public function test_evento_edit()
     {
         $user = User::factory()->create();
+        $evento = Evento::find(2);
         $response = $this->actingAs($user)
                          ->withSession(['banned' => false])
-                         ->get('eventos/edit/2');
+                         ->get("eventos/edit/{$evento->id}");
+
         $response->assertStatus(200);
         $response->assertViewIs('evento.edit');
 
         //Se comprueba que se vea el nombre del evento
-        $response->assertSee("BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING");
+        $response->assertSee($evento->nombre);
 
     }
 
@@ -150,6 +152,7 @@ class EventoTest extends TestCase
 
         //dd($dis[0]);
         //die();
+        /*
         $response = $this->actingAs($user)
                          ->withSession(['banned'=> false])
                          ->postJson('/eventos/update/2',[
@@ -192,6 +195,51 @@ class EventoTest extends TestCase
 
                          ])
                          ;
+        */
+        $response = $this->withoutExceptionHandling()
+            ->actingAs($user)
+            ->withSession(['banned' => false])
+            ->json('post','/eventos/update/2',[
+                'nombre' => $evento->nombre,
+                'descripcion' => $evento->descripcion,
+                'lugarEvento' => $evento->lugarEvento,
+                'fechaInicioEvento' => '09/07/2023',
+                'fechaFinEvento' => '11/07/2023',
+                'horaEvento' => '07',
+                'minutoEvento' => '00',
+                'periodoEvento' => 'AM',
+                'lugarEntregaKits' => $evento->lugarEntregaKits,
+                'fechaInicioEntregaKits' => '01/07/2023',
+                'fechaFinEntregaKits' => '05/07/2023',
+                'horaInicioEntregaKits' => '12',
+                'minutoInicioEntregaKits' => '30',
+                'periodoInicioEntregaKits' => 'PM',
+                'horaFinEntregaKits' => '05',
+                'minutoFinEntregaKits' => '55',
+                'periodoFinEntregaKits' => 'PM',
+
+
+                'categoria5' => 'ELITE VARONIL',
+                'distancia5' => '67',
+                'unidadDistancia5' => 'Kilometros',
+                'rama5' => 'VARONIL',
+                'precio5' => '500',
+
+                'categoria6' => 'ELITE FEMENIL',
+                'distancia6' => '67',
+                'unidadDistancia6' => 'Kilometros',
+                'rama6' => 'FEMENIL',
+                'precio6' => '500',
+
+                'categoria' => "xd",
+                'distancia' => "12",
+                'unidadDistancia' => "Kilometros",
+                'rama' => "AMBAS",
+                'precio' => "100",
+
+            ])
+        ;
+
         $response->assertStatus(200);
         $response->assertRedirect('eventos');
 
@@ -210,6 +258,67 @@ class EventoTest extends TestCase
 
 
     }
+
+    /**
+     * Test para la visualización de sub eventos pertenecientes a un evento
+     *
+     */
+    public function test_visualizar_categorias_pertenecientes_a_evento()
+    {
+        $user = User::factory()->create();
+        $evento = Evento::find(2);
+
+        //dd($evento->subEventos->id);
+        //die();
+        /*
+        foreach($evento->subEventos as $subEv){
+            $cat[] = $subEv->categoria;
+            $dis[] = $subEv->distancia;
+            $ram[] = $subEv->rama;
+            $pre[] = $subEv->precio;
+        }
+        */
+
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get("subevento/delete/{$evento->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('subevento.delete');
+
+        //Se comprueba que se vea el nombre del evento
+        //$response->assertSee("BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING");
+        //$response->assertSee($cat);
+        foreach($evento->subEventos as $subEv){
+            $response->assertSee($subEv->categoria);
+            $response->assertSee($subEv->distancia);
+            $response->assertSee($subEv->rama);
+            $response->assertSee($subEv->precio);
+        }
+    }
+
+    public function test_eliminar_categorias_pertenecientes_a_evento()
+    {
+        $user = User::factory()->create();
+        $evento = Evento::find(2);
+        foreach($evento->subEventos as $subEv){
+            $ids[] = $subEv->id;
+        }
+        $subEvEliminar = array_rand($ids);
+        $idRandom = $ids[$subEvEliminar];
+        //dd($ids[$subEvEliminar]);
+        //die();
+
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->json('delete',"/subevento/destroy/{$idRandom}")
+                         ;
+
+        $response->assertStatus(302);
+        //$response->assertSee("La categoría, distancia, rama y precio han sido eliminadas exitosamente.");
+
+    }
+
 
     public function test_evento_destroy()
     {
