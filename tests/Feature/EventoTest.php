@@ -315,7 +315,11 @@ class EventoTest extends TestCase
                          ;
 
         $response->assertStatus(302);
-        //$response->assertSee("La categoría, distancia, rama y precio han sido eliminadas exitosamente.");
+        $response->assertSessionHas(['message' => 'La categoría, distancia, rama y precio han sido eliminadas exitosamente.',]);
+
+        $this->assertDatabaseMissing('sub_eventos', [
+            'id' => $idRandom,
+        ]);
 
     }
 
@@ -324,23 +328,21 @@ class EventoTest extends TestCase
     {
 
         $user = User::factory()->create();
-        //$this->seed(EventoSeeder::class);
-        //$this->seed(SubEventoSeeder::class);
-
+        $evento = Evento::find(2);
 
         $response = $this->withoutExceptionHandling()
                          ->actingAs($user)
                          ->withSession(['banned' => false])
-                         ->json('delete','/eventos/destroy/1')
+                         ->json('delete',"/eventos/destroy/{$evento->id}")
                          ;
         $response->assertStatus(302);
         $response->assertRedirect('eventos');
 
         //$response->assertViewHas('some_var');
-
+        $response->assertSessionHas(['message' => 'El evento ha sido eliminado exitosamente.',]);
 
         $this->assertDatabaseMissing('eventos', [
-            'id' => '1',
+            'id' => $evento->id,
             //'nombre' => 'BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING',
         ]);
 
