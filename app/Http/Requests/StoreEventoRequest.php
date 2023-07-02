@@ -40,8 +40,8 @@ class StoreEventoRequest extends FormRequest
             'horaInicioEntregaKits' => 'required|numeric|min:1',
             'minutoInicioEntregaKits' => 'required|numeric',
             'periodoInicioEntregaKits' => 'required|string|min:1',
-            'horaFinEntregaKits' => 'nullable|numeric|min:1',
-            'minutoFinEntregaKits' => 'nullable|numeric',
+            'horaFinEntregaKits' => 'nullable|min:1',
+            'minutoFinEntregaKits' => 'nullable|',
             'periodoFinEntregaKits' => 'nullable|string|min:1',
             //subevento
             'categoria.*' => 'nullable|string|min:1',

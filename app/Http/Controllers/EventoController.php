@@ -6,27 +6,56 @@ use App\Models\Evento;
 use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Sto1rage;
+use Illuminate\Support\Facades\Storage;
 
 class EventoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
         /*
         $eventos = DB::table('eventos')
                    ->get();
         */
+        $search = trim($request->search);
 
-        $eventos = Evento::with('subEventos')->get();
+        //$eventos = Evento::with('subEventos')->get();
+        $eventos = Evento::with('subEventos')
+        /*$eventos = Evento::with(['subEventos' => function(Builder $query) use ($search){
+                                $query->where('distancia','like',"%{$search}%")
+                                      ->orWhere('categoria','like',"%{$search}%")
+                                      ->orWhere('precio','like',"%{$search}%")
+                                      ->orWhere('rama','like',"%{$search}%");
+                            }])*/
+                           ->where('nombre','like',"%{$search}%")
+                           ->orWhere('descripcion','like',"%{$search}%")
+                           ->orWhere('lugarEvento','like',"%{$search}%")
+                           ->orWhere('fechaInicioEvento','like',"%{$search}%")
+                           ->orWhere('fechaFinEvento','like',"%{$search}%")
+                           ->orWhere('horaEvento','like',"%{$search}%")
+                           ->orWhere('lugarEntregaKits','like',"%{$search}%")
+                           ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
+                           ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
+                           ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
+                           ->orWhere(function ($query) use ($search){
+                              $query->whereHas('subEventos',function ($q) use ($search){
+                                 $q->where('distancia','like',"%{$search}%")
+                                   ->orWhere('categoria','like',"%{$search}%")
+                                   ->orWhere('precio','like',"%{$search}%")
+                                   ->orWhere('rama','like',"%{$search}%");
+                              });
+                           })
+                           ->get();
 
         //dd($eventos);
 
-        return view('evento.index',compact('eventos'));
+        return view('evento.index',compact('eventos','search'));
 
     }
 
