@@ -18,9 +18,38 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-nav-link>
+                    {{--
                     <x-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
                         {{ __('Eventos') }}
                     </x-nav-link>
+                    --}}
+                    <div class="grid items-center">
+
+                        <x-dropdown align="right" width="48">
+                            <x-slot name="trigger">
+                                <!--<button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">-->
+                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-400 bg-secondary hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                    <div>Eventos</div>
+
+                                    <div class="ml-1">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link :href="route('eventos.index')">
+                                    {{ __('Lista de eventos') }}
+                                </x-dropdown-link>
+                                <x-dropdown-link :href="route('eventos.create')">
+                                    {{ __('Añadir evento') }}
+                                </x-dropdown-link>
+                            </x-slot>
+
+                        </x-dropdown>
+
+                    </div>
 
                 </div>
             </div>
@@ -82,6 +111,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
                 {{ __('Eventos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('eventos.create')" :active="request()->routeIs('eventos.create')">
+                {{ __('Añadir evento') }}
             </x-responsive-nav-link>
 
         </div>

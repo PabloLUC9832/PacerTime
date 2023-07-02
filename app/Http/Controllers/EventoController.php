@@ -27,12 +27,6 @@ class EventoController extends Controller
 
         //$eventos = Evento::with('subEventos')->get();
         $eventos = Evento::with('subEventos')
-        /*$eventos = Evento::with(['subEventos' => function(Builder $query) use ($search){
-                                $query->where('distancia','like',"%{$search}%")
-                                      ->orWhere('categoria','like',"%{$search}%")
-                                      ->orWhere('precio','like',"%{$search}%")
-                                      ->orWhere('rama','like',"%{$search}%");
-                            }])*/
                            ->where('nombre','like',"%{$search}%")
                            ->orWhere('descripcion','like',"%{$search}%")
                            ->orWhere('lugarEvento','like',"%{$search}%")
