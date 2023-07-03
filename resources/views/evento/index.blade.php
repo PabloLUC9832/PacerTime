@@ -46,7 +46,7 @@
 
     @if(count($eventos)<=0)
         <p class="text-xl font-bold text-white">
-            No se han encontrado eventos :(
+            No se han encontrado eventos :(. <a href="{{route('eventos.create')}}" class="text-blue-500 hover:underline">Añadir evento</a>
         </p>
     @else
 
