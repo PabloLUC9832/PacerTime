@@ -6,7 +6,7 @@
         <!--CARD-->
         <div class="block border border-gray-200 rounded-lg hover:bg-secondary">
 
-            <img data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
+            <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}" class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
             @include('evento.modal-image')
 
             <!--Submenu-->

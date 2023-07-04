@@ -47,8 +47,22 @@ class EventoController extends Controller
                            })
                            ->get();
 
-        //dd($eventos);
 
+        foreach ($eventos as $evento) {
+            $nombres[] = $evento->nombre;
+            //$imagenes = $this->mostrarImagenes("evento-ULTRA TRAIL DEL VENADO");
+        }
+
+
+        //dd($nombres);
+        //die();
+
+        //$imagenes = $this->mostrarImagenes($nombres);
+        //dd($nombres);
+        //die();
+        //$imagenes = $this->mostrarImagenes($eventos->nombre);
+
+        //return view('evento.index',compact('eventos','search','imagenes'));
         return view('evento.index',compact('eventos','search'));
 
     }
@@ -293,8 +307,6 @@ class EventoController extends Controller
      */
     protected function inputsArray($inputs){
 
-        //dd(empty($inputs[0]));
-        //die();
         if (!empty($inputs[0])){
             foreach ($inputs as $input){
 
@@ -309,17 +321,6 @@ class EventoController extends Controller
         }else{
             $nuevoArray = [];
         }
-        /*
-        foreach ($inputs as $input){
-
-            $arrayValores[] = $input;
-            if ($arrayValores[0] == NULL){
-                $nuevoArray = array_slice($arrayValores,1);
-            }else{
-                $nuevoArray = $arrayValores;
-            }
-
-        }*/
 
         return $nuevoArray;
     }
@@ -340,5 +341,50 @@ class EventoController extends Controller
 
         return [$hora[0],$min[0],$periodo[1]];
     }
+
+    /**
+     *
+     * Función para mostrar las imágenes existentes del evento
+     *
+     */
+    /*
+    public function mostrarImagenes($nombres) : array
+    {
+
+         $listaF = [];
+         array_map(function ($nombre) use ($listaF){
+
+            $path ="evento-".$nombre;
+            //$path ="evento-ULTRA TRAIL DEL VENADO";
+            $disk = Storage::disk('azure');
+            $files = $disk->files($path);
+            $listFiles = array();
+            $full=[];
+            foreach ($files as $file){
+                $filename = "$file";
+                $item = array(
+                    'name' => $filename,
+                );
+                array_push($listFiles,$item);
+            }
+
+         },$nombres);
+
+        /*
+        $path ="evento-".$nombre;
+        $disk = Storage::disk('azure');
+        $files = $disk->files($path);
+        $listFiles = array();
+        foreach ($files as $file){
+            $filename = "$file";
+            $item = array(
+                'name' => $filename,
+            );
+            array_push($listFiles,$item);
+        }
+        return  $listFiles;*/
+
+    //}
+
 
 }
