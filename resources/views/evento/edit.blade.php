@@ -112,6 +112,35 @@
                                          valueMinuto="{{$tiempoE[1]}}" valuePeriodo="{{$tiempoE[2]}}">
                     </x-forms.time-picker>
 
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="imgActual" class="label-input">Imágenes actuales</label>
+                        </div>
+
+                        <div class="block mt-3 md:col-start-3 col-end-6">
+
+                            @if($evento->imagen != "Indisponible")
+
+                            <a data-modal-target="popup-modal-gallery{{$evento->id}}" data-modal-toggle="popup-modal-gallery{{$evento->id}}"
+                               class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
+                                Ver imágenes
+                            </a>
+
+                            @else
+
+                            <p class="text-sm text-gray-200">No se han encontrado imágenes</p>
+
+                            @endif
+
+
+
+                        </div>
+
+                    </div>
+
+                    @include('evento.modal-gallery')
+
                     <!--Input imagen del evento-->
                     <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
 
@@ -124,7 +153,7 @@
                     <p class="subtitulo">Categorías del evento</p>
                     @if(count($evento->subEventos) > 0)
                     <p class="mt-2 text-sm text-white sm:text-justify">
-                        ¿Deseas eliminar alguna categoría? ve a
+                        ¿Deseas eliminar alguna categoría? Ve a
                         <a href="{{route('subeventos.delete',$evento->id)}}" class="font-bold text-blue-500 hover:underline">Eliminar categorías</a>
                     </p>
                     @endif

@@ -23,7 +23,10 @@
                             <a data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}" data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}" data-drawer-body-scrolling="true" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">Ver información</a>
                         </li>
                         <li>
-                            <a data-modal-target="popup-modal-gallery{{$evento->id}}" data-modal-toggle="popup-modal-gallery{{$evento->id}}" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">Ver imágenes</a>
+                            <a data-modal-target="popup-modal-gallery{{$evento->id}}" data-modal-toggle="popup-modal-gallery{{$evento->id}}"
+                               class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
+                                Ver imágenes
+                            </a>
                         </li>
                         <li>
                             <a href="{{route('eventos.edit',$evento->id)}}" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white">Editar</a>
