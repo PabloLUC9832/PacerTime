@@ -72,21 +72,3 @@
 
 </body>
 </html>
-
-{{--
-
-
-{{$evento->nombre}}
-{{$evento->descripcion}}
-{{$evento->lugarEvento}}
-{{$evento->fechaInicioEvento}}
-{{$evento->fechaFinEvento}}
-{{$evento->horaEvento}}
-{{$evento->lugarEntregaKits}}
-{{$evento->fechaInicioEntregaKits}}
-{{$evento->fechaFinEntregaKits}}
-{{$evento->horaInicioEntregaKits}}
-{{$evento->horaFinEntregaKits}}
-{{$evento->imagen}}
-
---}}
