@@ -8,7 +8,7 @@
                     {{$evento->nombre}}
                     <p class="text-base font-normal	">
                         Deseas eliminar alguna imágen. Ve a
-                        <a href="" class="text-blue-500 hover:underline">
+                        <a href="{{ route('eventos.deleteImages',$evento->id) }}" class="text-blue-500 hover:underline">
                             Eliminar imágenes
                         </a>
                     </p>

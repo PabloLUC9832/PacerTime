@@ -291,6 +291,48 @@ class EventoController extends Controller
     }
 
     /**
+     * Función para mostrar las imagenes para su eliminacón
+     */
+    public function deleteImages(Evento $evento)
+    {
+
+        $path = $evento->imagen;
+        $disk = Storage::disk('azure');
+        $files = $disk->files($path);
+        $listFiles = array();
+        foreach ($files as $file){
+            $filename = explode("/",$file);
+            $carpeta = $filename[0];
+            $imageName = $filename[1];
+            $item = array(
+                'carpeta' => $carpeta,
+                'imageName' => $imageName,
+                'uri' => $file
+            );
+            array_push($listFiles,$item);
+        }
+
+        //dd($listFiles);
+        //die();
+
+        return view('evento.delete-images',compact('listFiles'));
+    }
+
+    public function destroyImages(Request $request)
+    {
+        //https://youtu.be/NmhirV0zaYA
+        //https://youtu.be/ZRI5F__YMxk
+        foreach ($request->img as $item) {
+            $directory = $item;
+            Storage::disk('azure')->delete($directory);
+        }
+
+        return back()->with('message','Las imágenes han sido eliminadas exitosamente.');
+
+    }
+
+
+    /**
      * Función que toma como parametro los inputs request de tipo array.
      * Lo que hace es iterar los request entonces si el indice 0 es igual null
      * con la función quita una posición. Evitando así un error de envio de

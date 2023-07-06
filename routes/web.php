@@ -41,8 +41,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/eventos/edit/{evento}','edit')->name('edit');
             Route::post('/eventos/update/{evento}','update')->name('update');
 
-            //Route::delete('/eventos/destroy/{id}','destroy')->name('destroy');
             Route::delete('/eventos/destroy/{evento}','destroy')->name('destroy');
+
+            Route::get('/eventos/delete-images/{evento}','deleteImages')->name('deleteImages');
+            Route::post('/eventos/destroy-images','destroyImages')->name('destroyImages');
+
 
         });
 
