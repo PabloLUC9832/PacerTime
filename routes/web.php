@@ -3,6 +3,8 @@
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubEventoController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,12 +40,18 @@ Route::middleware('auth')->group(function () {
             Route::get('/eventos/create','create')->name('create');
             Route::post('/eventos/','store')->name('store');
 
-            Route::get('/eventos/edit/{evento}','edit')->name('edit');
+            Route::get('/eventos/edit/{evento}','edit')->name('edit')
+                                                                 ->missing(function () {
+                                                                     return Redirect::route('eventos.index');
+                                                                 });
             Route::post('/eventos/update/{evento}','update')->name('update');
 
             Route::delete('/eventos/destroy/{evento}','destroy')->name('destroy');
 
-            Route::get('/eventos/delete-images/{evento}','deleteImages')->name('deleteImages');
+            Route::get('/eventos/delete-images/{evento}','deleteImages')->name('deleteImages')
+                                                                                  ->missing(function () {
+                                                                                      return Redirect::route('eventos.index');
+                                                                                  });
             Route::post('/eventos/{evento}/destroy-images','destroyImages')->name('destroyImages');
 
 
