@@ -204,6 +204,19 @@ class EventoController extends Controller
         $horaInicioEntregaKits = $request->horaInicioEntregaKits . ":" . $request->minutoInicioEntregaKits. " " . $request->periodoInicioEntregaKits ;
         $horaFinEntregaKits = $request->horaFinEntregaKits . ":" . $request->minutoFinEntregaKits. " " . $request->periodoFinEntregaKits ;
 
+        if($request->hasFile('files')){
+
+            $directory="evento-".$request->nombre;
+            $evento->imagen = $directory;
+
+            Storage::makeDirectory($directory);
+            foreach($request->file('files') as $file){
+                $fileName = time() ."_" . $file->getClientOriginalName();
+                $file->storeAs('/'.$directory.'/', $fileName, 'azure');
+            }
+
+        }
+
         $evento->update([
 
             'nombre' => $request->nombre,
@@ -217,7 +230,8 @@ class EventoController extends Controller
             'fechaFinEntregaKits' => $request->fechaFinEntregaKits ,
             'horaInicioEntregaKits' => $horaInicioEntregaKits ,
             'horaFinEntregaKits' => $horaFinEntregaKits ,
-            'imagen' => $evento->imagen ,
+            //'imagen' => $evento->imagen ,
+            'imagen' => $directory ,
 
         ]);
 
