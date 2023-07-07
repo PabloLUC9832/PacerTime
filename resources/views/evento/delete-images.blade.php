@@ -46,36 +46,46 @@
         @endforeach
     @endif
 
-    <form action="{{ route('eventos.destroyImages') }}" method="POST">
+    <form action="{{ route('eventos.destroyImages',$evento->id) }}" method="POST">
+
         @csrf
         <button type="submit"
-                class="px-6 font-medium text-red-600 underline dark:text-blue-500 hover:no-underline">
-            Eliminar
+                class="px-6 font-medium text-red-600 hover:underline">
+            Eliminar las imágenes seleccionadas
         </button>
 
-    <ul class="grid w-full gap-6 md:grid-cols-3">
+        <ul class="grid w-full gap-6 md:grid-cols-3 mt-2 mx-2">
 
-        @foreach($listFiles as $img)
+            @foreach($listFiles as $img)
 
-        <li>
-            <input name="img[]" type="checkbox" id="{{$img["imageName"]}}" value="{{$img["uri"]}}" class="hidden peer">
-            <label for="{{$img["imageName"]}}" class="inline-flex items-center justify-between w-full h-full p-5 text-gray-400 bg-gray-800 border-4 border-gray-700 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-300 peer-checked:text-gray-300 hover:bg-gray-700">
+            <li>
+                <input name="img[]" type="checkbox" id="{{$img["imageName"]}}" value="{{$img["uri"]}}" class="hidden peer">
+                <label for="{{$img["imageName"]}}" class="inline-flex items-center justify-between w-full h-full p-5 text-gray-400 bg-gray-800 border-4 border-gray-700 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-300 peer-checked:text-gray-300 hover:bg-gray-700">
 
-            <div class="block">
-                <img class="w-1/2 h-1/2 mx-auto" src="https://pacertime.blob.core.windows.net/files/{{$img["uri"]}}"
-                     alt="{{$img["imageName"]}}">
-                <p class="mb-1.5 text-justify">{{$img["imageName"]}}</p>
-            </div>
+                <div class="block">
+                    <img class="w-1/2 h-1/2 mx-auto" src="https://pacertime.blob.core.windows.net/files/{{$img["uri"]}}"
+                         alt="{{$img["imageName"]}}">
+                    <p class="mb-1.5 text-justify">{{$img["imageName"]}}</p>
+                </div>
 
-            </label>
-        </li>
+                </label>
+            </li>
 
-        @endforeach
+            @endforeach
 
-    </ul>
+        </ul>
 
     </form>
 
+    <div class="borde-tarjeta mt-4">
+
+        <div class="grid place-items-center md:flex items-center justify-center">
+
+            <a href="{{route('eventos.index')}}" class="btn-cancelar">Cancelar</a>
+
+        </div>
+
+    </div>
 
 
 

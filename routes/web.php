@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/eventos/destroy/{evento}','destroy')->name('destroy');
 
             Route::get('/eventos/delete-images/{evento}','deleteImages')->name('deleteImages');
-            Route::post('/eventos/destroy-images','destroyImages')->name('destroyImages');
+            Route::post('/eventos/{evento}/destroy-images','destroyImages')->name('destroyImages');
 
 
         });

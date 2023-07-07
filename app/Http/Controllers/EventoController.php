@@ -312,22 +312,52 @@ class EventoController extends Controller
             array_push($listFiles,$item);
         }
 
-        //dd($listFiles);
-        //die();
-
-        return view('evento.delete-images',compact('listFiles'));
+        return view('evento.delete-images',compact('listFiles','evento'));
     }
 
-    public function destroyImages(Request $request)
+    /**
+     * Función para eliminar 1 o más imagenes de los contenedores de Azure
+     *
+     * @link https://youtu.be/NmhirV0zaYA
+     * @link https://youtu.be/ZRI5F__YMxk
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroyImages(Request $request,Evento $evento)
     {
-        //https://youtu.be/NmhirV0zaYA
-        //https://youtu.be/ZRI5F__YMxk
+
+        $request->validate([
+            'img' => 'required',
+            //'img.*' => 'required|string'
+        ],[
+            'required' => 'Selecciona al menos una imágen'
+            ]
+        );
+
         foreach ($request->img as $item) {
             $directory = $item;
             Storage::disk('azure')->delete($directory);
         }
 
-        return back()->with('message','Las imágenes han sido eliminadas exitosamente.');
+        $path = $evento->imagen;
+        $disk = Storage::disk('azure');
+        $files = $disk->files($path);
+        $listFiles = array();
+        foreach ($files as $file){
+            $item = array(
+                'uri' => $file
+            );
+            array_push($listFiles,$item);
+        }
+
+        $nFile = count($listFiles);
+        if(empty($nFile) ){
+            $evento->update([
+                'imagen' => "Indisponible",
+            ]);
+        }
+
+        return back()->with('message','La(s) imágen(es) han sido elimina(das) exitosamente.');
 
     }
 
