@@ -40,18 +40,21 @@ Route::middleware('auth')->group(function () {
             Route::get('/eventos/create','create')->name('create');
             Route::post('/eventos/','store')->name('store');
 
-            Route::get('/eventos/edit/{evento}','edit')->name('edit')
-                                                                 ->missing(function () {
-                                                                     return Redirect::route('eventos.index');
-                                                                 });
+            Route::get('/eventos/edit/{evento}','edit')
+                   ->name('edit')
+                   ->missing(function () {
+                       return Redirect::route('eventos.index');
+                   });
             Route::post('/eventos/update/{evento}','update')->name('update');
 
             Route::delete('/eventos/destroy/{evento}','destroy')->name('destroy');
 
-            Route::get('/eventos/delete-images/{evento}','deleteImages')->name('deleteImages')
-                                                                                  ->missing(function () {
-                                                                                      return Redirect::route('eventos.index');
-                                                                                  });
+            Route::get('/eventos/delete-images/{evento}','deleteImages')
+                   ->name('deleteImages')
+                   ->middleware('images')
+                   ->missing(function () {
+                       return Redirect::route('eventos.index');
+                   });
             Route::post('/eventos/{evento}/destroy-images','destroyImages')->name('destroyImages');
 
 
@@ -63,7 +66,11 @@ Route::middleware('auth')->group(function () {
 
         Route::name('subeventos.')->group(function (){
 
-            Route::get('/subevento/delete/{evento}','delete')->name('delete');
+            Route::get('/subevento/delete/{evento}','delete')
+                   ->name('delete')
+                   ->missing(function () {
+                       return Redirect::route('eventos.index');
+                   });
             Route::delete('/subevento/destroy/{subEvento}','destroy')->name('destroy');
 
         });
