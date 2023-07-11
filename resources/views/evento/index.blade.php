@@ -23,6 +23,7 @@
 
 <div class="m-10">
 
+    {{ Breadcrumbs::render('eventos') }}
 
     <form action="{{route('eventos.index')}}" method="GET" value="{{$search}}" class="mb-4">
         <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Buscar</label>

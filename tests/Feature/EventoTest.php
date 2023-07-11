@@ -89,6 +89,7 @@ class EventoTest extends TestCase
                             'periodoInicioEntregaKits' => 'AM',
 
                             'horaFinEntregaKits' => '',
+                            'imagen' => 'evento-ultra trail del venado 2',
 
                             //subEvento
                             'categoria' => ['LIBRE','MASTER'],

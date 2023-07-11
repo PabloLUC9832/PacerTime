@@ -81,7 +81,7 @@
 
         <div class="grid place-items-center md:flex items-center justify-center">
 
-            <a href="{{route('eventos.index')}}" class="btn-cancelar">Cancelar</a>
+            <a href="{{route('eventos.index')}}" class="text-gray-300 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-600 rounded-lg border border-gray-500 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10">Cancelar</a>
 
         </div>
 

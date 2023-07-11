@@ -19,14 +19,8 @@ class EnsureImageFolderIsEmpty
     {
         //dd($request->route()->parameters());
         //dd($request->route('evento.id'));
-        //die();
         $idEvento = $request->route('evento.id');
-        //dd($idEvento);
-        //die();
-
         $evento = Evento::find($idEvento);
-        //dd($evento);
-        //die();
 
         $path = $evento->imagen;
         $disk = Storage::disk('azure');
