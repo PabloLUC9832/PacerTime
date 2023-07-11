@@ -19,6 +19,11 @@ Breadcrumbs::for('edit-evento', function (BreadcrumbTrail $trail, Evento $evento
     $trail->push($evento->nombre, route('eventos.edit', $evento->id));
 });
 
+Breadcrumbs::for('destroy-categorias', function (BreadcrumbTrail $trail,Evento $evento) {
+    $trail->parent('edit-evento',$evento);
+    $trail->push("Eliminación de categorías", route('subeventos.delete',$evento->id));
+});
+
 /*
 // Home > Blog
 Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
