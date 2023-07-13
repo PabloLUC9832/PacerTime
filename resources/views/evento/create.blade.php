@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crear evento</title>
+@extends('layouts.evento')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+@section('title', 'Crear evento')
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('resources/js/createSubEvento.js')
-    @vite('node_modules/flowbite/dist/flowbite.js')
-    @vite('node_modules/flowbite/dist/datepicker.js')
-
-</head>
-<body class="bg-primary">
-
-@include('layouts.navigation')
-
-<div class="m-10">
+@section('content')
 
     {{ Breadcrumbs::render('create-eventos') }}
 
@@ -28,8 +10,8 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-3">
                 <div class="px-4 sm:px-0">
-                    <h3 class="titulo-1">Creación de evento</h3>
-                    <p class="subtitulo">Ingresa la información solicitada a continuación para la creación del evento.</p>
+                    {{--<h3 class="titulo-1">Creación de evento</h3>--}}
+                    <p class="subtitulo">Ingresa la información solicitada a continuación para crear el evento.</p>
                 </div>
             </div>
 
@@ -195,7 +177,7 @@
                              <span class="inline-flex items-center px-3 text-sm text-white bg-secondary border border-r-0 border-gray-300 rounded-l-md">
                                 $
                              </span>
-                            <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                <input type="number" name="precio[]" id="precio" class="text-white bg-primary block w-full rounded-none rounded-r-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 
                             </div>
                         </div>
@@ -294,7 +276,4 @@
 
     </form>
 
-</div>
-
-</body>
-</html>
+@endsection

@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eliminación de categorías</title>
+@extends('layouts.evento')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+@section('title', 'Eliminar categorías')
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('resources/js/createSubEvento.js')
-    @vite('node_modules/flowbite/dist/flowbite.js')
-    @vite('node_modules/flowbite/dist/datepicker.js')
-
-</head>
-<body class="bg-primary">
-
-@include('layouts.navigation')
-
-<div class="m-10">
+@section('content')
 
     {{ Breadcrumbs::render('destroy-categorias',$evento) }}
 
@@ -28,7 +10,6 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-3">
                 <div class="px-4 sm:px-0">
-                    <h3 class="titulo-1">Eliminación de categorías</h3>
                     <p class="subtitulo">Elimina las categorías deseadas.</p>
                 </div>
             </div>
@@ -43,102 +24,102 @@
     @endif
 
 
-        <div class="shadow sm:overflow-hidden sm:rounded-md">
+    <div class="shadow sm:overflow-hidden sm:rounded-md">
 
-            <div class="space-y-6 px-4 py-5 sm:p-6">
+        <div class="space-y-6 px-4 py-5 sm:p-6">
 
-                <!--Datos del evento-->
-                <div class="borde-tarjeta">
+            <!--Datos del evento-->
+            <div class="borde-tarjeta">
 
-                    <p class="subtitulo">Datos del evento</p>
+                <p class="subtitulo">Datos del evento</p>
 
-                    <x-forms.separator></x-forms.separator>
+                <x-forms.separator></x-forms.separator>
 
-                    <!--Input nombre del evento-->
-                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+                <!--Input nombre del evento-->
+                <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
-                        <div class="block md:col-start-1">
-                            <label for="nombre" class="label-input">Nombre del evento</label>
-                        </div>
-
-                        <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" id="nombre" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->nombre}}" disabled>
-                        </div>
-
+                    <div class="block md:col-start-1">
+                        <label for="nombre" class="label-input">Nombre del evento</label>
                     </div>
 
-
-                    <!--Input descripción del evento-->
-                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
-
-                        <div class="block md:col-start-1">
-                            <label for="descripcion" class="label-input">Descripción</label>
-                        </div>
-
-                        <div class="block mt-3 md:col-start-3 col-end-6">
-                            <div class="mt-1">
-
-                                <textarea id="descripcion" rows="4" class="text-white bg-primary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" disabled>{{$evento->descripcion}}</textarea>
-                            </div>
-                        </div>
-
+                    <div class="block mt-3 md:col-start-3 col-end-6">
+                        <input type="text" id="nombre" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->nombre}}" disabled>
                     </div>
 
-
-                    <!--Input lugar del evento-->
-                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
-
-                        <div class="block md:col-start-1">
-                            <label for="lugarEvento" class="label-input">Nombre del evento</label>
-                        </div>
-
-                        <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" id="lugarEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->lugarEvento}}" disabled>
-                        </div>
-
-                    </div>
-
-                    <!--Fecha del evento-->
-                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
-
-                        <div class="block md:col-start-1">
-                            <label for="fechaEvento" class="label-input">Fecha del evento</label>
-                        </div>
-
-                        <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" id="fechaEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}" disabled>
-                        </div>
-
-                    </div>
-
-                    <!--Input hora inicial del evento-->
-                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
-
-                        <div class="block md:col-start-1">
-                            <label for="horaEvento" class="label-input">Hora del evento</label>
-                        </div>
-
-                        <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" id="horaEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->horaEvento}}" disabled>
-                        </div>
-
-                    </div>
-
-                    <!--Input imagen del evento-->
-                    {{--
-                    <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
-                    --}}
                 </div>
-                <!--Fin Datos del evento-->
 
-                <!--Categorías del evento-->
-                <div class="borde-tarjeta">
 
-                    <p class="subtitulo">Categorías del evento</p>
+                <!--Input descripción del evento-->
+                <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
-                    <x-forms.separator></x-forms.separator>
+                    <div class="block md:col-start-1">
+                        <label for="descripcion" class="label-input">Descripción</label>
+                    </div>
 
-                    @foreach($evento->subEventos as $subEv)
+                    <div class="block mt-3 md:col-start-3 col-end-6">
+                        <div class="mt-1">
+
+                            <textarea id="descripcion" rows="4" class="text-white bg-primary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" disabled>{{$evento->descripcion}}</textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!--Input lugar del evento-->
+                <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                    <div class="block md:col-start-1">
+                        <label for="lugarEvento" class="label-input">Nombre del evento</label>
+                    </div>
+
+                    <div class="block mt-3 md:col-start-3 col-end-6">
+                        <input type="text" id="lugarEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->lugarEvento}}" disabled>
+                    </div>
+
+                </div>
+
+                <!--Fecha del evento-->
+                <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                    <div class="block md:col-start-1">
+                        <label for="fechaEvento" class="label-input">Fecha del evento</label>
+                    </div>
+
+                    <div class="block mt-3 md:col-start-3 col-end-6">
+                        <input type="text" id="fechaEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}" disabled>
+                    </div>
+
+                </div>
+
+                <!--Input hora inicial del evento-->
+                <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
+
+                    <div class="block md:col-start-1">
+                        <label for="horaEvento" class="label-input">Hora del evento</label>
+                    </div>
+
+                    <div class="block mt-3 md:col-start-3 col-end-6">
+                        <input type="text" id="horaEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->horaEvento}}" disabled>
+                    </div>
+
+                </div>
+
+                <!--Input imagen del evento-->
+                {{--
+                <x-forms.input-file name="files[]" id="file"></x-forms.input-file>
+                --}}
+            </div>
+            <!--Fin Datos del evento-->
+
+            <!--Categorías del evento-->
+            <div class="borde-tarjeta">
+
+                <p class="subtitulo">Categorías del evento</p>
+
+                <x-forms.separator></x-forms.separator>
+
+                @foreach($evento->subEventos as $subEv)
 
                     <!--Categorías del evento-->
                     <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
@@ -229,29 +210,25 @@
 
                     <x-forms.separator></x-forms.separator>
 
-                    @endforeach
+                @endforeach
+
+            </div>
+            <!--Fin categorías del evento-->
+
+            <div class="borde-tarjeta">
+
+                <div class="grid place-items-center md:flex items-center justify-center">
+
+                    <a href="{{ route('eventos.edit',$evento->id) }}" class="text-gray-300 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-600 rounded-lg border border-gray-500 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10">Cancelar</a>
+
 
                 </div>
-                <!--Fin categorías del evento-->
-
-                <div class="borde-tarjeta">
-
-                    <div class="grid place-items-center md:flex items-center justify-center">
-
-                        <a href="{{ route('eventos.edit',$evento->id) }}" class="text-gray-300 bg-gray-700 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-600 rounded-lg border border-gray-500 text-sm font-medium px-5 py-2.5 hover:text-white focus:z-10">Cancelar</a>
-
-
-                    </div>
-
-                </div>
-
 
             </div>
 
+
         </div>
 
+    </div>
 
-</div>
-
-</body>
-</html>
+@endsection

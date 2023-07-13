@@ -215,6 +215,8 @@ class EventoController extends Controller
                 $file->storeAs('/'.$directory.'/', $fileName, 'azure');
             }
 
+        }else{
+            $directory = $evento->imagen;
         }
 
         $evento->update([

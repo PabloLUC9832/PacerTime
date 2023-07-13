@@ -9,11 +9,12 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.ico') }}">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('resources/js/createSubEvento.js')
     @vite('node_modules/flowbite/dist/flowbite.js')
-    @vite('node_modules/flowbite/dist/datepicker.js')
 
 </head>
 <body class="bg-primary">
@@ -22,8 +23,6 @@
 
 
 <div class="m-10">
-
-    {{ Breadcrumbs::render('eventos') }}
 
     <form action="{{route('eventos.index')}}" method="GET" value="{{$search}}" class="mb-4">
         <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Buscar</label>
