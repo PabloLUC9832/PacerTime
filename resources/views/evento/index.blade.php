@@ -37,6 +37,7 @@
         </div>
     </form>
 
+    <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($eventos)  }} eventos.</p>
 
     @if(session()->has('message'))
 

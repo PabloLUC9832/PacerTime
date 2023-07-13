@@ -8,6 +8,7 @@ use Database\Seeders\EventoSeeder;
 use Database\Seeders\SubEventoSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class EventoTest extends TestCase
@@ -349,7 +350,60 @@ class EventoTest extends TestCase
 
     }
 
+    public function test_evento_eliminar_imagenes()
+    {
+
+        $user = User::factory()->create();
+        $evento = Evento::find(2);
+        $response = $this->actingAs($user)
+            ->withSession(['banned' => false])
+            ->get("eventos/delete-images/{$evento->id}");
+
+        $response->assertStatus(200);
+        $response->assertViewIs('evento.delete-images');
+
+        //Se comprueba que se vea el nombre del evento
+        $response->assertSee($evento->nombre);
 
 
+    }
+
+    public function test_evento_destroy_imagenes()
+    {
+
+        $user = User::factory()->create();
+        $evento = Evento::find(2);
+
+        $path = $evento->imagen;
+        $disk = Storage::disk('azure');
+        $files = $disk->files($path);
+        $listFiles = array();
+        foreach ($files as $file){
+            $item = array(
+                'uri' => $file
+            );
+            array_push($listFiles,$item);
+        }
+
+        $nFile = count($listFiles);
+        //dd($listFiles);
+        $response = $this->withoutExceptionHandling()
+            ->actingAs($user)
+            ->withSession(['banned' => false])
+            ->json('post',"/eventos/{$evento->id}/destroy-images",[
+                'img' => $listFiles,
+            ])
+            ;
+        $response->assertStatus(302);
+
+        $response->assertSessionHas(['message' => 'La(s) imágen(es) han sido elimina(das) exitosamente.',]);
+
+        /*Nos aseguramos que al eliminar todas las imagenes el valor de la columna imagen cambie a indisponible*/
+        $this->assertDatabaseHas('eventos',[
+            'id' => $evento->id,
+            'imagen' => 'Indisponible',
+        ]);
+
+    }
 
 }

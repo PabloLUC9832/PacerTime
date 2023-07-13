@@ -1,5 +1,13 @@
 <?php // routes/breadcrumbs.php
 
+/**
+ * Rutas paras los breadcrums
+ *
+ * @see https://youtu.be/5Jceeu3TX7s
+ * @see https://github.com/diglactic/laravel-breadcrumbs
+ *
+ */
+
 // Note: Laravel will automatically resolve `Breadcrumbs::` without
 // this import. This is nice for IDE syntax and refactoring.
 use App\Models\Evento;
