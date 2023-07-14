@@ -32,11 +32,31 @@ class EventoTest extends TestCase
     {
 
         $user = User::factory()->create();
+        $eventos = Evento::all();
 
         $response = $this->actingAs($user)
                          ->withSession(['banned' => false])
                          ->get('/eventos');
         $response->assertStatus(200);
+        $response->assertViewIs('evento.index');
+        //dd(count($eventos));
+        $response->assertSee("Se han encontrado ". count($eventos) . " eventos.");
+
+    }
+
+    public function test_evento_index_busqueda()
+    {
+
+        $user = User::factory()->create();
+        $busqueda = "ultr";
+
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get("/eventos?search={$busqueda}")
+                        ;
+
+        $response->assertStatus(200);
+
     }
 
     public function test_evento_create()
