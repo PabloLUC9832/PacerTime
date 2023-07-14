@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/subevento/delete/{evento}','delete')
                    ->name('delete')
+                   ->middleware('categorias')
                    ->missing(function () {
                        return Redirect::route('eventos.index');
                    });
