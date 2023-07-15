@@ -65,9 +65,12 @@ class CompetidorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Competidor $competidor)
+    //public function show(Competidor $competidor)
+    public function show(Evento $evento)
     {
         //
+        $imagenes = $this->getImages($evento->imagen);
+        return view('competidor.show',compact('evento','imagenes'));
     }
 
     /**

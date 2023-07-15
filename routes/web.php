@@ -7,6 +7,7 @@ use App\Http\Controllers\SubEventoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::controller(CompetidorController::class)->group(function (){
 
         Route::get('/','index')->name('index');
 
+        Route::get('/show/{evento:nombre}','show')->name('show');
     });
 
 });
