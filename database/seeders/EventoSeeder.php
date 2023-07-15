@@ -43,8 +43,8 @@ class EventoSeeder extends Seeder
         $evento1->fechaFinEntregaKits = "";
         $evento1->horaInicioEntregaKits = "02:00 PM";
         $evento1->horaFinEntregaKits = "08:00 PM";
-        $evento1->imagen = "evento-ultra tail del venado";
-        //$evento1->imagen = $this->faker->image("/", 640, 480);
+        $evento1->imagen = "evento-ultra-tail-del-venado";
+        $evento1->slug = "ultra-tail-del-venado";
         $evento1->save();
 
         $evento2 = new Evento();
@@ -59,8 +59,8 @@ class EventoSeeder extends Seeder
         $evento2->fechaFinEntregaKits = "";
         $evento2->horaInicioEntregaKits = "12:00 PM";
         $evento2->horaFinEntregaKits = "";
-        $evento2->imagen = "evento-backvard ultra huatusco night trail running";
-        //$evento2->imagen = $this->faker->image(null, 640, 480);
+        $evento2->imagen = "evento-backvard-ultra-huatusco-night-trail-running";
+        $evento2->slug = "backvard-ultra-huatusco-night-trail-running";
         $evento2->save();
 
         $evento3 = new Evento();
@@ -75,8 +75,8 @@ class EventoSeeder extends Seeder
         $evento3->fechaFinEntregaKits = "";
         $evento3->horaInicioEntregaKits = "02:30 PM";
         $evento3->horaFinEntregaKits = "09:30 PM";
-        $evento3->imagen = "evento-5ta edición cabada la puerta de los tuxtlas";
-        //$evento3->imagen = $this->faker->image("", 640, 480);
+        $evento3->imagen = "evento-5ta-edición-cabada-la-puerta-de-los-tuxtlas";
+        $evento3->slug = "5ta-edición-cabada-la-puerta-de-los-tuxtlas";
         $evento3->save();
 
 

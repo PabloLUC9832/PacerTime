@@ -22,7 +22,7 @@
 <div class="m-10">
 
 
-    <div id="indicators-carousel" class="relative w-full" data-carousel="static">
+    <div id="indicators-carousel" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
 
@@ -30,9 +30,9 @@
             <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
                     <img src="{{ $urls[$key][0] }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{$evento['nombre']}}">
-                    <button class="absolute right-2.5 bottom-0 focus:outline-none text-white bg-primary-yellow hover:bg-yellow-500 focus:ring-4 focus:ring-secondary-yellow font-medium rounded-lg text-sm px-5 py-2.5 mr-8 mb-8">
+                    <a href="{{ route('competidor.show',$evento->slug) }}" class="absolute right-2.5 bottom-0 focus:outline-none text-white bg-primary-yellow hover:bg-yellow-500 focus:ring-4 focus:ring-secondary-yellow font-medium rounded-lg text-sm px-5 py-2.5 mr-8 mb-8">
                         Ir al evento
-                    </button>
+                    </a>
                 </div>
             @endforeach
             {{--

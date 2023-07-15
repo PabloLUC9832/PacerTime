@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('horaInicioEntregaKits');
             $table->text('horaFinEntregaKits')->nullable();
             $table->text('imagen')->nullable();
+            $table->text('slug')->nullable();
 
             //$table->unsignedBigInteger('sub_evento_id');
             //$table->foreignId('sub_evento_id')->constrained();

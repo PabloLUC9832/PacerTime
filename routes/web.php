@@ -35,7 +35,7 @@ Route::controller(CompetidorController::class)->group(function (){
 
         Route::get('/','index')->name('index');
 
-        Route::get('/show/{evento:nombre}','show')->name('show');
+        Route::get('/show/{evento:slug}','show')->name('show');
     });
 
 });

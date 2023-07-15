@@ -10,6 +10,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class EventoController extends Controller
 {
@@ -111,9 +112,11 @@ class EventoController extends Controller
          *
          */
 
+        $slug = Str::slug(strtolower($request->nombre),'-');
+
         if($request->hasFile('files')){
 
-            $directory="evento-".$request->nombre;
+            $directory="evento-" . $slug;
             $evento->imagen = $directory;
 
             Storage::makeDirectory($directory);
@@ -126,6 +129,7 @@ class EventoController extends Controller
             $evento->imagen = "Indisponible";
         }
 
+        $evento->slug = $slug;
         $evento->save();
 
 
