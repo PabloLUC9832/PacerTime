@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompetidorController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubEventoController;
@@ -17,14 +18,25 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+/*
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return view('competidor.index');
 });
-
+*/
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::controller(CompetidorController::class)->group(function (){
+
+    Route::name('competidor.')->group(function (){
+
+        Route::get('/','index')->name('index');
+
+    });
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
