@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eventos</title>
+    <title>{{$evento->nombre}}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -74,8 +74,48 @@
 
                 <div class="borde-tarjeta">
 
-                    <p class="text-white"> {{$evento->descripcion}}</p>
+                    <p class="text-white">{{$evento->descripcion}}</p>
 
+                    <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+                        <p class="text-white font-bold">Categorías</p>
+                        @foreach($evento->subEventos as $subEv)
+                            <p class="text-white">
+                                • {{$subEv->categoria}} - Distancia: {{$subEv->distancia}} - Rama: {{$subEv->rama}} - Precio: ${{$subEv->precio}}
+                            </p>
+                        @endforeach
+                    </div>
+
+                    <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+                        <p class="text-white font-bold">Datos del evento</p>
+                            <p class="text-white">
+                                Lugar: {{$evento->lugarEvento}}
+                            </p>
+                            <p class="text-white">
+                                Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                            </p>
+                            <p class="text-white">
+                                Hora: {{$evento->horaEvento}}
+                            </p>
+                    </div>
+
+                    <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+                        <p class="text-white font-bold">Datos de la entrega de kits</p>
+                        <p class="text-white">
+                            Lugar: {{$evento->lugarEntregaKits}}
+                        </p>
+                        <p class="text-white">
+                            Fecha: {{$evento->fechaInicioEntregaKits}} - {{$evento->fechaFinEntregaKits}}
+                        </p>
+                        <p class="text-white">
+                            Hora: {{$evento->horaInicioEntregaKits}} - {{$evento->horaFinEntregaKits}}
+                        </p>
+                    </div>
+
+                    <div class="grid items-center mt-2">
+                        <button class="focus:outline-none text-white bg-primary-yellow hover:bg-yellow-500 focus:ring-4 focus:ring-secondary-yellow font-medium rounded-lg text-sm px-5 py-2.5">
+                            INSCRIBIRSE
+                        </button>
+                    </div>
 
                 </div>
 
