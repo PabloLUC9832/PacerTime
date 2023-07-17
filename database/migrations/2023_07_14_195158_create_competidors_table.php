@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('competidors', function (Blueprint $table) {
             $table->id();
+            $table->text('nombre');
+            $table->text('apellido');
+            $table->text('telefono');
+            $table->text('telefonoEmergencia')->nullable();
+
+            $table->foreignId('sub_evento_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
