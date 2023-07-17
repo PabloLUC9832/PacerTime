@@ -49,9 +49,10 @@ class CompetidorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Evento $evento)
     {
         //
+        return view('competidor.create',compact('evento'));
     }
 
     /**

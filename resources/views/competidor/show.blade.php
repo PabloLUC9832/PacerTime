@@ -113,9 +113,9 @@
                     </div>
 
                     <div class="grid items-center mt-2">
-                        <button class="focus:outline-none text-white bg-primary-yellow hover:bg-yellow-500 focus:ring-4 focus:ring-secondary-yellow font-medium rounded-lg text-sm px-5 py-2.5">
+                        <a href="{{ route('competidor.create',$evento->slug)  }}" class="text-center focus:outline-none text-white bg-primary-yellow hover:bg-yellow-500 focus:ring-4 focus:ring-secondary-yellow font-medium rounded-lg text-sm px-5 py-2.5">
                             INSCRIBIRSE
-                        </button>
+                        </a>
                     </div>
 
                 </div>

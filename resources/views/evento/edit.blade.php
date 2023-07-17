@@ -29,7 +29,7 @@
         @endforeach
     @endif
 
-    <form name="myForm" action="{{route('eventos.update',$evento->id)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('eventos.update',$evento->id)}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         <div class="shadow sm:overflow-hidden sm:rounded-md">

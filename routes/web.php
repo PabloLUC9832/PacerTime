@@ -36,6 +36,9 @@ Route::controller(CompetidorController::class)->group(function (){
         Route::get('/','index')->name('index');
 
         Route::get('/show/{evento:slug}','show')->name('show');
+
+        Route::get('/inscribirse/{evento:slug}','create')->name('create');
+
     });
 
 });

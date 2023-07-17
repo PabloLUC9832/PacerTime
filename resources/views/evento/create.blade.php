@@ -24,7 +24,7 @@
         @endforeach
     @endif
 
-    <form name="myForm" action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         <div class="shadow sm:overflow-hidden sm:rounded-md">
