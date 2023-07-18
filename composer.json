@@ -11,7 +11,8 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "matthewbdaly/laravel-azure-storage": "^2.0"
+        "matthewbdaly/laravel-azure-storage": "^2.0",
+        "mercadopago/dx-php": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

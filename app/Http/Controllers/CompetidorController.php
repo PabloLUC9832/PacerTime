@@ -6,7 +6,11 @@ use App\Models\Competidor;
 use App\Http\Requests\StoreCompetidorRequest;
 use App\Http\Requests\UpdateCompetidorRequest;
 use App\Models\Evento;
+use App\Models\SubEvento;
 use Illuminate\Support\Facades\Storage;
+use MercadoPago\Item;
+use MercadoPago\Preference;
+use MercadoPago\SDK;
 
 class CompetidorController extends Controller
 {
@@ -51,7 +55,9 @@ class CompetidorController extends Controller
      */
     public function create(Evento $evento)
     {
-        //
+
+
+
         return view('competidor.create',compact('evento'));
     }
 
@@ -60,7 +66,43 @@ class CompetidorController extends Controller
      */
     public function store(StoreCompetidorRequest $request)
     {
-        //
+
+        $subEv = SubEvento::find($request->categoria);
+        $evento = Evento::find($subEv->evento_id);
+
+        $nombreC = $request->nombre . " " . $request->apellido;
+        $telefono = $request->telefono;
+
+
+        SDK::setAccessToken(config('services.mercadopago.token'));
+        // Crea un objeto de preferencia
+        $preference = new Preference();
+        // Crea un ítem en la preferencia
+        $item = new Item();
+        $item->title = "Inscripción al evento {$evento->nombre} a la categoría {$subEv->categoria}, con distancia: {$subEv->distancia} a la rama: {$subEv->rama}" ;
+        $item->quantity = 1;
+        $item->unit_price = $subEv->precio;
+
+        $preference->back_urls = array(
+            /*
+            "success" => redirect()->route('competidor.index')->with('status','¡Felicidades has sido inscrito correctamente! Nos vemos en la linea de meta.'),
+            "failure" => redirect()->route('competidor.index')->with('status','Lo sentimos ha ocurrido un error. Intenta nuevamente tu pago'),
+            "pending" =>
+             redirect()->route('competidor.index')->with('status','En cuanto tu pago sea aprobado serás notificado vía email.'),
+            */
+
+            "success" => route('competidor.index'),
+            "failure" => "https://languagetool.org/es",
+            "pending" => "https://youtu.be/nS87wOryCm0",
+
+        );
+        $preference->auto_return = "approved";
+
+        $preference->items = array($item);
+        $preference->save();
+
+        return view('competidor.pago',compact('preference','nombreC'));
+
     }
 
     /**

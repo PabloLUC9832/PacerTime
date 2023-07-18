@@ -38,6 +38,12 @@ Route::controller(CompetidorController::class)->group(function (){
         Route::get('/show/{evento:slug}','show')->name('show');
 
         Route::get('/inscribirse/{evento:slug}','create')->name('create');
+        Route::post('/competidor/confirmar-datos/','store')->name('store');
+
+        Route::get('pagar',function (){
+            return view('competidor.pago');
+        });
+
 
     });
 

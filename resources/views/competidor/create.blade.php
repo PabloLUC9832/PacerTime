@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <form action="{{route('eventos.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('competidor.store')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
         <div class="sm:overflow-hidden sm:rounded-md">
@@ -129,7 +129,9 @@
                 <div class="borde-tarjeta">
 
                     <div class="grid place-items-center md:flex items-center justify-center">
-
+                        {{--
+                        <a href="{{route('competidor.show',$evento->slug)}}" class="flex items-center focus:outline-none text-white bg-primary-red hover:bg-secondary-red focus:ring-2 focus:ring-secondary-red font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-4 h-12">Cancelar</a>
+                        --}}
                         <a href="{{route('competidor.show',$evento->slug)}}" class="btn-cancelar">Cancelar</a>
 
                         <button type="submit" class="mr-2 mb-2 btn-ok">Proceder al pago</button>
