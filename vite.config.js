@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/createSubEvento.js',
                 'node_modules/flowbite/dist/flowbite.js',
                 'node_modules/flowbite/dist/datepicker.js',
             ],
