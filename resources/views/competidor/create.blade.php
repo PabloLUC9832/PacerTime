@@ -19,10 +19,12 @@
 </head>
 <body class="bg-primary">
 
+@include('layouts.navigation-competidor')
+
 <header class="bg-secondary shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{$evento->nombre}}
+            Inscripción a{{$evento->nombre}}
         </h2>
     </div>
 </header>
@@ -34,7 +36,7 @@
         <div class="md:grid md:grid-cols-3 md:gap-6">
             <div class="md:col-span-3">
                 <div class="px-4 sm:px-0">
-                    <p class="subtitulo">Ingresa la información solicitada a continuación para inscribirte al evento.</p>
+                    <p class="subtitulo">Ingresa la información solicitada a continuación para inscribirse al evento.</p>
                 </div>
             </div>
 

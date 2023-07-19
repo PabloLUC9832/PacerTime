@@ -92,8 +92,8 @@ class CompetidorController extends Controller
             */
 
             "success" => route('competidor.index'),
-            "failure" => "https://languagetool.org/es",
-            "pending" => "https://youtu.be/nS87wOryCm0",
+            "failure" => route('competidor.index'),
+            "pending" => route('competidor.index'),
 
         );
         $preference->auto_return = "approved";
@@ -159,5 +159,8 @@ class CompetidorController extends Controller
 
         //return $archivos;
     }
+
+
+
 
 }
