@@ -15,7 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite('resources/js/createSubEvento.js')
-    @vite('node_modules/flowbite/dist/flowbite.js')
+    {{--@vite('node_modules/flowbite/dist/flowbite.js')--}}
     @vite('node_modules/flowbite/dist/datepicker.js')
 
 
