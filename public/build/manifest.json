@@ -18,5 +18,10 @@
     "file": "assets/app-55931b8c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/createSubEvento.js": {
+    "file": "assets/createSubEvento-67314bc5.js",
+    "isEntry": true,
+    "src": "resources/js/createSubEvento.js"
   }
 }
