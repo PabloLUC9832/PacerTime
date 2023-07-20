@@ -10,7 +10,7 @@
     "src": "node_modules/flowbite/dist/flowbite.js?commonjs-entry"
   },
   "resources/css/app.css": {
-    "file": "assets/app-af68816b.css",
+    "file": "assets/app-2abeb707.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
