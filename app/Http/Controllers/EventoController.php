@@ -153,6 +153,8 @@ class EventoController extends Controller
         $valoresRama = $this->inputsArray($request->rama);
         $valoresPrecio = $this->inputsArray($request->precio);
 
+        //dd([$request->categoria,$valoresCategoria,$valoresDistancia]);
+        //die();
         /*
          * El metoodo array map aplica la función a los elementos de los arrays dados.
          * iterara por los elementos, haciendo lo de la función.
@@ -399,6 +401,7 @@ class EventoController extends Controller
      */
     protected function inputsArray($inputs){
 
+        /*
         if (!empty($inputs[0])){
             foreach ($inputs as $input){
 
@@ -412,6 +415,12 @@ class EventoController extends Controller
             }
         }else{
             $nuevoArray = [];
+        }
+        */
+        if(empty($inputs)){
+            $nuevoArray = [];
+        }else{
+            $nuevoArray = array_filter($inputs);
         }
 
         return $nuevoArray;
@@ -433,50 +442,5 @@ class EventoController extends Controller
 
         return [$hora[0],$min[0],$periodo[1]];
     }
-
-    /**
-     *
-     * Función para mostrar las imágenes existentes del evento
-     *
-     */
-    /*
-    public function mostrarImagenes($nombres) : array
-    {
-
-         $listaF = [];
-         array_map(function ($nombre) use ($listaF){
-
-            $path ="evento-".$nombre;
-            //$path ="evento-ULTRA TRAIL DEL VENADO";
-            $disk = Storage::disk('azure');
-            $files = $disk->files($path);
-            $listFiles = array();
-            $full=[];
-            foreach ($files as $file){
-                $filename = "$file";
-                $item = array(
-                    'name' => $filename,
-                );
-                array_push($listFiles,$item);
-            }
-
-         },$nombres);
-
-        /*
-        $path ="evento-".$nombre;
-        $disk = Storage::disk('azure');
-        $files = $disk->files($path);
-        $listFiles = array();
-        foreach ($files as $file){
-            $filename = "$file";
-            $item = array(
-                'name' => $filename,
-            );
-            array_push($listFiles,$item);
-        }
-        return  $listFiles;*/
-
-    //}
-
 
 }
