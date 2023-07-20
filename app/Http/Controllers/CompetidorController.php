@@ -148,9 +148,16 @@ class CompetidorController extends Controller
         })*/
         //$archivos = [];
         //return collect(Storage::disk('azure')->files("evento-BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING"))->map(function ($file){
-        return collect(Storage::disk('azure')->files($folder))->map(function ($file){
-            return  Storage::disk('azure')->url($file);
-        });
+
+        if($folder == "Indisponible"){
+            return ["https://pacertime.blob.core.windows.net/files/imagen-no-disponible.png"];
+        }else{
+            return collect(Storage::disk('azure')->files($folder))->map(function ($file){
+                return  Storage::disk('azure')->url($file);
+            });
+        }
+
+
         /*
         array_map(function ($carpeta){
 
