@@ -23,17 +23,6 @@
 
 <div class="m-10">
 
-    <p class="text-white">
-        Status
-        @if(request("collection_status") == "approved")
-            felicidades
-        @elseif(request("collection_status") == "pending")
-            Tu pago esta pendiente
-        @elseif(request("collection_status") == "rejected")
-            Lo sentimos
-        @endif
-    </p>
-
     <div id="indicators-carousel" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">

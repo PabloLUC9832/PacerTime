@@ -51,7 +51,7 @@
         </p>
     @else
 
-        <div class="grid grid-cols-6 gap-2 md:grid md:grid-cols-12">
+        <div class="grid grid-cols-3 gap-2 sm:grid sm:grid-cols-6 md:grid md:grid-cols-12">
 
             @foreach($eventos as $evento)
 
