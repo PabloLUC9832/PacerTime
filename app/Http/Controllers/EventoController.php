@@ -306,7 +306,13 @@ class EventoController extends Controller
     public function destroy(Evento $evento)
     {
         //
-        $evento->delete();
+        if (!($evento->imagen == "Indisponible")) {
+            Storage::disk('azure')->deleteDirectory($evento->imagen);
+            $evento->delete();
+        }
+
+
+        //$evento->delete();
 
         return redirect()->route('eventos.index')->with('message','El evento ha sido eliminado exitosamente.');
 
@@ -401,22 +407,6 @@ class EventoController extends Controller
      */
     protected function inputsArray($inputs){
 
-        /*
-        if (!empty($inputs[0])){
-            foreach ($inputs as $input){
-
-                $arrayValores[] = $input;
-                if ($arrayValores[0] == NULL){
-                    $nuevoArray = array_slice($arrayValores,1);
-                }else{
-                    $nuevoArray = $arrayValores;
-                }
-
-            }
-        }else{
-            $nuevoArray = [];
-        }
-        */
         if(empty($inputs)){
             $nuevoArray = [];
         }else{

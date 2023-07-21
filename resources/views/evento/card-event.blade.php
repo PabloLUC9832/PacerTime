@@ -4,23 +4,34 @@
     <div class="flex flex-row">
 
         <!--CARD-->
-        <div class="block border border-gray-200 rounded-lg hover:bg-secondary">
+        <div class="block border border-gray-200 rounded-lg hover:bg-secondary w-full">
 
-            <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}" class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
+            <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
+                 class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
             @include('evento.modal-image')
 
             <!--Submenu-->
             <div class="flex justify-end px-4 pt-2">
 
-                <button id="dropdownButton" data-dropdown-toggle="dropdown{{$evento->id}}" class="inline-block text-gray-400 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                <button id="dropdownButton" data-dropdown-toggle="dropdown{{$evento->id}}"
+                        class="inline-block text-gray-400 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
                     <span class="sr-only">Open dropdown</span>
-                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                    <svg class="w-6 h-6" aria-hidden="true"
+                         fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
+                    </svg>
                 </button>
                 <!-- Dropdown menu -->
                 <div id="dropdown{{$evento->id}}" class="bg-gray-700 z-10 hidden text-base list-none divide-y divide-gray-100 rounded-lg shadow w-44">
                     <ul class="py-2" aria-labelledby="dropdownButton">
                         <li>
-                            <a data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}" data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}" data-drawer-body-scrolling="true" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">Ver información</a>
+                            <a data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
+                               data-drawer-backdrop="false"
+                               data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}"
+                               data-drawer-body-scrolling="true" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
+                                Ver información
+                            </a>
                         </li>
 
                         @if($evento->imagen != "Indisponible")
@@ -50,7 +61,9 @@
             <div class="flex flex-col justify-between p-2">
 
 
-                <h5 data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}" data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}" data-drawer-body-scrolling="true"
+                <h5 data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
+                    data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}"
+                    data-drawer-body-scrolling="true"
                     class="inline-flex items-center text-lg font-bold tracking-tight text-white text-justify cursor-pointer hover:underline" >{{$evento->nombre}}
                 </h5>
                 {{--<p class="mb-3 font-normal text-gray-400">{{$descripcion}}</p> --}}
