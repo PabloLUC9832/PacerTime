@@ -21,31 +21,10 @@ class CompetidorController extends Controller
     {
         //
         $eventos = Evento::all();
-        //$evento = Evento::find(2);
-        //Storage::disk('azure');
-        //$contents = Storage::get("evento-BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING");
-        //$contents = Storage::disk('azure')->files('evento-BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING');
-        //dd(Storage::disk('azure')->exists('evento-BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING/icon2.png'));
-        //dd($contents[1]);
-        //die();
-        /*
-        foreach ($eventos as $evento){
-            $contents = Storage::disk('azure')->files($evento->imagen);
-            $imagesEvent[] = $contents;
-        }*/
-        //$url = Storage::disk('azure')->url('evento-BACKVARD ULTRA HUATUSCO NIGHT TRAIL RUNNING/icon2.png');
-        //dd($url);
-        //dd($imagesEvent);
 
         foreach ($eventos as $evento){
             $urls[] = $this->getImages($evento->imagen);
-            //$urls2[] = $urls;
         }
-
-        //$urls = $this->getImages();
-
-        //dd($urls);
-        //die();
 
         return view('competidor.index',compact('eventos','urls'));
     }
@@ -70,10 +49,6 @@ class CompetidorController extends Controller
         $subEv = SubEvento::find($request->categoria);
         $evento = Evento::find($subEv->evento_id);
 
-        $nombreC = $request->nombre . " " . $request->apellido;
-        $telefono = $request->telefono;
-
-
         SDK::setAccessToken(config('services.mercadopago.token'));
         // Crea un objeto de preferencia
         $preference = new Preference();
@@ -91,9 +66,9 @@ class CompetidorController extends Controller
              redirect()->route('competidor.index')->with('status','En cuanto tu pago sea aprobado serás notificado vía email.'),
             */
 
-            "success" => route('competidor.index'),
-            "failure" => route('competidor.index'),
-            "pending" => route('competidor.index'),
+            "success" => route('competidor.post-pago'),
+            "failure" => route('competidor.post-pago'),
+            "pending" => route('competidor.post-pago'),
 
         );
         $preference->auto_return = "approved";
@@ -101,7 +76,7 @@ class CompetidorController extends Controller
         $preference->items = array($item);
         $preference->save();
 
-        return view('competidor.pago',compact('preference','nombreC'));
+        return view('competidor.pago',compact('preference','request','evento','subEv'));
 
     }
 

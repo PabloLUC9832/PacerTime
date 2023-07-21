@@ -24,7 +24,7 @@
 <header class="bg-secondary shadow">
     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            Inscripción a{{$evento->nombre}}
+            Inscripción a {{$evento->nombre}}
         </h2>
     </div>
 </header>
@@ -63,6 +63,9 @@
                     <!--Input apellido del competidor-->
                     <x-forms.input-field  name="apellido" id="apellido" message="Apellidos" class="uppercase" required="required"></x-forms.input-field>
 
+                    <!--Input email del competidor-->
+                    <x-forms.input-field  name="email" id="email" message="Correo electrónico"></x-forms.input-field>
+
                     <!--Input telefono del competidor-->
                     <x-forms.input-field  name="telefono" id="telefono" message="Teléfono" required="required"></x-forms.input-field>
 
@@ -80,25 +83,11 @@
 
                     <x-forms.separator></x-forms.separator>
 
-                    <!--Input nombre del evento-->
-                    <div class="mt-2 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
-
-                        <div class="block md:col-start-1">
-                            <label for="nombreEvento" class="label-input">Nombre del evento</label>
-                        </div>
-
-                        <div class="block mt-3 md:col-start-3 col-end-6">
-                            <input type="text" name="nombreEvento" id="nombreEvento"
-                                   class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{ $evento->nombre }}" readonly="readonly">
-                        </div>
-
-                    </div>
-
                     <!-- Inputs categorias del evento-->
                     <div class="mt-3 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
                         <div class="block md:col-start-1">
-                            <label for="categoria" class="label-input">Categorías</label>
+                            <label for="categoria" class="label-input">Selecciona la categoría a participar</label>
                             <span class="text-xs italic text-primary-red font-semibold	">
                                 Obligatorio
                             </span>
@@ -122,6 +111,37 @@
 
                         </div>
 
+                    </div>
+
+                    <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+                        <p class="text-white font-bold">Datos del evento</p>
+
+                        <p class="text-white">
+                            Evento: {{$evento->nombre}}
+                        </p>
+
+                        <p class="text-white">
+                            Lugar: {{$evento->lugarEvento}}
+                        </p>
+                        <p class="text-white">
+                            Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                        </p>
+                        <p class="text-white">
+                            Hora: {{$evento->horaEvento}}
+                        </p>
+                    </div>
+
+                    <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+                        <p class="text-white font-bold">Datos de la entrega de kits</p>
+                        <p class="text-white">
+                            Lugar: {{$evento->lugarEntregaKits}}
+                        </p>
+                        <p class="text-white">
+                            Fecha: {{$evento->fechaInicioEntregaKits}} - {{$evento->fechaFinEntregaKits}}
+                        </p>
+                        <p class="text-white">
+                            Hora: {{$evento->horaInicioEntregaKits}} - {{$evento->horaFinEntregaKits}}
+                        </p>
                     </div>
 
                 </div>

@@ -23,7 +23,66 @@
 
     <div class="grid items-center">
 
-        <p class="text-white"> Confirma tus datos: {{$nombreC}}</p>
+        <div class="bg-secondary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+            <p class="text-white font-bold">Confirma tus datos</p>
+
+            <p class="text-white">
+                Nombre completo: {{$request->nombre}} {{$request->apellido}}
+            </p>
+
+            <p class="text-white">
+                Correo electrónico: {{$request->email}}
+            </p>
+            <p class="text-white">
+                Teléfono: {{$request->telefono}}
+            </p>
+
+            @if(!empty($request->telefonoEmergencia))
+
+            <p class="text-white">
+                Teléfono de emergencia: {{$request->telefonoEmergencia}}
+            </p>
+
+            @endif
+
+
+        </div>
+
+        <div class="bg-secondary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+            <p class="text-white font-bold">Categoría a participar</p>
+
+            <p class="text-white">
+                Categoría: {{$subEv->categoria}}
+            </p>
+
+            <p class="text-white">
+                Distancia: {{$subEv->distancia}}
+            </p>
+            <p class="text-white">
+                Rama: {{$subEv->rama}}
+            </p>
+            <p class="text-white">
+                Cantidad a pagar: ${{$subEv->precio}}
+            </p>
+        </div>
+
+        <div class="bg-secondary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
+            <p class="text-white font-bold">Datos del evento</p>
+
+            <p class="text-white">
+                Evento: {{$evento->nombre}}
+            </p>
+
+            <p class="text-white">
+                Lugar: {{$evento->lugarEvento}}
+            </p>
+            <p class="text-white">
+                Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+            </p>
+            <p class="text-white">
+                Hora: {{$evento->horaEvento}}
+            </p>
+        </div>
 
         <div id="wallet_container"></div>
 
