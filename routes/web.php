@@ -44,7 +44,7 @@ Route::controller(CompetidorController::class)->group(function (){
             return view('competidor.pago');
         });
 
-        Route::get('´post-pago','post-pago')->name('post-pago');
+        Route::get('post-pago','post_pago')->name('post-pago');
 
     });
 

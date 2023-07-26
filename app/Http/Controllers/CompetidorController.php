@@ -7,7 +7,9 @@ use App\Http\Requests\StoreCompetidorRequest;
 use App\Http\Requests\UpdateCompetidorRequest;
 use App\Models\Evento;
 use App\Models\SubEvento;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use MercadoPago\Item;
 use MercadoPago\Preference;
 use MercadoPago\SDK;
@@ -34,9 +36,6 @@ class CompetidorController extends Controller
      */
     public function create(Evento $evento)
     {
-
-
-
         return view('competidor.create',compact('evento'));
     }
 
@@ -49,6 +48,28 @@ class CompetidorController extends Controller
         $subEv = SubEvento::find($request->categoria);
         $evento = Evento::find($subEv->evento_id);
 
+        //Se almacenan los datos del competidor en cache, para
+        //ser guardados en la bd posterior a la realización correcta
+        //del pago
+        $nombre = $request->nombre . " " . $request->apellido;
+        $nombreSlug = Str::slug($nombre,'-');
+
+        $email = $request->email;
+        $telefono = $request->telefono;
+        $telefonoEmergencia = $request->telefonoEmergencia;
+        $datos = [
+            "nombre" => $request->nombre,
+            "apellido" => $request->apellido,
+            "email" => $email,
+            "telefono" => $telefono,
+            "telefonoEmergencia" => $telefonoEmergencia,
+            "sub_evento" => $subEv->id,
+        ];
+
+        Cache::put("competidor-{$nombreSlug}", $datos);
+
+
+
         SDK::setAccessToken(config('services.mercadopago.token'));
         // Crea un objeto de preferencia
         $preference = new Preference();
@@ -58,17 +79,13 @@ class CompetidorController extends Controller
         $item->quantity = 1;
         $item->unit_price = $subEv->precio;
 
-        $preference->back_urls = array(
-            /*
-            "success" => redirect()->route('competidor.index')->with('status','¡Felicidades has sido inscrito correctamente! Nos vemos en la linea de meta.'),
-            "failure" => redirect()->route('competidor.index')->with('status','Lo sentimos ha ocurrido un error. Intenta nuevamente tu pago'),
-            "pending" =>
-             redirect()->route('competidor.index')->with('status','En cuanto tu pago sea aprobado serás notificado vía email.'),
-            */
+        //$nombreSlug = Str::slug($nombre,'-');
 
-            "success" => route('competidor.post-pago'),
-            "failure" => route('competidor.post-pago'),
-            "pending" => route('competidor.post-pago'),
+        $preference->back_urls = array(
+
+            "success" => route('competidor.post-pago',['competidor' => "{$nombreSlug}"]),
+            "failure" => route('competidor.post-pago',['competidor' => "{$nombreSlug}"]),
+            "pending" => route('competidor.post-pago',['competidor' => "{$nombreSlug}"]),
 
         );
         $preference->auto_return = "approved";
@@ -113,6 +130,48 @@ class CompetidorController extends Controller
     public function destroy(Competidor $competidor)
     {
         //
+    }
+
+    public function post_pago()
+    {
+        $status = request("collection_status");
+        $nombreC = request("competidor");
+        $datosCompetidor = Cache::get("competidor-{$nombreC}");
+        list('nombre' => $nombre ,
+            'apellido' => $apellido,
+            'email' => $email,
+            'telefono' => $telefono,
+            'telefonoEmergencia' =>$telefonoEmergencia,
+            'sub_evento' => $subEv) = $datosCompetidor;
+
+        $message = "";
+        switch ($status) {
+
+            case 'approved' :
+
+                $competidor = new Competidor();
+                $competidor->nombre = $nombre;
+                $competidor->apellido = $apellido ;
+                $competidor->email = $email;
+                $competidor->telefono = $telefono ;
+                $competidor->telefonoEmergencia = $telefonoEmergencia ;
+                $competidor->sub_evento_id = $subEv;
+                $competidor->save();
+                $message = "Felicidades {$nombre} {$apellido} has sido inscrito con éxito. Nos vemos en la línea de meta :D.";
+            break;
+
+            case 'pending' :
+            case 'in_process' :
+                $message = "Tu pago aún está pendiente. En cuanto sea aprobado te enviaremos un correo.";
+            break;
+
+            case 'rejected' :
+                $message = "Lo sentimos tu pago ha sido rechazado. Por favor vuelve a intentarlo.";
+            break;
+
+        }
+
+        return view ('competidor.post-pago',compact('status','message'));
     }
 
     public function getImages($folder)
