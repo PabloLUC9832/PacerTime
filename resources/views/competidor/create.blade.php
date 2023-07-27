@@ -86,7 +86,7 @@
                     <!-- Inputs categorias del evento-->
                     <div class="mt-3 col-span-6 md:grid grid-cols-6 gap-4 md:items-center">
 
-                        <div class="block md:col-start-1">
+                        <div class="block md:col-start-1 col-end-3">
                             <label for="categoria" class="label-input">Selecciona la categoría a participar</label>
                             <span class="text-xs italic text-primary-red font-semibold	">
                                 Obligatorio

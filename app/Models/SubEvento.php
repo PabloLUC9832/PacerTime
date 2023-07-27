@@ -22,6 +22,17 @@ class SubEvento extends Model
         return $this->belongsTo(Evento::class);
     }
 
+    /**
+     * Función para saber los competidores de un sub evento
+     *
+     * @return HasMany
+     */
+
+    public function competidores(): HasMany
+    {
+        return $this->hasMany(Competidor::class);
+    }
+
 
 
 }

@@ -17,7 +17,7 @@ use Diglactic\Breadcrumbs\Breadcrumbs;
 //  with `$trail`. This is nice for IDE type checking and completion.
 use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
-// Home
+// Home Administrador
 Breadcrumbs::for('eventos', function (BreadcrumbTrail $trail) {
     $trail->push('Eventos', route('eventos.index'));
 });
@@ -30,6 +30,11 @@ Breadcrumbs::for('create-eventos', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('edit-evento', function (BreadcrumbTrail $trail, Evento $evento) {
     $trail->parent('eventos');
     $trail->push($evento->nombre, route('eventos.edit', $evento->id));
+});
+
+Breadcrumbs::for('inscripciones', function (BreadcrumbTrail $trail, Evento $evento) {
+    $trail->parent('eventos');
+    $trail->push($evento->nombre, route('eventos.inscripciones', $evento->slug));
 });
 
 Breadcrumbs::for('destroy-categorias', function (BreadcrumbTrail $trail,Evento $evento) {

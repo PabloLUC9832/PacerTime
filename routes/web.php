@@ -44,7 +44,7 @@ Route::controller(CompetidorController::class)->group(function (){
             return view('competidor.pago');
         });
 
-        Route::get('´post-pago','post-pago')->name('post-pago');
+        Route::get('post-pago','post_pago')->name('post-pago');
 
     });
 
@@ -80,6 +80,9 @@ Route::middleware('auth')->group(function () {
                        return Redirect::route('eventos.index');
                    });
             Route::post('/eventos/{evento}/destroy-images','destroyImages')->name('destroyImages');
+
+            Route::get('{evento:slug}/inscripciones','inscripciones')->name('inscripciones');
+
 
 
         });

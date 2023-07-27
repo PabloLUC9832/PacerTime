@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competidor;
 use App\Models\Evento;
 use App\Http\Requests\StoreEventoRequest;
 use App\Http\Requests\UpdateEventoRequest;
@@ -20,10 +21,6 @@ class EventoController extends Controller
     public function index(Request $request)
     {
 
-        /*
-        $eventos = DB::table('eventos')
-                   ->get();
-        */
         $search = trim($request->search);
 
         //$eventos = Evento::with('subEventos')->get();
@@ -48,22 +45,6 @@ class EventoController extends Controller
                            })
                            ->get();
 
-
-        foreach ($eventos as $evento) {
-            $nombres[] = $evento->nombre;
-            //$imagenes = $this->mostrarImagenes("evento-ULTRA TRAIL DEL VENADO");
-        }
-
-
-        //dd($nombres);
-        //die();
-
-        //$imagenes = $this->mostrarImagenes($nombres);
-        //dd($nombres);
-        //die();
-        //$imagenes = $this->mostrarImagenes($eventos->nombre);
-
-        //return view('evento.index',compact('eventos','search','imagenes'));
         return view('evento.index',compact('eventos','search'));
 
     }
@@ -389,6 +370,21 @@ class EventoController extends Controller
 
     }
 
+    /**
+     * Función para ver los competidores inscritos al evento
+     *
+     *
+     *
+     */
+
+    public function inscripciones(Evento $evento)
+    {
+
+        //$search = trim($request->search);
+        $search = "";
+
+        return view ('evento.inscripciones',compact('evento','search'));
+    }
 
     /**
      * Función que toma como parametro los inputs request de tipo array.
