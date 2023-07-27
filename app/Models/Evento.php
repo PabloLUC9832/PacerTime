@@ -21,6 +21,18 @@ class Evento extends Model
         return $this->hasMany(SubEvento::class);
     }
 
+    /**
+     * Función para saber los competidores de un evento dado.
+     * Sin necesidad de darle el sub evento
+     *
+     * @see https://youtu.be/5s-_SnVl-1g
+     * @see https://laravel.com/docs/10.x/eloquent-relationships#has-many-through
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function competidores()
+    {
+        return $this->hasManyThrough(Competidor::class,SubEvento::class);
+    }
 
 
 }

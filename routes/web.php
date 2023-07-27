@@ -81,6 +81,9 @@ Route::middleware('auth')->group(function () {
                    });
             Route::post('/eventos/{evento}/destroy-images','destroyImages')->name('destroyImages');
 
+            Route::get('{evento:slug}/inscripciones','inscripciones')->name('inscripciones');
+
+
 
         });
 
