@@ -1,6 +1,7 @@
 @extends('layouts.evento')
 
 @section('title', 'Competidores inscritos')
+@section('subtitle', 'Competidores inscritos')
 
 @section('content')
 

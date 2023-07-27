@@ -1,36 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$evento->nombre}}</title>
+@extends('layouts.evento')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+@section('title', $evento->nombre)
+@section('subtitle', $evento->nombre)
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.ico') }}">
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('node_modules/flowbite/dist/flowbite.js')
-
-</head>
-<body class="bg-primary">
-
-@include('layouts.navigation-competidor')
-
-<header class="bg-secondary shadow">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            {{$evento->nombre}}
-        </h2>
-    </div>
-</header>
-
-
-<div class="m-10">
+@section('content')
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -91,15 +64,15 @@
 
                     <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
                         <p class="text-white font-bold">Datos del evento</p>
-                            <p class="text-white">
-                                Lugar: {{$evento->lugarEvento}}
-                            </p>
-                            <p class="text-white">
-                                Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
-                            </p>
-                            <p class="text-white">
-                                Hora: {{$evento->horaEvento}}
-                            </p>
+                        <p class="text-white">
+                            Lugar: {{$evento->lugarEvento}}
+                        </p>
+                        <p class="text-white">
+                            Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                        </p>
+                        <p class="text-white">
+                            Hora: {{$evento->horaEvento}}
+                        </p>
                     </div>
 
                     <div class="bg-primary border border-solid border-zinc-500 rounded-md mt-2 p-2.5">
@@ -130,7 +103,4 @@
 
     </div>
 
-</div>
-
-</body>
-</html>
+@endsection

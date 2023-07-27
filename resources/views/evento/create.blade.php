@@ -1,6 +1,7 @@
 @extends('layouts.evento')
 
 @section('title', 'Crear evento')
+@section('subtitle', 'Crear evento')
 
 @section('content')
 

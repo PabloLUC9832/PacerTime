@@ -1,28 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Eventos</title>
+@extends('layouts.evento')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+@section('title', 'Inicio | Pacer Time')
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.ico') }}">
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('node_modules/flowbite/dist/flowbite.js')
-
-</head>
-<body class="bg-primary">
-
-@include('layouts.navigation')
-
-
-<div class="m-10">
+@section('content')
 
     <form action="{{route('eventos.index')}}" method="GET" value="{{$search}}" class="mb-4">
         <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Buscar</label>
@@ -68,8 +48,4 @@
 
     @endif
 
-
-</div>
-
-</body>
-</html>
+@endsection
