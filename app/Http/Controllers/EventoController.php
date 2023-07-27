@@ -380,7 +380,10 @@ class EventoController extends Controller
     public function inscripciones(Evento $evento)
     {
 
-        return view ('evento.inscripciones',compact('evento'));
+        //$search = trim($request->search);
+        $search = "";
+
+        return view ('evento.inscripciones',compact('evento','search'));
     }
 
     /**

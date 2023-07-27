@@ -27,7 +27,7 @@
                     <ul class="py-2" aria-labelledby="dropdownButton">
                         <li>
                             <a data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
-                               data-drawer-backdrop="false"
+                               {{--data-drawer-backdrop="false"--}}
                                data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}"
                                data-drawer-body-scrolling="true" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
                                 Ver información
