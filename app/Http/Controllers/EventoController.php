@@ -371,19 +371,68 @@ class EventoController extends Controller
     }
 
     /**
-     * Función para ver los competidores inscritos al evento
+     * Función para mostrar los competidores inscritos al evento
      *
      *
      *
      */
 
-    public function inscripciones(Evento $evento)
+    public function inscripciones(Evento $evento,Request $request)
     {
 
-        //$search = trim($request->search);
-        $search = "";
+        $search = trim($request->search);
 
-        return view ('evento.inscripciones',compact('evento','search'));
+        //dd(!empty($search));
+        if (!empty($search)){
+            $competidores = Competidor::with('sub_evento')
+                                      ->where(function ($query) use ($search,$evento){
+                                          $query->whereHas('sub_evento',function ($q) use ($search,$evento){
+                                              $q->where('evento_id','=',$evento->id)
+                                                ->where(function ($quer) use ($search){
+                                                    $quer->where('distancia','like',"%{$search}%")
+                                                         ->orWhere('categoria','like',"%{$search}%")
+                                                         ->orWhere('precio','like',"%{$search}%")
+                                                         ->orWhere('rama','like',"%{$search}%");
+                                                });
+                                          });
+
+                                      })
+                                      /*
+                                      ->where(function ($query) use ($search){
+                                          $query->orWhere('nombre','like',"%{$search}%")
+                                                ->orWhere('apellido','like',"%{$search}%")
+                                                ->orWhere('email','like',"%{$search}%")
+                                                ->orWhere('telefono','like',"%{$search}%")
+                                                ->orWhere('telefonoEmergencia','like',"%{$search}%");
+                                      })
+                                      */
+                                    /*
+                                      ->where('nombre','like',"%{$search}%")
+                                      ->orWhere('apellido','like',"%{$search}%")
+                                      ->orWhere('email','like',"%{$search}%")
+                                      ->orWhere('telefono','like',"%{$search}%")
+                                      ->orWhere('telefonoEmergencia','like',"%{$search}%")*/
+                                      /*
+                                      ->orWhere(function ($query) use ($search,$evento){
+                                        $query->whereHas('sub_evento',function ($q) use ($search,$evento){
+                                            $q->where('evento_id','=',$evento->id)
+                                              ->where(function ($quer) use ($search){
+                                                  $quer->where('distancia','like',"%{$search}%")
+                                                       ->orWhere('categoria','like',"%{$search}%")
+                                                       ->orWhere('precio','like',"%{$search}%")
+                                                       ->orWhere('rama','like',"%{$search}%");
+                                              });
+                                        });
+
+                                      })
+                                      */
+                                      ->get();
+        }else{
+            $competidores = [];
+        }
+
+
+        return view ('evento.inscripciones',compact('evento','search','competidores'));
     }
 
     /**
