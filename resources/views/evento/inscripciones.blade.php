@@ -22,6 +22,7 @@
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
+        {{--@if(count($evento->competidores)<=0 || count($competidores)<=0)--}}
         @if(count($evento->competidores)<=0)
 
             <p class="text-xl font-bold text-white">
