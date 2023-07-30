@@ -22,8 +22,7 @@
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-        {{--@if(count($evento->competidores)<=0 || count($competidores)<=0)--}}
-        @if(count($evento->competidores)<=0)
+        @if(count($competidores)<=0)
 
             <p class="text-xl font-bold text-white">
                 Aún no hay competidores inscritos :(. <br>
@@ -35,6 +34,8 @@
             </p>
 
         @else
+
+        <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($competidores)  }} competidores inscritos.</p>
 
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs text-gray-400 uppercase bg-gray-700">
@@ -64,39 +65,6 @@
             </thead>
             <tbody>
 
-            @if(empty($search))
-
-                @foreach($evento->competidores as $competidor)
-                    <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
-
-                        <th scope="row" class="px-6 py-4">
-                            {{$competidor->nombre}}
-                        </th>
-                        <td class="px-6 py-4">
-                            {{$competidor->apellido}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$competidor->email}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$competidor->telefono}}
-                        </td>
-
-                        <td class="px-6 py-4">
-                            {{$competidor->sub_evento->categoria}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$competidor->sub_evento->distancia}}
-                        </td>
-
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-500 hover:underline">Editar</a>
-                        </td>
-                    </tr>
-                @endforeach
-
-            @else
-
                 @foreach($competidores as $competidor)
                     <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
 
@@ -125,8 +93,6 @@
                         </td>
                     </tr>
                 @endforeach
-
-            @endif
 
             </tbody>
         </table>

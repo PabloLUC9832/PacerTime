@@ -382,30 +382,23 @@ class EventoController extends Controller
 
         $search = trim($request->search);
 
-        if (!empty($search)){
-            $competidores = Competidor::with('sub_evento')
-                                      ->where(function ($query) use ($search,$evento){
-                                          $query->whereHas('sub_evento',function ($quer) use ($search,$evento){
-                                              $quer->where('evento_id','=',$evento->id)
-                                                   ->where(function ($que) use ($search){
-                                                        $que->where('distancia','like',"%{$search}%")
-                                                            ->orWhere('categoria','like',"%{$search}%")
-                                                            ->orWhere('precio','like',"%{$search}%")
-                                                            ->orWhere('rama','like',"%{$search}%")
-                                                            ->orWhere('nombre','like',"%{$search}%")
-                                                            ->orWhere('apellido','like',"%{$search}%")
-                                                            ->orWhere('email','like',"%{$search}%")
-                                                            ->orWhere('telefono','like',"%{$search}%")
-                                                            ;
-                                              })
-                                              ;
-                                          })
-                                          ;
-                                      })
-                                      ->get();
-        }else{
-            $competidores = [];
-        }
+        $competidores = Competidor::with('sub_evento')
+                                  ->where(function ($query) use ($search,$evento){
+                                      $query->whereHas('sub_evento',function ($quer) use ($search,$evento){
+                                          $quer->where('evento_id','=',$evento->id)
+                                               ->where(function ($que) use ($search){
+                                                    $que->where('distancia','like',"%{$search}%")
+                                                        ->orWhere('categoria','like',"%{$search}%")
+                                                        ->orWhere('precio','like',"%{$search}%")
+                                                        ->orWhere('rama','like',"%{$search}%")
+                                                        ->orWhere('nombre','like',"%{$search}%")
+                                                        ->orWhere('apellido','like',"%{$search}%")
+                                                        ->orWhere('email','like',"%{$search}%")
+                                                        ->orWhere('telefono','like',"%{$search}%");
+                                          });
+                                      });
+                                  })
+                                  ->get();
 
         return view ('evento.inscripciones',compact('evento','search','competidores'));
     }
