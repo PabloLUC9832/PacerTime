@@ -1,6 +1,7 @@
 @extends('layouts.evento')
 
 @section('title', 'Competidores inscritos')
+@section('subtitle', 'Competidores inscritos')
 
 @section('content')
 
@@ -20,63 +21,84 @@
     </form>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+        @if(count($competidores)<=0)
+
+            <p class="text-xl font-bold text-white">
+                Aún no hay competidores inscritos :(. <br>
+                Comparte el evento para que se inscriban
+                <a id="link" href="{{ url(route('competidor.show',$evento->slug))  }}" class="font-medium text-blue-500 hover:underline">
+                    {{ url(route('competidor.show',$evento->slug))  }}
+                </a>
+
+            </p>
+
+        @else
+
+        <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($competidores)  }} competidores inscritos.</p>
+
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs text-gray-400 uppercase bg-gray-700">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Nombre
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Apellidos
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Email
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Teléfono
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Categoría
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Distancia
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Editar</span>
-                </th>
-            </tr>
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nombre
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Apellidos
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Email
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Teléfono
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Categoría
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Distancia
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Editar</span>
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            @foreach($evento->competidores as $competidor)
-            <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
 
-                <td scope="row" class="px-6 py-4">
-                     {{$competidor->nombre}}
-                </td>
-                <td class="px-6 py-4">
-                    {{$competidor->apellido}}
-                </td>
-                <td class="px-6 py-4">
-                    {{$competidor->email}}
-                </td>
-                <td class="px-6 py-4">
-                    {{$competidor->telefono}}
-                </td>
+                @foreach($competidores as $competidor)
+                    <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
 
-                <td class="px-6 py-4">
-                    {{$competidor->sub_evento->categoria}}
-                </td>
-                <td class="px-6 py-4">
-                    {{$competidor->sub_evento->distancia}}
-                </td>
+                        <th scope="row" class="px-6 py-4">
+                            {{$competidor->nombre}}
+                        </th>
+                        <td class="px-6 py-4">
+                            {{$competidor->apellido}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$competidor->email}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$competidor->telefono}}
+                        </td>
 
-                <td class="px-6 py-4 text-right">
-                    <a href="#" class="font-medium text-blue-500 hover:underline">Editar</a>
-                </td>
-            </tr>
-            @endforeach
+                        <td class="px-6 py-4">
+                            {{$competidor->sub_evento->categoria}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{$competidor->sub_evento->distancia}}
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <a href="#" class="font-medium text-blue-500 hover:underline">Editar</a>
+                        </td>
+                    </tr>
+                @endforeach
+
             </tbody>
         </table>
+
+        @endif
+
     </div>
 
 

@@ -192,9 +192,9 @@
     </div>
     <!--HORA ENTREGA KITS-->
 
-    <!--COMPETIDRES INSCRITOS, EDITAR Y ELIMINAR-->
+    <!--COMPETIDORES INSCRITOS, EDITAR Y ELIMINAR-->
 
-    {{--<div class="grid grid-cols-2 gap-4 mt-1.5 bg-secondary sticky bottom-0">--}}
+    @auth
     <div class="grid grid-cols-1 mt-1.5 gap-2 bg-secondary sticky bottom-0">
 
         <a href="{{route('eventos.inscripciones',$evento->slug)}}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
@@ -246,6 +246,6 @@
 
 
     </div>
-
+    @endauth
 
 </div>

@@ -1,34 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inicio | PacerTime</title>
+@extends('layouts.evento')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+@section('title', 'Inicio | Pacer Time')
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.ico') }}">
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('node_modules/flowbite/dist/flowbite.js')
-
-</head>
-<body class="bg-primary">
-
-@include('layouts.navigation-competidor')
-
-<div class="m-10">
+@section('content')
 
     <div id="indicators-carousel" class="relative w-full" data-carousel="slide">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
 
             @foreach($eventos as $key => $evento)
-            <!-- Item 1 -->
+                <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
                     <img src="{{ $urls[$key][0] }}" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{$evento['nombre']}}">
                     <a href="{{ route('competidor.show',$evento->slug) }}" class="absolute right-2.5 bottom-0 focus:outline-none text-white bg-primary-yellow hover:bg-yellow-500 focus:ring-4 focus:ring-secondary-yellow font-medium rounded-lg text-sm px-5 py-2.5 mr-8 mb-8">
@@ -65,9 +46,4 @@
         </button>
     </div>
 
-
-
-</div>
-
-</body>
-</html>
+@endsection

@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Realizar pago</title>
+@extends('layouts.evento')
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+@section('title', 'Realizar pago')
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.ico') }}">
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('node_modules/flowbite/dist/flowbite.js')
-
-</head>
-<body class="bg-primary">
-
-<div class="m-10">
+@section('content')
 
     <div class="grid items-center">
 
@@ -39,9 +22,9 @@
 
             @if(!empty($request->telefonoEmergencia))
 
-            <p class="text-white">
-                Teléfono de emergencia: {{$request->telefonoEmergencia}}
-            </p>
+                <p class="text-white">
+                    Teléfono de emergencia: {{$request->telefonoEmergencia}}
+                </p>
 
             @endif
 
@@ -94,26 +77,25 @@
 
     </div>
 
+@endsection
 
-</div>
+@section('script')
+
+    <!-- SDK MercadoPago.js -->
+    {{--<script src="https://sdk.mercadopago.com/js/v2"></script>--}}
+    <script>
+
+        const mp = new MercadoPago("{{config('services.mercadopago.key')}}");
+        const bricksBuilder = mp.bricks();
 
 
-<!-- SDK MercadoPago.js -->
-{{--<script src="https://sdk.mercadopago.com/js/v2"></script>--}}
-<script>
+        mp.bricks().create("wallet", "wallet_container", {
+            initialization: {
+                preferenceId: "{{$preference->id}}",
+            },
+        });
 
-    const mp = new MercadoPago("{{config('services.mercadopago.key')}}");
-    const bricksBuilder = mp.bricks();
+    </script>
+    <!-- FIn SDK MercadoPago.js -->
 
-
-    mp.bricks().create("wallet", "wallet_container", {
-        initialization: {
-            preferenceId: "{{$preference->id}}",
-        },
-    });
-
-</script>
-<!-- FIn SDK MercadoPago.js -->
-
-</body>
-</html>
+@endsection

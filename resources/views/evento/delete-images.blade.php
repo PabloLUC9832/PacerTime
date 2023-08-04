@@ -1,6 +1,7 @@
 @extends('layouts.evento')
 
 @section('title', 'Eliminar imágenes')
+@section('subtitle', 'Eliminar imágenes')
 
 @section('content')
 

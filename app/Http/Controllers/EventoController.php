@@ -371,19 +371,36 @@ class EventoController extends Controller
     }
 
     /**
-     * Función para ver los competidores inscritos al evento
+     * Función para mostrar los competidores inscritos al evento
      *
      *
      *
      */
 
-    public function inscripciones(Evento $evento)
+    public function inscripciones(Evento $evento,Request $request)
     {
 
-        //$search = trim($request->search);
-        $search = "";
+        $search = trim($request->search);
 
-        return view ('evento.inscripciones',compact('evento','search'));
+        $competidores = Competidor::with('sub_evento')
+                                  ->where(function ($query) use ($search,$evento){
+                                      $query->whereHas('sub_evento',function ($quer) use ($search,$evento){
+                                          $quer->where('evento_id','=',$evento->id)
+                                               ->where(function ($que) use ($search){
+                                                    $que->where('distancia','like',"%{$search}%")
+                                                        ->orWhere('categoria','like',"%{$search}%")
+                                                        ->orWhere('precio','like',"%{$search}%")
+                                                        ->orWhere('rama','like',"%{$search}%")
+                                                        ->orWhere('nombre','like',"%{$search}%")
+                                                        ->orWhere('apellido','like',"%{$search}%")
+                                                        ->orWhere('email','like',"%{$search}%")
+                                                        ->orWhere('telefono','like',"%{$search}%");
+                                          });
+                                      });
+                                  })
+                                  ->get();
+
+        return view ('evento.inscripciones',compact('evento','search','competidores'));
     }
 
     /**

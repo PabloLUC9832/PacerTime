@@ -18,25 +18,38 @@
     @vite('node_modules/flowbite/dist/flowbite.js')
     @vite('node_modules/flowbite/dist/datepicker.js')
 
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
 
 </head>
 <body class="bg-primary">
 
-@include('layouts.navigation')
+@auth
+    @include('layouts.navigation')
+@else
+    @include('layouts.navigation-competidor')
+@endauth
 
-<header class="bg-secondary shadow">
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h2 class="font-semibold text-xl text-gray-200 leading-tight">
-            @yield('title')
-        </h2>
-    </div>
-</header>
+@hasSection('subtitle')
+
+    <header class="bg-secondary shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-xl text-gray-200 leading-tight">
+                @yield('subtitle')
+            </h2>
+        </div>
+    </header>
+
+@endif
 
 <div class="m-10">
 
     @yield('content')
 
 </div>
+
+@hasSection('script')
+    @yield('script')
+@endif
 
 </body>
 </html>

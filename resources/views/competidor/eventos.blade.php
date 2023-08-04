@@ -1,6 +1,6 @@
 @extends('layouts.evento')
 
-@section('title', 'Inicio | Pacer Time')
+@section('title', 'Eventos | Pacer Time')
 
 @section('content')
 
@@ -36,11 +36,7 @@
             @foreach($eventos as $evento)
 
                 @include('evento.card-event')
-
-
                 @include('evento.modal-info')
-                @include('evento.modal-eliminar',['id' => $evento->id, 'nombre' => $evento->nombre, 'ruta' => 'eventos.destroy'])
-
 
             @endforeach
 

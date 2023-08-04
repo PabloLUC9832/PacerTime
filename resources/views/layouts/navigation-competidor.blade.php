@@ -18,7 +18,7 @@
                     <x-nav-link :href="route('competidor.index')" :active="request()->routeIs('competidor.index')">
                         {{ __('Inicio') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
+                    <x-nav-link :href="route('competidor.eventos')" :active="request()->routeIs('eventos.index')">
                         {{ __('Eventos') }}
                     </x-nav-link>
 
@@ -45,7 +45,7 @@
             <x-responsive-nav-link :href="route('competidor.index')" :active="request()->routeIs('competidor.index')">
                 {{ __('Inicio') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
+            <x-responsive-nav-link :href="route('competidor.eventos')" :active="request()->routeIs('eventos.index')">
                 {{ __('Eventos') }}
             </x-responsive-nav-link>
 
