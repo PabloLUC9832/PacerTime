@@ -47,16 +47,16 @@ Breadcrumbs::for('destroy-imagenes', function (BreadcrumbTrail $trail,Evento $ev
     $trail->push("Eliminación de imágenes", route('eventos.destroyImages',$evento->id));
 });
 
-/*
-// Home > Blog
-Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
-    $trail->parent('home');
-    $trail->push('Blog', route('blog'));
+
+
+//Breadcrums para competidores
+
+// Lista de eventos
+Breadcrumbs::for('lista-eventos', function (BreadcrumbTrail $trail) {
+    $trail->push('Eventos', route('competidor.eventos'));
 });
 
-// Home > Blog > [Category]
-Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {
-    $trail->parent('blog');
-    $trail->push($category->title, route('category', $category));
+Breadcrumbs::for('info-evento', function (BreadcrumbTrail $trail, Evento $evento) {
+    $trail->parent('lista-eventos');
+    $trail->push($evento->nombre, route('competidor.eventos', $evento->id));
 });
-*/

@@ -26,12 +26,26 @@
                 <div id="dropdown{{$evento->id}}" class="bg-gray-700 z-10 hidden text-base list-none divide-y divide-gray-100 rounded-lg shadow w-44">
                     <ul class="py-2" aria-labelledby="dropdownButton">
                         <li>
+
+                            @auth
+
                             <a data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
                                {{--data-drawer-backdrop="false"--}}
                                data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}"
-                               data-drawer-body-scrolling="true" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
+                               data-drawer-body-scrolling="true"
+                               class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
                                 Ver información
                             </a>
+
+                            @else
+
+                                <a href="{{ route('competidor.show',$evento->slug) }}"
+                                    class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white cursor-pointer">
+                                    Ver información
+                                </a>
+
+                            @endauth
+
                         </li>
 
                         @if($evento->imagen != "Indisponible")
@@ -66,12 +80,19 @@
 
             <div class="flex flex-col justify-between p-2">
 
-
+                @auth
                 <h5 data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
                     data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}"
                     data-drawer-body-scrolling="true"
-                    class="inline-flex items-center text-lg font-bold tracking-tight text-white text-justify cursor-pointer hover:underline" >{{$evento->nombre}}
+                    class="inline-flex items-center text-lg font-bold tracking-tight text-white text-justify cursor-pointer hover:underline">
+                    {{$evento->nombre}}
                 </h5>
+                @else
+                <a href="{{ route('competidor.show',$evento->slug) }}"
+                   class="inline-flex items-center text-lg font-bold tracking-tight text-white text-justify hover:underline">
+                   {{$evento->nombre}}
+                </a>
+                @endauth
 
                 <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
 

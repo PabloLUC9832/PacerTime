@@ -36,7 +36,6 @@
             @foreach($eventos as $evento)
 
                 @include('evento.card-event')
-                @include('evento.modal-info')
 
             @endforeach
 
