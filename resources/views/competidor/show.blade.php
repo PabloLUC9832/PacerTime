@@ -5,6 +5,8 @@
 
 @section('content')
 
+    {{ Breadcrumbs::render('info-evento',$evento) }}
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
         <div id="indicators-carousel" class="relative w-full" data-carousel="slide">
