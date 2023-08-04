@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCompetidorRequest;
 use App\Http\Requests\UpdateCompetidorRequest;
 use App\Models\Evento;
 use App\Models\SubEvento;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -130,6 +131,35 @@ class CompetidorController extends Controller
     public function destroy(Competidor $competidor)
     {
         //
+    }
+
+    public function eventos(Request $request)
+    {
+
+        $search = trim($request->search);
+
+        $eventos = Evento::with('subEventos')
+            ->where('nombre','like',"%{$search}%")
+            ->orWhere('descripcion','like',"%{$search}%")
+            ->orWhere('lugarEvento','like',"%{$search}%")
+            ->orWhere('fechaInicioEvento','like',"%{$search}%")
+            ->orWhere('fechaFinEvento','like',"%{$search}%")
+            ->orWhere('horaEvento','like',"%{$search}%")
+            ->orWhere('lugarEntregaKits','like',"%{$search}%")
+            ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
+            ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
+            ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
+            ->orWhere(function ($query) use ($search){
+                $query->whereHas('subEventos',function ($q) use ($search){
+                    $q->where('distancia','like',"%{$search}%")
+                        ->orWhere('categoria','like',"%{$search}%")
+                        ->orWhere('precio','like',"%{$search}%")
+                        ->orWhere('rama','like',"%{$search}%");
+                });
+            })
+            ->get();
+
+        return view('competidor.eventos',compact('eventos','search'));
     }
 
     public function post_pago()
