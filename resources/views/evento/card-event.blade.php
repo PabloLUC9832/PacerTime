@@ -7,14 +7,20 @@
         <div class="block border border-gray-200 rounded-lg hover:bg-secondary w-full">
 
             <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
-                 class="object-fit rounded-t-lg h-96 w-full hover:cursor-zoom-in" src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
-            @include('evento.modal-image')
+                 class="object-fit rounded-t-lg h-96 w-full"
+                 src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
+
+            @include('evento.modal-image',[
+                    'nombre' => $evento->id,
+                    'imagen' => "https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
+                ])
 
             <!--Submenu-->
             <div class="flex justify-end px-4 pt-2">
 
                 <button id="dropdownButton" data-dropdown-toggle="dropdown{{$evento->id}}"
-                        class="inline-block text-gray-400 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                        class="inline-block text-gray-400 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 rounded-lg text-sm p-1.5"
+                        type="button">
                     <span class="sr-only">Open dropdown</span>
                     <svg class="w-6 h-6" aria-hidden="true"
                          fill="currentColor" viewBox="0 0 20 20"
@@ -62,11 +68,13 @@
                         @auth
 
                         <li>
-                            <a href="{{route('eventos.edit',$evento->id)}}" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white">Editar</a>
+                            <a href="{{route('eventos.edit',$evento->id)}}"
+                               class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white">Editar</a>
                         </li>
 
                         <li>
-                            <a data-modal-toggle="delete-modal{{$evento->id}}" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-600 cursor-pointer">Eliminar</a>
+                            <a data-modal-toggle="delete-modal{{$evento->id}}"
+                               class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-600 cursor-pointer">Eliminar</a>
                         </li>
 
                         @endauth
@@ -96,16 +104,28 @@
 
                 <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Lugar</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                        Lugar
+                    </span>
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm"> {{$evento->lugarEvento}}</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                        {{$evento->lugarEvento}}
+                    </span>
                 </div>
 
                 <div class="mt-2 flex items-center p-2.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Fecha</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                        Fecha
+                    </span>
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">{{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                        {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                    </span>
 
                 </div>
 
