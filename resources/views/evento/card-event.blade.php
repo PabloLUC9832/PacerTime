@@ -8,11 +8,11 @@
 
             <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
                  class="object-fit rounded-t-lg h-96 w-full"
-                 src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg">
+                 src="{{ $urls[$key][0] }}">
 
             @include('evento.modal-image',[
                     'nombre' => $evento->id,
-                    'imagen' => "https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg"
+                    'imagen' => $urls[$key][0]
                 ])
 
             <!--Submenu-->

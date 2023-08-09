@@ -45,7 +45,11 @@ class EventoController extends Controller
                            })
                            ->get();
 
-        return view('evento.index',compact('eventos','search'));
+        foreach ($eventos as $evento){
+            $urls[] = $this->getImages($evento->imagen);
+        }
+
+        return view('evento.index',compact('eventos','search','urls'));
 
     }
 
@@ -444,6 +448,17 @@ class EventoController extends Controller
         }
 
         return [$hora[0],$min[0],$periodo[1]];
+    }
+
+    public function getImages($folder)
+    {
+        if($folder == "Indisponible"){
+            return ["https://pacertime.blob.core.windows.net/files/imagen-no-disponible.png"];
+        }else{
+            return collect(Storage::disk('azure')->files($folder))->map(function ($file){
+                return  Storage::disk('azure')->url($file);
+            });
+        }
     }
 
 }

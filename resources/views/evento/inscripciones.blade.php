@@ -35,7 +35,11 @@
 
         @else
 
-        <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($competidores)  }} competidores inscritos.</p>
+        @if(count($competidores)==1)
+            <p class="text-white mb-2 text-sm"> Se ha encontrado {{ count($competidores)  }} competidor inscrito.</p>
+        @else
+            <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($competidores)  }} competidores inscritos.</p>
+        @endif
 
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs text-gray-400 uppercase bg-gray-700">
@@ -60,6 +64,9 @@
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Editar</span>
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Eliminar</span>
                     </th>
                 </tr>
             </thead>
@@ -90,6 +97,10 @@
 
                         <td class="px-6 py-4 text-right">
                             <a href="#" class="font-medium text-blue-500 hover:underline">Editar</a>
+                        </td>
+
+                        <td class="px-6 py-4 text-right">
+                            <a href="#" class="font-medium text-red-500 hover:underline">Eliminar</a>
                         </td>
                     </tr>
                 @endforeach

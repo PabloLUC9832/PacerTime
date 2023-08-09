@@ -17,7 +17,11 @@
         </div>
     </form>
 
-    <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($eventos)  }} eventos.</p>
+    @if(count($eventos)>1)
+        <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($eventos)  }} eventos.</p>
+    @else
+        <p class="text-white mb-2 text-sm"> Se ha encontrado {{ count($eventos)  }} evento.</p>
+    @endif
 
     @if(session()->has('message'))
 
@@ -33,7 +37,7 @@
 
         <div class="grid grid-cols-3 gap-2 sm:grid sm:grid-cols-6 md:grid md:grid-cols-12">
 
-            @foreach($eventos as $evento)
+            @foreach($eventos as $key => $evento)
 
                 @include('evento.card-event')
 

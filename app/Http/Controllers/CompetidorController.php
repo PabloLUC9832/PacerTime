@@ -159,7 +159,11 @@ class CompetidorController extends Controller
             })
             ->get();
 
-        return view('competidor.eventos',compact('eventos','search'));
+        foreach ($eventos as $evento){
+            $urls[] = $this->getImages($evento->imagen);
+        }
+
+        return view('competidor.eventos',compact('eventos','search','urls'));
     }
 
     public function post_pago()
