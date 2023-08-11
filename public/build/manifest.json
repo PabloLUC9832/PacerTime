@@ -10,12 +10,12 @@
     "src": "node_modules/flowbite/dist/flowbite.js"
   },
   "resources/css/app.css": {
-    "file": "assets/app-10b9bca1.css",
+    "file": "assets/app-bd9871bb.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-55931b8c.js",
+    "file": "assets/app-6a191738.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
