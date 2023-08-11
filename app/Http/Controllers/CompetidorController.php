@@ -159,7 +159,15 @@ class CompetidorController extends Controller
             })
             ->get();
 
-        return view('competidor.eventos',compact('eventos','search'));
+        if (!empty(count($eventos))){
+            foreach ($eventos as $evento){
+                $urls[] = $this->getImages($evento->imagen);
+            }
+        }else{
+            $urls[] = "https://pacertime.blob.core.windows.net/files/imagen-no-disponible.png";
+        }
+
+        return view('competidor.eventos',compact('eventos','search','urls'));
     }
 
     public function post_pago()

@@ -12,6 +12,14 @@ input[data-autocompleted] {
     background-color: transparent !important;
 }
 
+input[type="search" i]::-webkit-search-cancel-button {
+    filter: hue-rotate(342deg) brightness(2);
+    opacity: 1;
+    background-color: black;
+    margin-right: 5px;
+    padding: 5px;
+}
+
 @layer components {
 
     .titulo-1 {
