@@ -58,6 +58,7 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <div class="flex">
+
                                 <!--Input fecha inicial del evento-->
                                 <x-forms.date-picker name="fechaInicioEvento" message="Fecha de inicio" required="required"></x-forms.date-picker>
 

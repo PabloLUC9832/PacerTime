@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> @yield('title') </title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker.min.css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('logo.ico') }}">
 
@@ -16,7 +18,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite('resources/js/createSubEvento.js')
     @vite('node_modules/flowbite/dist/flowbite.js')
-    @vite('node_modules/flowbite/dist/datepicker.js')
+    {{--@vite('node_modules/flowbite/dist/datepicker.js')--}}
 
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 
@@ -50,6 +52,9 @@
 @hasSection('script')
     @yield('script')
 @endif
-
+{{--
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
+@vite('resources/js/app.js')
+--}}
 </body>
 </html>
