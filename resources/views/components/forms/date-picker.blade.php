@@ -7,13 +7,7 @@
             </path>
         </svg>
     </div>
-    {{--
-    <input datepicker datepicker-autohide datepicker-format="dd/mm/yyyy" name="{{$name}}" type="text"
-           class="bg-primary border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
-           placeholder="{{$message}}" {{$required}}
-           value="{{ old($name,$value) }}">
 
-    --}}
      <input type="text" name="{{$name}}"
             class="date-picker"
             placeholder="{{$message}}" {{$required}}

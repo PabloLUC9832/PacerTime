@@ -52,9 +52,6 @@
 @hasSection('script')
     @yield('script')
 @endif
-{{--
-<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
-@vite('resources/js/app.js')
---}}
+
 </body>
 </html>

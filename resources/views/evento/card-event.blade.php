@@ -124,7 +124,7 @@
 
                     <span
                         class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
-                        {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                        {{$evento->fechaInicioEvento}} {{ $evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
                     </span>
 
                 </div>

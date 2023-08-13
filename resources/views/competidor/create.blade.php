@@ -97,7 +97,7 @@
                             Lugar: {{$evento->lugarEvento}}
                         </p>
                         <p class="text-white">
-                            Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                            Fecha: {{$evento->fechaInicioEvento}} {{$evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
                         </p>
                         <p class="text-white">
                             Hora: {{$evento->horaEvento}}
@@ -110,10 +110,10 @@
                             Lugar: {{$evento->lugarEntregaKits}}
                         </p>
                         <p class="text-white">
-                            Fecha: {{$evento->fechaInicioEntregaKits}} - {{$evento->fechaFinEntregaKits}}
+                            Fecha: {{$evento->fechaInicioEntregaKits}} {{$evento->fechaFinEntregaKits ? "- $evento->fechaFinEntregaKits" : ''}}
                         </p>
                         <p class="text-white">
-                            Hora: {{$evento->horaInicioEntregaKits}} - {{$evento->horaFinEntregaKits}}
+                            Hora: {{$evento->horaInicioEntregaKits}} {{ $evento->horaFinEntregaKits != "--:-- --" ? "- $evento->horaFinEntregaKits" : ''}}
                         </p>
                     </div>
 
@@ -124,9 +124,7 @@
                 <div class="borde-tarjeta">
 
                     <div class="grid place-items-center md:flex items-center justify-center">
-                        {{--
-                        <a href="{{route('competidor.show',$evento->slug)}}" class="flex items-center focus:outline-none text-white bg-primary-red hover:bg-secondary-red focus:ring-2 focus:ring-secondary-red font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-4 h-12">Cancelar</a>
-                        --}}
+
                         <a href="{{route('competidor.show',$evento->slug)}}" class="btn-cancelar">Cancelar</a>
 
                         <button type="submit" class="mr-2 mb-2 btn-ok">Proceder al pago</button>

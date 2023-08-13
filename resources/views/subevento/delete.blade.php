@@ -87,7 +87,9 @@
                     </div>
 
                     <div class="block mt-3 md:col-start-3 col-end-6">
-                        <input type="text" id="fechaEvento" class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" value="{{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}" disabled>
+                        <input type="text" id="fechaEvento"
+                               class="bg-primary text-white mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                               value="{{$evento->fechaInicioEvento}}  {{$evento->fechaFinEvento ? "- $evento->fechaFinEvento": ''}}" disabled>
                     </div>
 
                 </div>
