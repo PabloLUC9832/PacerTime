@@ -18,9 +18,11 @@
 
         </div>
 
-        <button type="submit" class="p-4 ml-2 text-sm font-medium text-white bg-primary-yellow rounded-lg hover:bg-secondary-yellow focus:ring-2 focus:outline-none focus:ring-secondary-yellow">
+        <button type="submit"
+                class="p-4 ml-2 text-sm font-medium text-white bg-primary-yellow rounded-lg hover:bg-secondary-yellow focus:ring-2 focus:outline-none focus:ring-secondary-yellow">
             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
             <span class="sr-only">Buscar</span>
         </button>
@@ -45,19 +47,18 @@
         </p>
     @else
 
-        <div class="grid grid-cols-3 gap-2 sm:grid sm:grid-cols-6 md:grid md:grid-cols-12">
+        {{--<div class="grid grid-cols-3 gap-2 sm:grid sm:grid-cols-6 md:grid md:grid-cols-12">--}}
+        <div class="grid grid-cols-3 gap-2 sm:grid sm:grid-cols-6 md:grid md:grid-cols-9">
 
-            @foreach($eventos as $key => $evento)
+                @foreach($eventos as $key => $evento)
 
-                @include('evento.card-event')
-
-
-                @include('evento.modal-info')
-                @include('evento.modal-eliminar',['id' => $evento->id, 'nombre' => $evento->nombre, 'ruta' => 'eventos.destroy'])
+                    @include('evento.card-event')
 
 
-            @endforeach
+                    @include('evento.modal-info')
+                    @include('evento.modal-eliminar',['id' => $evento->id, 'nombre' => $evento->nombre, 'ruta' => 'eventos.destroy'])
 
+                @endforeach
         </div>
 
     @endif
