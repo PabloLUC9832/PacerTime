@@ -110,7 +110,7 @@
                     </a>
                 @endauth
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
 
                     <span
                         class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
@@ -123,7 +123,7 @@
                     </span>
                 </div>
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
 
                     <span
                         class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
@@ -138,7 +138,7 @@
 
                 </div>
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
 
                     <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Hora</span>
 
@@ -146,7 +146,7 @@
 
                 </div>
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950 hover:bg-blue-900">
+                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
 
                     <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Distancias</span>
                     <span

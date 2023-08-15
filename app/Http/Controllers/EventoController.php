@@ -43,7 +43,8 @@ class EventoController extends Controller
                                    ->orWhere('rama','like',"%{$search}%");
                               });
                            })
-                           ->get();
+                           ->paginate(12);
+                           //->get();
 
 
         if (!empty(count($eventos))){
@@ -299,10 +300,9 @@ class EventoController extends Controller
         if (!($evento->imagen == "Indisponible")) {
             Storage::disk('azure')->deleteDirectory($evento->imagen);
             $evento->delete();
+        }else{
+            $evento->delete();
         }
-
-
-        //$evento->delete();
 
         return redirect()->route('eventos.index')->with('message','El evento ha sido eliminado exitosamente.');
 

@@ -29,10 +29,12 @@
 
     </form>
 
-    @if(count($eventos)>1)
-        <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($eventos)  }} eventos.</p>
-    @else
-        <p class="text-white mb-2 text-sm"> Se ha encontrado {{ count($eventos)  }} evento.</p>
+    @if(count($eventos)!= 0)
+        @if(count($eventos)>1)
+            <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($eventos)  }} eventos.</p>
+        @else
+            <p class="text-white mb-2 text-sm"> Se ha encontrado {{ count($eventos)  }} evento.</p>
+        @endif
     @endif
 
     @if(session()->has('message'))
@@ -60,6 +62,8 @@
 
                 @endforeach
         </div>
+
+        {{ $eventos->links() }}
 
     @endif
 
