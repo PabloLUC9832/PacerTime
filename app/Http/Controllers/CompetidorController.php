@@ -157,7 +157,8 @@ class CompetidorController extends Controller
                         ->orWhere('rama','like',"%{$search}%");
                 });
             })
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         if (!empty(count($eventos))){
             foreach ($eventos as $evento){

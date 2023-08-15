@@ -43,7 +43,7 @@ class EventoController extends Controller
                                    ->orWhere('rama','like',"%{$search}%");
                               });
                            })
-                           ->paginate(5)
+                           ->paginate(12)
                            ->withQueryString();
                            //->get();
 
@@ -408,7 +408,8 @@ class EventoController extends Controller
                                           });
                                       });
                                   })
-                                  ->get();
+                                  ->paginate(15)
+                                  ->withQueryString();
 
         return view ('evento.inscripciones',compact('evento','search','competidores'));
     }

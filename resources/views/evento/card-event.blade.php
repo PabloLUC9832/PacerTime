@@ -6,12 +6,8 @@
         <!--CARD-->
 
         <div
-           {{---class="flex flex-col items-center shadow md:flex-row md:max-w-xl border border-gray-200 rounded-lg hover:bg-secondary w-full">--}}
            class="flex flex-col md:flex-row md:max-w-xl border border-gray-200 rounded-lg hover:bg-secondary w-full">
-            {{--
-            <img class="object-cover w-full rounded-t-lg h-60 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                 src="https://pacertime.blob.core.windows.net/files/evento-5ta-edici%C3%B3n-cabada-la-puerta-de-los-tuxtlas/pacerIm1.jpg" alt="">
-            --}}
+
             <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
                  class="object-cover w-full rounded-t-lg h-60 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg
                  {{ $urls[$key][0] != "https://pacertime.blob.core.windows.net/files/imagen-no-disponible.png" ? 'cursor-pointer' : ''}}"
@@ -25,7 +21,6 @@
             <div class="flex flex-col justify-between p-4 leading-normal w-full">
 
                 <!--Submenu-->
-                {{--<div class="flex flex-row justify-end px-4 pt-2">--}}
                 <div class="flex flex-row justify-end px-4">
 
                     <button id="dropdownButton" data-dropdown-toggle="dropdown{{$evento->id}}"
@@ -110,52 +105,58 @@
                     </a>
                 @endauth
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
+                <div>
+                    <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
-                    <span
-                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
-                        Lugar
-                    </span>
+                        <span
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                            Lugar
+                        </span>
 
-                    <span
-                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
-                        {{$evento->lugarEvento}}
-                    </span>
-                </div>
+                            <span
+                                class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                            {{$evento->lugarEvento}}
+                        </span>
+                    </div>
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
+                    <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
-                    <span
-                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
-                        Fecha
-                    </span>
+                        <span
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                            Fecha
+                        </span>
 
-                    <span
-                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded
-                         md:text-sm">
-                        {{$evento->fechaInicioEvento}} {{ $evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
-                    </span>
+                            <span
+                                class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded
+                             md:text-sm">
+                            {{$evento->fechaInicioEvento}} {{ $evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
+                        </span>
 
-                </div>
+                    </div>
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
+                    <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Hora</span>
+                        <span
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Hora</span>
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">{{$evento->horaEvento}}</span>
+                        <span
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">{{$evento->horaEvento}}</span>
 
-                </div>
+                    </div>
 
-                <div class="mt-1 flex items-center p-1.5 text-base rounded-lg bg-blue-950">
+                    <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
-                    <span class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Distancias</span>
-                    <span
-                        class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-thin text-white bg-cyan-950 rounded
+                        <span
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Distancias</span>
+                        <span
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-thin text-white bg-cyan-950 rounded
                         md:text-sm truncate">
-                    @foreach($evento->subEventos as $subEv)
-                            {{$subEv->distancia}} <br>
-                    @endforeach
-                    </span>
+                            @foreach($evento->subEventos as $subEv)
+                                    {{$subEv->distancia}} <br>
+                            @endforeach
+                            </span>
+                    </div>
+
                 </div>
 
             </div>
