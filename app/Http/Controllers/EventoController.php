@@ -43,7 +43,8 @@ class EventoController extends Controller
                                    ->orWhere('rama','like',"%{$search}%");
                               });
                            })
-                           ->paginate(12);
+                           ->paginate(5)
+                           ->withQueryString();
                            //->get();
 
 

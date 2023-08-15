@@ -63,7 +63,9 @@
                 @endforeach
         </div>
 
-        {{ $eventos->links() }}
+        {{--<div class="grid items-center">--}}
+            {{ $eventos->links() }}
+        {{--</div>--}}
 
     @endif
 
