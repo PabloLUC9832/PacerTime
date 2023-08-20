@@ -46,7 +46,8 @@
                         data-accordion-target="#accordion-collapse-body-1"
                         aria-expanded="true" aria-controls="accordion-collapse-body-1">
                     <span>Filtros</span>
-                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                     </svg>
                 </button>
@@ -55,7 +56,10 @@
                 <div class="p-5 border border-t-0 md:border md:border-2 rounded-b-md border-gray-700 bg-gray-900">
 
                     <div class="flex items-center mb-1.5">
-                        <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-2">
+                        <input id="default-checkbox" type="checkbox" name="deleted" value="true"
+                               class="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-600 ring-offset-gray-800 focus:ring-2"
+                               {{Cache::has('deleted') ? 'checked' : ''}} >
+
                         <label for="default-checkbox" class="ml-2 text-sm font-normal text-gray-300">Eventos eliminados</label>
                     </div>
 

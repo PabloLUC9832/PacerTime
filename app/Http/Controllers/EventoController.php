@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,31 +23,62 @@ class EventoController extends Controller
     {
 
         $search = trim($request->search);
+        $eventDeleted = $request->deleted;
 
-        //$eventos = Evento::with('subEventos')->get();
-        $eventos = Evento::with('subEventos')
-                           ->where('nombre','like',"%{$search}%")
-                           ->orWhere('descripcion','like',"%{$search}%")
-                           ->orWhere('lugarEvento','like',"%{$search}%")
-                           ->orWhere('fechaInicioEvento','like',"%{$search}%")
-                           ->orWhere('fechaFinEvento','like',"%{$search}%")
-                           ->orWhere('horaEvento','like',"%{$search}%")
-                           ->orWhere('lugarEntregaKits','like',"%{$search}%")
-                           ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
-                           ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
-                           ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
-                           ->orWhere(function ($query) use ($search){
-                              $query->whereHas('subEventos',function ($q) use ($search){
-                                 $q->where('distancia','like',"%{$search}%")
-                                   ->orWhere('categoria','like',"%{$search}%")
-                                   ->orWhere('precio','like',"%{$search}%")
-                                   ->orWhere('rama','like',"%{$search}%");
-                              });
-                           })
-                           ->paginate(12)
-                           ->withQueryString();
-                           //->get();
+        if(!isset($eventDeleted)){
 
+            Cache::forget('deleted');
+
+            $eventos = Evento::with('subEventos')
+                ->where('nombre','like',"%{$search}%")
+                ->orWhere('descripcion','like',"%{$search}%")
+                ->orWhere('lugarEvento','like',"%{$search}%")
+                ->orWhere('fechaInicioEvento','like',"%{$search}%")
+                ->orWhere('fechaFinEvento','like',"%{$search}%")
+                ->orWhere('horaEvento','like',"%{$search}%")
+                ->orWhere('lugarEntregaKits','like',"%{$search}%")
+                ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
+                ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
+                ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
+                ->orWhere(function ($query) use ($search){
+                    $query->whereHas('subEventos',function ($q) use ($search){
+                        $q->where('distancia','like',"%{$search}%")
+                            ->orWhere('categoria','like',"%{$search}%")
+                            ->orWhere('precio','like',"%{$search}%")
+                            ->orWhere('rama','like',"%{$search}%");
+                    });
+                })
+                ->paginate(12)
+                ->withQueryString();
+        }else{
+
+            Cache::put("deleted", $eventDeleted);
+
+            $eventos = Evento::onlyTrashed()
+                ->where(function ($query) use ($search){
+                    $query->where('nombre','like',"%{$search}%")
+                        ->orWhere('descripcion','like',"%{$search}%")
+                        ->orWhere('lugarEvento','like',"%{$search}%")
+                        ->orWhere('fechaInicioEvento','like',"%{$search}%")
+                        ->orWhere('fechaFinEvento','like',"%{$search}%")
+                        ->orWhere('horaEvento','like',"%{$search}%")
+                        ->orWhere('lugarEntregaKits','like',"%{$search}%")
+                        ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
+                        ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
+                        ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
+                        ->orWhere(function ($query) use ($search){
+                            $query->whereHas('subEventos',function ($q) use ($search){
+                                $q->where('distancia','like',"%{$search}%")
+                                    ->orWhere('categoria','like',"%{$search}%")
+                                    ->orWhere('precio','like',"%{$search}%")
+                                    ->orWhere('rama','like',"%{$search}%");
+                            });
+                        });
+                })
+                ->paginate(12)
+                ->withQueryString();
+
+        }
 
         if (!empty(count($eventos))){
             foreach ($eventos as $evento){
@@ -298,12 +330,15 @@ class EventoController extends Controller
     public function destroy(Evento $evento)
     {
         //
+        /*
         if (!($evento->imagen == "Indisponible")) {
             Storage::disk('azure')->deleteDirectory($evento->imagen);
             $evento->delete();
         }else{
             $evento->delete();
         }
+        */
+        $evento->delete();
 
         return redirect()->route('eventos.index')->with('message','El evento ha sido eliminado exitosamente.');
 
