@@ -109,12 +109,12 @@
                     <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
                         <span
-                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
                             Lugar
                         </span>
 
                             <span
-                                class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                                class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-normal text-white bg-cyan-950 rounded md:text-sm">
                             {{$evento->lugarEvento}}
                         </span>
                     </div>
@@ -122,12 +122,12 @@
                     <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
                         <span
-                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">
                             Fecha
                         </span>
 
                             <span
-                                class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded
+                                class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-normal text-white bg-cyan-950 rounded
                              md:text-sm">
                             {{$evento->fechaInicioEvento}} {{ $evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
                         </span>
@@ -137,19 +137,19 @@
                     <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
                         <span
-                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Hora</span>
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Hora</span>
 
                         <span
-                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">{{$evento->horaEvento}}</span>
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-normal text-white bg-cyan-950 rounded md:text-sm">{{$evento->horaEvento}}</span>
 
                     </div>
 
                     <div class="mt-1 flex items-center text-base rounded-lg bg-blue-950">
 
                         <span
-                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Distancias</span>
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-medium text-white bg-cyan-950 rounded md:text-sm">Distancias</span>
                         <span
-                            class="inline-flex items-center justify-center px-1 py-0.5 ml-3 text-xs font-thin text-white bg-cyan-950 rounded
+                            class="inline-flex items-center justify-center px-1 py-0.5 ml-0.5 text-xs font-normal3 text-white bg-cyan-950 rounded
                         md:text-sm truncate">
                             @foreach($evento->subEventos as $subEv)
                                     {{$subEv->distancia}} <br>
