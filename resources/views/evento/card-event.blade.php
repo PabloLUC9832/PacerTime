@@ -79,7 +79,9 @@
 
                                 <li>
                                     <a data-modal-toggle="delete-modal{{$evento->id}}"
-                                       class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-600 cursor-pointer">Eliminar</a>
+                                       class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-600 cursor-pointer">
+                                        {{ Cache::has('deleted') ? 'Eliminar definitivamente' : 'Eliminar' }}
+                                    </a>
                                 </li>
 
                             @endauth

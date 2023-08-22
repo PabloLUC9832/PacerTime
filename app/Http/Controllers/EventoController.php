@@ -326,21 +326,26 @@ class EventoController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @link https://laravel.com/docs/10.x/routing#implicit-soft-deleted-models
      */
+    //public function destroy($id)
     public function destroy(Evento $evento)
     {
-        //
-        /*
-        if (!($evento->imagen == "Indisponible")) {
-            Storage::disk('azure')->deleteDirectory($evento->imagen);
-            $evento->delete();
+
+        if($evento->trashed()){
+            if ($evento->imagen != "Indisponible") {
+                Storage::disk('azure')->deleteDirectory($evento->imagen);
+                $evento->forceDelete();
+            }else{
+                $evento->forceDelete();
+            }
+            $msj = "El evento ha sido eliminado definivamente";
         }else{
             $evento->delete();
+            $msj = "El evento ha sido eliminado exitosamente";
         }
-        */
-        $evento->delete();
 
-        return redirect()->route('eventos.index')->with('message','El evento ha sido eliminado exitosamente.');
+        return redirect()->route('eventos.index')->with('message',$msj);
 
     }
 

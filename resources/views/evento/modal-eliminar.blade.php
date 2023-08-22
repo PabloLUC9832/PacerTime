@@ -16,8 +16,19 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
 
-                <h3 class="mb-5 text-lg font-normal text-gray-400"> ¿Estás seguro de querer eliminar el evento
-                    <span class="italic text-white font-bold">{{$nombre}}?</span>
+                <h3 class="mb-5 text-lg font-normal text-gray-400">
+
+                    @if(Cache::has('deleted'))
+                        Al eliminar defintivamente el evento, se eliminarán las categorías, competidores e imágenes relacionados a este.
+                        ¿Estás seguro de eliminar defintivamente el evento
+                        <span class="italic text-white font-bold">{{$nombre}}?</span>
+                    @else
+                        Al eliminar el evento, este será movido a  <span class="italic">Eventos eliminados</span>.
+                        Puedes consultarlo activando la casilla de <span class="italic">Eventos eliminados</span>
+                        disponible en los filtros de búsqueda. Las categorías, competidores e imágenes relacionados a este se conservarán.
+                        ¿Estás seguro de eliminar el evento
+                        <span class="italic text-white font-bold">{{$nombre}}?</span>
+                    @endif
                 </h3>
 
                 <form action="{{route($ruta,$id)}}" method="POST">
