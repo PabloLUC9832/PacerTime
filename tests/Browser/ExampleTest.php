@@ -56,5 +56,32 @@ class ExampleTest extends DuskTestCase
         });
     }
 
+    public function test_evento_admin_store()
+    {
+        $user = User::find(1);
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->visit('/eventos/create')
+                ->assertTitle("Crear evento")
+                ->type('nombre','Evento from Dusk')
+                ->type('descripcion','lorem lorem lorem lorem')
+                ->type('lugarEvento','Duks')
+                ->type('fechaInicioEvento','31/08/2023')
+                ->type('fechaFinEvento','02/09/2023')
+                ->select('horaEvento')
+                ->select('minutoEvento')
+                ->select('periodoEvento')
+                ->type('lugarEntregaKits','Laravel BD')
+                ->type('fechaInicioEntregaKits','28/08/2023')
+                ->select('horaInicioEntregaKits')
+                ->select('minutoInicioEntregaKits')
+                ->select('periodoInicioEntregaKits')
+                ->press('Guardar')
+                ->assertPathIs('/eventos')
+                ->screenshot('filename')
+            ;
+        });
+    }
+
 
 }
