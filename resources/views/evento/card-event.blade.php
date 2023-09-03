@@ -23,7 +23,7 @@
                 <!--Submenu-->
                 <div class="flex flex-row justify-end px-4">
 
-                    <button id="dropdownButton" data-dropdown-toggle="dropdown{{$evento->id}}"
+                    <button id="dropdownButton{{$evento->id}}" data-dropdown-toggle="dropdown{{$evento->id}}"
                             class="inline-block text-gray-400 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-700 rounded-lg text-sm p-1.5"
                             type="button">
                         <span class="sr-only">Open dropdown</span>
@@ -94,7 +94,8 @@
                 <!-- Submenu -->
 
                 @auth
-                    <h5 data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
+                    <h5 dusk="titulo{{$evento->id}}"
+                        data-drawer-target="drawer-info{{$evento->id}}" data-drawer-show="drawer-info{{$evento->id}}"
                         data-drawer-placement="right" aria-controls="drawer-info{{$evento->id}}"
                         data-drawer-body-scrolling="true"
                         class="inline-flex items-center text-lg font-bold tracking-tight text-white text-justify cursor-pointer hover:underline">

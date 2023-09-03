@@ -71,6 +71,20 @@ class ExampleTest extends DuskTestCase
                 ->select('horaEvento')
                 ->select('minutoEvento')
                 ->select('periodoEvento')
+                ->attach('files[]', __DIR__.'/photos/mountains.jpg')
+                //Categorías
+                ->type('categoria[]','Categoria 1')
+                ->type('distancia[]','29')
+                ->select('unidadDistancia[]')
+                ->radio('rama[]', 'FEMENIL')
+                ->type('precio[]','1582')
+                ->press('Añadir categoría')
+                ->type('categoria[]','Categoria 2')
+                ->type('distancia[]','52')
+                ->select('unidadDistancia[]')
+                ->radio('rama[]', 'VARONIL')
+                ->type('precio[]','2586')
+                //Entrega de kits
                 ->type('lugarEntregaKits','Laravel BD')
                 ->type('fechaInicioEntregaKits','28/08/2023')
                 ->select('horaInicioEntregaKits')
@@ -78,10 +92,84 @@ class ExampleTest extends DuskTestCase
                 ->select('periodoInicioEntregaKits')
                 ->press('Guardar')
                 ->assertPathIs('/eventos')
-                ->screenshot('filename')
             ;
         });
     }
 
+    public function test_evento_admin_ver_info()
+    {
+        $user = User::find(1);
+        $evento = Evento::find(1);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click('@titulo1')
+                ->assertSee($evento->nombre)
+                ->assertSee($evento->descripcion)
+                ->assertSee($evento->lugarEvento)
+                ->screenshot('filename');
+                ;
+        });
+    }
+
+    public function test_evento_admin_ver_info_desde_submenu()
+    {
+        $user = User::find(1);
+        $evento = Evento::find(1);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click('#dropdownButton1')
+                ->clickLink('Ver información')
+                ->assertSee($evento->nombre)
+                ->assertSee($evento->descripcion)
+                ->assertSee($evento->lugarEvento)
+                ->screenshot('filename')
+                ;
+        });
+    }
+
+    public function test_evento_admin_ver_imagenes_desde_submenu()
+    {
+        $user = User::find(1);
+        $evento = Evento::find(1);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click('#dropdownButton1')
+                ->clickLink('Ver imágenes')
+                ->assertSee($evento->nombre)
+                ->screenshot('filename')
+                ;
+        });
+    }
+
+    public function test_evento_admin_editar_desde_submenu()
+    {
+        $user = User::find(1);
+        $evento = Evento::find(1);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click('#dropdownButton1')
+                ->clickLink('Editar')
+                ->assertPathIs('/eventos/edit/1')
+                ->assertSee($evento->nombre)
+                ->screenshot('filename')
+            ;
+        });
+    }
 
 }
