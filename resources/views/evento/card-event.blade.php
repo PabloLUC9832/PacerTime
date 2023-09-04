@@ -5,8 +5,8 @@
 
         <!--CARD-->
 
-        <div
-           class="flex flex-col md:flex-row md:max-w-xl border border-gray-200 rounded-lg hover:bg-secondary w-full">
+        <div id="card"
+           class="flex flex-col lg:flex-row md:max-w-xl border border-gray-200 rounded-lg hover:bg-secondary w-full">
 
             <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
                  class="object-cover w-full rounded-t-lg h-60 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg

@@ -4,6 +4,7 @@ namespace Tests\Browser;
 
 use App\Models\Evento;
 use App\Models\User;
+use Facebook\WebDriver\WebDriverBy;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -26,21 +27,17 @@ class ExampleTest extends DuskTestCase
     public function test_evento_admin_index(): void
     {
         $user = User::find(1);
-        /*
         $eventos = Evento::all();
-        $nombres = [];
-        foreach ($eventos as $item) {
-            $nombres []= $item->nombre;
-        };
-        */
-        $this->browse(function (Browser $browser) use ($user) {
+
+        $this->browse(function (Browser $browser) use ($user,$eventos) {
             $browser->loginAs($user)
                     ->visit('/eventos')
                     ->assertRouteIs('eventos.index')
                     ->assertTitle("Inicio | Pacer Time")
-                    ->assertSee($user->name)
-                    //->assertSee($nombres)
-                    ;
+                    ->assertSee($user->name);
+                    $elements = $browser->driver->findElements(WebDriverBy::id('card'));
+                    $this->assertCount(count($eventos), $elements);
+                    $browser->screenshot('test_evento_admin_index');
         });
     }
 
@@ -92,25 +89,29 @@ class ExampleTest extends DuskTestCase
                 ->select('periodoInicioEntregaKits')
                 ->press('Guardar')
                 ->assertPathIs('/eventos')
-            ;
+                ->assertSee('El evento ha sido agregado exitosamente.')
+                ->screenshot('test_evento_admin_store')
+                ;
         });
     }
 
     public function test_evento_admin_ver_info()
     {
         $user = User::find(1);
-        $evento = Evento::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
 
         $this->browse(function (Browser $browser) use ($user,$evento) {
             $browser->loginAs($user)
                 ->visit('/eventos')
                 ->assertRouteIs('eventos.index')
                 ->assertTitle("Inicio | Pacer Time")
-                ->click('@titulo1')
+                ->click("@titulo{$evento->id}")
                 ->assertSee($evento->nombre)
                 ->assertSee($evento->descripcion)
                 ->assertSee($evento->lugarEvento)
-                ->screenshot('filename');
+                ->screenshot('test_evento_admin_ver_info')
                 ;
         });
     }
@@ -118,19 +119,21 @@ class ExampleTest extends DuskTestCase
     public function test_evento_admin_ver_info_desde_submenu()
     {
         $user = User::find(1);
-        $evento = Evento::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
 
         $this->browse(function (Browser $browser) use ($user,$evento) {
             $browser->loginAs($user)
                 ->visit('/eventos')
                 ->assertRouteIs('eventos.index')
                 ->assertTitle("Inicio | Pacer Time")
-                ->click('#dropdownButton1')
+                ->click("#dropdownButton{$evento->id}")
                 ->clickLink('Ver información')
                 ->assertSee($evento->nombre)
                 ->assertSee($evento->descripcion)
                 ->assertSee($evento->lugarEvento)
-                ->screenshot('filename')
+                ->screenshot('test_evento_admin_ver_info_desde_submenu')
                 ;
         });
     }
@@ -138,38 +141,65 @@ class ExampleTest extends DuskTestCase
     public function test_evento_admin_ver_imagenes_desde_submenu()
     {
         $user = User::find(1);
-        $evento = Evento::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
 
         $this->browse(function (Browser $browser) use ($user,$evento) {
             $browser->loginAs($user)
                 ->visit('/eventos')
                 ->assertRouteIs('eventos.index')
                 ->assertTitle("Inicio | Pacer Time")
-                ->click('#dropdownButton1')
+                ->click("#dropdownButton{$evento->id}")
                 ->clickLink('Ver imágenes')
                 ->assertSee($evento->nombre)
-                ->screenshot('filename')
+                ->screenshot('test_evento_admin_ver_imagenes_desde_submenu')
                 ;
         });
     }
 
-    public function test_evento_admin_editar_desde_submenu()
+    public function test_evento_admin_ir_a_editar_desde_submenu()
     {
         $user = User::find(1);
-        $evento = Evento::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
 
         $this->browse(function (Browser $browser) use ($user,$evento) {
             $browser->loginAs($user)
                 ->visit('/eventos')
                 ->assertRouteIs('eventos.index')
                 ->assertTitle("Inicio | Pacer Time")
-                ->click('#dropdownButton1')
+                ->click("#dropdownButton{$evento->id}")
                 ->clickLink('Editar')
-                ->assertPathIs('/eventos/edit/1')
+                ->assertPathIs("/eventos/edit/{$evento->id}")
                 ->assertSee($evento->nombre)
-                ->screenshot('filename')
-            ;
+                ->screenshot('test_evento_admin_ir_a_editar_desde_submenu')
+                ;
         });
     }
+
+    public function test_evento_admin_eliminar_desde_submenu()
+    {
+        $user = User::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click("#dropdownButton{$evento->id}")
+                ->clickLink('Eliminar')
+                ->press('Sí, estoy seguro')
+                ->assertSee("El evento ha sido eliminado exitosament")
+                ->assertDontSee($evento->nombre)
+                ->screenshot('test_evento_admin_eliminar_desde_submenu')
+                ;
+        });
+    }
+
 
 }
