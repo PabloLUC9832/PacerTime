@@ -8,7 +8,8 @@
         <div id="card"
            class="flex flex-col lg:flex-row md:max-w-xl border border-gray-200 rounded-lg hover:bg-secondary w-full">
 
-            <img data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
+            <img dusk="img{{$evento->id}}"
+                 data-modal-target="popup-modal{{$evento->id}}" data-modal-toggle="popup-modal{{$evento->id}}"
                  class="object-cover w-full rounded-t-lg h-60 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg
                  {{ $urls[$key][0] != "https://pacertime.blob.core.windows.net/files/imagen-no-disponible.png" ? 'cursor-pointer' : ''}}"
                  src="{{ $urls[$key][0] }}">
@@ -73,7 +74,8 @@
                             @auth
 
                                 <li>
-                                    <a href="{{route('eventos.edit',$evento->id)}}"
+                                    <a dusk="editar{{$evento->id}}"
+                                       href="{{route('eventos.edit',$evento->id)}}"
                                        class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-600 hover:text-white">Editar</a>
                                 </li>
 

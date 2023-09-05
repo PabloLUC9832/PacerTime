@@ -46,9 +46,12 @@ class ExampleTest extends DuskTestCase
         $user = User::find(1);
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
-                ->visit('/eventos/create')
+                ->visit('/eventos')
+                ->press("Eventos")
+                ->clickLink('Añadir evento')
                 ->assertRouteIs('eventos.create')
                 ->assertTitle("Crear evento")
+                ->screenshot('test_evento_admin_create')
                 ;
         });
     }
@@ -95,27 +98,7 @@ class ExampleTest extends DuskTestCase
         });
     }
 
-    public function test_evento_admin_ver_info()
-    {
-        $user = User::find(1);
-        $eventos = Evento::all()->pluck('id');
-        $id = $eventos->random();
-        $evento = Evento::find($id);
-
-        $this->browse(function (Browser $browser) use ($user,$evento) {
-            $browser->loginAs($user)
-                ->visit('/eventos')
-                ->assertRouteIs('eventos.index')
-                ->assertTitle("Inicio | Pacer Time")
-                ->click("@titulo{$evento->id}")
-                ->assertSee($evento->nombre)
-                ->assertSee($evento->descripcion)
-                ->assertSee($evento->lugarEvento)
-                ->screenshot('test_evento_admin_ver_info')
-                ;
-        });
-    }
-
+    //Tests desde el submenu de la card
     public function test_evento_admin_ver_info_desde_submenu()
     {
         $user = User::find(1);
@@ -171,7 +154,7 @@ class ExampleTest extends DuskTestCase
                 ->assertRouteIs('eventos.index')
                 ->assertTitle("Inicio | Pacer Time")
                 ->click("#dropdownButton{$evento->id}")
-                ->clickLink('Editar')
+                ->click("@editar{$evento->id}")
                 ->assertPathIs("/eventos/edit/{$evento->id}")
                 ->assertSee($evento->nombre)
                 ->screenshot('test_evento_admin_ir_a_editar_desde_submenu')
@@ -201,5 +184,66 @@ class ExampleTest extends DuskTestCase
         });
     }
 
+    public function test_evento_admin_click_foto()
+    {
+        $user = User::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click("@img{$evento->id}")
+                ->screenshot('test_evento_admin_click_foto')
+                ;
+        });
+    }
+
+    //Tests dando click al nombre
+    public function test_evento_admin_ver_info()
+    {
+        $user = User::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click("@titulo{$evento->id}")
+                ->assertSee($evento->nombre)
+                ->assertSee($evento->descripcion)
+                ->assertSee($evento->lugarEvento)
+                ->screenshot('test_evento_admin_ver_info')
+            ;
+        });
+    }
+
+    public function test_evento_admin_ver_competidores_inscritos()
+    {
+        $user = User::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click("@titulo{$evento->id}")
+                ->assertSee($evento->nombre)
+                ->assertSee($evento->descripcion)
+                ->assertSee($evento->lugarEvento)
+                ->click("@competidores{$evento->id}")
+                ->screenshot('test_evento_admin_ver_competidores_inscritos')
+            ;
+        });
+    }
 
 }
