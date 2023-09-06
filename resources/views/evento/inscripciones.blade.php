@@ -77,7 +77,8 @@
             <tbody>
 
                 @foreach($competidores as $competidor)
-                    <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
+                    <tr name="tRow"
+                        class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
 
                         <th scope="row" class="px-6 py-4">
                             {{$competidor->nombre}}

@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\Competidor;
 use App\Models\Evento;
 use App\Models\User;
 use Facebook\WebDriver\WebDriverBy;
@@ -35,9 +36,10 @@ class ExampleTest extends DuskTestCase
                     ->assertRouteIs('eventos.index')
                     ->assertTitle("Inicio | Pacer Time")
                     ->assertSee($user->name);
-                    $elements = $browser->driver->findElements(WebDriverBy::id('card'));
-                    $this->assertCount(count($eventos), $elements);
-                    $browser->screenshot('test_evento_admin_index');
+
+            $elements = $browser->driver->findElements(WebDriverBy::id('card'));
+            $this->assertCount(count($eventos), $elements);
+            $browser->screenshot('test_evento_admin_index');
         });
     }
 
@@ -62,6 +64,7 @@ class ExampleTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($user) {
             $browser->loginAs($user)
                 ->visit('/eventos/create')
+                ->resize(1920, 3000)
                 ->assertTitle("Crear evento")
                 ->type('nombre','Evento from Dusk')
                 ->type('descripcion','lorem lorem lorem lorem')
@@ -177,7 +180,7 @@ class ExampleTest extends DuskTestCase
                 ->click("#dropdownButton{$evento->id}")
                 ->clickLink('Eliminar')
                 ->press('Sí, estoy seguro')
-                ->assertSee("El evento ha sido eliminado exitosament")
+                ->assertSee("El evento ha sido eliminado exitosamente")
                 ->assertDontSee($evento->nombre)
                 ->screenshot('test_evento_admin_eliminar_desde_submenu')
                 ;
@@ -202,8 +205,8 @@ class ExampleTest extends DuskTestCase
         });
     }
 
-    //Tests dando click al nombre
-    public function test_evento_admin_ver_info()
+    //Tests dando click al nombre, y se abre el modal a la derecha
+    public function test_evento_admin_ver_info_desde_modal()
     {
         $user = User::find(1);
         $eventos = Evento::all()->pluck('id');
@@ -224,7 +227,43 @@ class ExampleTest extends DuskTestCase
         });
     }
 
-    public function test_evento_admin_ver_competidores_inscritos()
+    public function test_evento_admin_ver_competidores_inscritos_desde_modal()
+    {
+        $user = User::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
+
+        $competidores = Competidor::with('sub_evento')
+                                  ->where(function ($query) use ($evento){
+                                      $query->whereHas('sub_evento',function ($quer) use ($evento){
+                                          $quer->where('evento_id','=',$evento->id);
+                                      });
+                                  })
+                                  ->get();
+
+        $this->browse(function (Browser $browser) use ($user,$evento,$competidores) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click("@titulo{$evento->id}")
+                ->assertSee($evento->nombre)
+                ->assertSee($evento->descripcion)
+                ->assertSee($evento->lugarEvento)
+                ->click("@competidores{$evento->id}");
+
+            if(count($competidores) == 0){
+                $browser->assertSee("Aún no hay competidores inscritos :(.");
+            }else{
+                $elements = $browser->driver->findElements(WebDriverBy::name('tRow'));
+                $this->assertCount(count($competidores), $elements);
+            }
+            $browser->screenshot('test_evento_admin_ver_competidores_inscritos');
+        });
+    }
+
+    public function test_evento_admin_editar_desde_modal()
     {
         $user = User::find(1);
         $eventos = Evento::all()->pluck('id');
@@ -240,9 +279,36 @@ class ExampleTest extends DuskTestCase
                 ->assertSee($evento->nombre)
                 ->assertSee($evento->descripcion)
                 ->assertSee($evento->lugarEvento)
-                ->click("@competidores{$evento->id}")
-                ->screenshot('test_evento_admin_ver_competidores_inscritos')
-            ;
+                ->click("#editar$evento->id")
+                ->assertPathIs("/eventos/edit/{$evento->id}")
+                ->screenshot('test_evento_admin_editar')
+                ;
+        });
+    }
+
+    public function test_evento_admin_eliminar_desde_modal()
+    {
+        $user = User::find(1);
+        $eventos = Evento::all()->pluck('id');
+        $id = $eventos->random();
+        $evento = Evento::find($id);
+
+        $this->browse(function (Browser $browser) use ($user,$evento) {
+            $browser->loginAs($user)
+                ->visit('/eventos')
+                ->resize(1920, 3000)
+                ->assertRouteIs('eventos.index')
+                ->assertTitle("Inicio | Pacer Time")
+                ->click("@titulo{$evento->id}")
+                ->assertSee($evento->nombre)
+                ->assertSee($evento->descripcion)
+                ->assertSee($evento->lugarEvento)
+                ->click("@eliminar$evento->id")
+                ->press('Sí, estoy seguro')
+                ->assertSee("El evento ha sido eliminado exitosamente")
+                ->assertDontSee($evento->nombre)
+                ->screenshot('test_evento_admin_eliminar')
+                ;
         });
     }
 

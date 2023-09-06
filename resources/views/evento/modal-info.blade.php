@@ -222,7 +222,9 @@
             Competidores inscritos
         </a>
 
-        <a href="{{route('eventos.edit',$evento->id)}}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
+        <a  id="editar{{$evento->id}}"
+            href="{{route('eventos.edit',$evento->id)}}"
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
 
             <svg class="w-4 h-4 ml-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -233,7 +235,8 @@
                 Editar
         </a>
 
-        <button data-modal-toggle="delete-modal{{$evento->id}}" type="button"
+        <button dusk="eliminar{{$evento->id}}"
+                data-modal-toggle="delete-modal{{$evento->id}}" type="button"
                 class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-red hover:bg-secondary-red focus:ring-2 focus:ring-secondary-red focus:outline-none">
 
             <svg class="w-4 h-4 ml-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
