@@ -118,7 +118,7 @@ class EventoController extends Controller
          * Se guarda el evento
          */
         $evento = new Evento();
-        $evento->nombre = strtoupper($request->nombre);
+        $evento->nombre = mb_strtoupper($request->nombre);
         $evento->descripcion = $request->descripcion ;
         $evento->lugarEvento = $request->lugarEvento;
         $evento->fechaInicioEvento = $request->fechaInicioEvento;
@@ -188,7 +188,7 @@ class EventoController extends Controller
 
             $subEvento = new SubEvento();
             $subEvento->distancia = $dist . " " . $unidDist;
-            $subEvento->categoria = strtoupper($cate);
+            $subEvento->categoria = mb_strtoupper($cate);
             $subEvento->precio = $precio;
             $subEvento->rama = $rama;
             $subEvento->evento_id = $valor;
@@ -251,7 +251,7 @@ class EventoController extends Controller
 
         $evento->update([
 
-            'nombre' => $request->nombre,
+            'nombre' => mb_strtoupper($request->nombre),
             'descripcion' => $request->descripcion ,
             'lugarEvento' => $request->lugarEvento ,
             'fechaInicioEvento' => $request->fechaInicioEvento ,
@@ -291,7 +291,7 @@ class EventoController extends Controller
                 $rqPre = "precio$subsId[$i]";
                 $sbEvn = SubEvento::findOrFail($subsId[$i]);
                 $sbEvn->update([
-                    'categoria' => strtoupper($request->post($rqCat)),
+                    'categoria' => mb_strtoupper($request->post($rqCat)),
                     'distancia' => $distaCom,
                     'rama' => $request->post($rqRam),
                     'precio' => $request->post($rqPre),
@@ -311,7 +311,7 @@ class EventoController extends Controller
 
             $subEvento = new SubEvento();
             $subEvento->distancia = $dist . " " . $unidDist;
-            $subEvento->categoria = strtoupper($cate);
+            $subEvento->categoria = mb_strtoupper($cate);
             $subEvento->precio = $precio;
             $subEvento->rama = $rama;
             $subEvento->evento_id = $evento->id;
