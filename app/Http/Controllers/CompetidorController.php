@@ -61,6 +61,8 @@ class CompetidorController extends Controller
         $datos = [
             "nombre" => $request->nombre,
             "apellido" => $request->apellido,
+            'fechaNacimiento' => $request->fechaNacimiento,
+            'genero' => $request->genero,
             "email" => $email,
             "telefono" => $telefono,
             "telefonoEmergencia" => $telefonoEmergencia,
@@ -178,6 +180,8 @@ class CompetidorController extends Controller
         $datosCompetidor = Cache::get("competidor-{$nombreC}");
         list('nombre' => $nombre ,
             'apellido' => $apellido,
+            'fechaNacimiento' => $fechaNacimiento,
+            'genero' => $genero,
             'email' => $email,
             'telefono' => $telefono,
             'telefonoEmergencia' =>$telefonoEmergencia,
@@ -190,10 +194,12 @@ class CompetidorController extends Controller
 
                 $competidor = new Competidor();
                 $competidor->nombre = $nombre;
-                $competidor->apellido = $apellido ;
+                $competidor->apellido = $apellido;
+                $competidor->fechaNacimiento = $fechaNacimiento;
+                $competidor->genero = $genero;
                 $competidor->email = $email;
-                $competidor->telefono = $telefono ;
-                $competidor->telefonoEmergencia = $telefonoEmergencia ;
+                $competidor->telefono = $telefono;
+                $competidor->telefonoEmergencia = $telefonoEmergencia;
                 $competidor->sub_evento_id = $subEv;
                 $competidor->save();
                 $message = "Felicidades {$nombre} {$apellido} has sido inscrito con éxito. Nos vemos en la línea de meta :D.";

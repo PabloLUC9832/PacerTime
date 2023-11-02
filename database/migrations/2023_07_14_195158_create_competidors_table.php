@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('nombre');
             $table->text('apellido');
-            $table->date('fechaNacimiento');
+            $table->text('fechaNacimiento');
             $table->text('genero');
             $table->text('email');
             $table->text('telefono');
