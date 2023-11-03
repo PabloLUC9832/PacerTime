@@ -20,6 +20,10 @@ return new class extends Migration
             $table->text('email');
             $table->text('telefono');
             $table->text('telefonoEmergencia')->nullable();
+            $table->text('club')->nullable();
+            $table->text('pais')->nullable();
+            $table->text('estado')->nullable();
+            $table->text('municipio')->nullable();
 
             $table->foreignId('sub_evento_id')->constrained()->onDelete('cascade');
 

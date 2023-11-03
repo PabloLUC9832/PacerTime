@@ -58,6 +58,10 @@ class CompetidorController extends Controller
         $email = $request->email;
         $telefono = $request->telefono;
         $telefonoEmergencia = $request->telefonoEmergencia;
+        $club = $request->club;
+        $pais = $request->pais;
+        $estado = $request->estado;
+        $municipio = $request->municipio;
         $datos = [
             "nombre" => $request->nombre,
             "apellido" => $request->apellido,
@@ -66,6 +70,10 @@ class CompetidorController extends Controller
             "email" => $email,
             "telefono" => $telefono,
             "telefonoEmergencia" => $telefonoEmergencia,
+            "club" => $club,
+            "pais" => $pais,
+            "estado" => $estado,
+            "municipio" => $municipio,
             "sub_evento" => $subEv->id,
         ];
 
@@ -185,6 +193,10 @@ class CompetidorController extends Controller
             'email' => $email,
             'telefono' => $telefono,
             'telefonoEmergencia' =>$telefonoEmergencia,
+            'club' =>$club,
+            'pais' =>$pais,
+            'estado' =>$estado,
+            'municipio' =>$municipio,
             'sub_evento' => $subEv) = $datosCompetidor;
 
         $message = "";
@@ -200,6 +212,10 @@ class CompetidorController extends Controller
                 $competidor->email = $email;
                 $competidor->telefono = $telefono;
                 $competidor->telefonoEmergencia = $telefonoEmergencia;
+                $competidor->club = $club;
+                $competidor->pais = $pais;
+                $competidor->estado = $estado;
+                $competidor->municipio = $municipio;
                 $competidor->sub_evento_id = $subEv;
                 $competidor->save();
                 $message = "Felicidades {$nombre} {$apellido} has sido inscrito con éxito. Nos vemos en la línea de meta :D.";

@@ -102,6 +102,52 @@
                     <!--Input telefono de emergencia del competidor-->
                     <x-forms.input-field  name="telefonoEmergencia" id="telefonoEmergencia" message="Teléfono de emergencia"></x-forms.input-field>
 
+                    <!--Input club/equipo del competidor-->
+                    <x-forms.input-field  name="club" id="club" message="Club/Equipo"></x-forms.input-field>
+
+                    <!--Inputs pais-estado-municipio del competidor-->
+                    <div class="mt-2 col-span-6 md:grid grid-cols-6 md:items-center">
+
+                        <div class="block md:col-start-1">
+                            <label for="rama" class="label-input">País - Estado - Municipio</label>
+                            <span class="text-xs italic text-primary-red font-semibold	">
+                                Obligatorio
+                            </span>
+                        </div>
+
+                        <!--Inputs País-Estado-Municipio del competidor-->
+                        <div class="block mt-3 md:col-start-3 col-end-4">
+
+                            <select id="pais" name="pais"
+                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:rounded-l-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="">Selecciona el país</option>
+                                <option value="México">México</option>
+                            </select>
+
+                        </div>
+
+                        <div class="block mt-3 md:col-start-4 col-end-5">
+
+                            <select id="estado" name="estado"
+                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="">Selecciona el estado</option>
+                                <option value="Veracruz">Veracruz</option>
+                            </select>
+
+                        </div>
+
+                        <div class="block mt-3 md:col-start-5 col-end-6">
+
+                            <select id="municipio" name="municipio"
+                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option value="">Selecciona el municipio</option>
+                                <option value="Xalapa-Enriquez">Xalapa-Enriquez</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <!--Fin datos del competidor-->
