@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateEventoRequest;
 use App\Models\SubEvento;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -22,29 +23,62 @@ class EventoController extends Controller
     {
 
         $search = trim($request->search);
+        $eventDeleted = $request->deleted;
 
-        //$eventos = Evento::with('subEventos')->get();
-        $eventos = Evento::with('subEventos')
-                           ->where('nombre','like',"%{$search}%")
-                           ->orWhere('descripcion','like',"%{$search}%")
-                           ->orWhere('lugarEvento','like',"%{$search}%")
-                           ->orWhere('fechaInicioEvento','like',"%{$search}%")
-                           ->orWhere('fechaFinEvento','like',"%{$search}%")
-                           ->orWhere('horaEvento','like',"%{$search}%")
-                           ->orWhere('lugarEntregaKits','like',"%{$search}%")
-                           ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
-                           ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
-                           ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
-                           ->orWhere(function ($query) use ($search){
-                              $query->whereHas('subEventos',function ($q) use ($search){
-                                 $q->where('distancia','like',"%{$search}%")
-                                   ->orWhere('categoria','like',"%{$search}%")
-                                   ->orWhere('precio','like',"%{$search}%")
-                                   ->orWhere('rama','like',"%{$search}%");
-                              });
-                           })
-                           ->get();
+        if(!isset($eventDeleted)){
 
+            Cache::forget('deleted');
+
+            $eventos = Evento::with('subEventos')
+                ->where('nombre','like',"%{$search}%")
+                ->orWhere('descripcion','like',"%{$search}%")
+                ->orWhere('lugarEvento','like',"%{$search}%")
+                ->orWhere('fechaInicioEvento','like',"%{$search}%")
+                ->orWhere('fechaFinEvento','like',"%{$search}%")
+                ->orWhere('horaEvento','like',"%{$search}%")
+                ->orWhere('lugarEntregaKits','like',"%{$search}%")
+                ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
+                ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
+                ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
+                ->orWhere(function ($query) use ($search){
+                    $query->whereHas('subEventos',function ($q) use ($search){
+                        $q->where('distancia','like',"%{$search}%")
+                            ->orWhere('categoria','like',"%{$search}%")
+                            ->orWhere('precio','like',"%{$search}%")
+                            ->orWhere('rama','like',"%{$search}%");
+                    });
+                })
+                ->paginate(12)
+                ->withQueryString();
+        }else{
+
+            Cache::put("deleted", $eventDeleted);
+
+            $eventos = Evento::onlyTrashed()
+                ->where(function ($query) use ($search){
+                    $query->where('nombre','like',"%{$search}%")
+                        ->orWhere('descripcion','like',"%{$search}%")
+                        ->orWhere('lugarEvento','like',"%{$search}%")
+                        ->orWhere('fechaInicioEvento','like',"%{$search}%")
+                        ->orWhere('fechaFinEvento','like',"%{$search}%")
+                        ->orWhere('horaEvento','like',"%{$search}%")
+                        ->orWhere('lugarEntregaKits','like',"%{$search}%")
+                        ->orWhere('fechaInicioEntregaKits','like',"%{$search}%")
+                        ->orWhere('fechaFinEntregaKits','like',"%{$search}%")
+                        ->orWhere('horaInicioEntregaKits','like',"%{$search}%")
+                        ->orWhere(function ($query) use ($search){
+                            $query->whereHas('subEventos',function ($q) use ($search){
+                                $q->where('distancia','like',"%{$search}%")
+                                    ->orWhere('categoria','like',"%{$search}%")
+                                    ->orWhere('precio','like',"%{$search}%")
+                                    ->orWhere('rama','like',"%{$search}%");
+                            });
+                        });
+                })
+                ->paginate(12)
+                ->withQueryString();
+
+        }
 
         if (!empty(count($eventos))){
             foreach ($eventos as $evento){
@@ -84,7 +118,7 @@ class EventoController extends Controller
          * Se guarda el evento
          */
         $evento = new Evento();
-        $evento->nombre = strtoupper($request->nombre);
+        $evento->nombre = mb_strtoupper($request->nombre);
         $evento->descripcion = $request->descripcion ;
         $evento->lugarEvento = $request->lugarEvento;
         $evento->fechaInicioEvento = $request->fechaInicioEvento;
@@ -154,7 +188,7 @@ class EventoController extends Controller
 
             $subEvento = new SubEvento();
             $subEvento->distancia = $dist . " " . $unidDist;
-            $subEvento->categoria = strtoupper($cate);
+            $subEvento->categoria = mb_strtoupper($cate);
             $subEvento->precio = $precio;
             $subEvento->rama = $rama;
             $subEvento->evento_id = $valor;
@@ -217,7 +251,7 @@ class EventoController extends Controller
 
         $evento->update([
 
-            'nombre' => $request->nombre,
+            'nombre' => mb_strtoupper($request->nombre),
             'descripcion' => $request->descripcion ,
             'lugarEvento' => $request->lugarEvento ,
             'fechaInicioEvento' => $request->fechaInicioEvento ,
@@ -257,7 +291,7 @@ class EventoController extends Controller
                 $rqPre = "precio$subsId[$i]";
                 $sbEvn = SubEvento::findOrFail($subsId[$i]);
                 $sbEvn->update([
-                    'categoria' => strtoupper($request->post($rqCat)),
+                    'categoria' => mb_strtoupper($request->post($rqCat)),
                     'distancia' => $distaCom,
                     'rama' => $request->post($rqRam),
                     'precio' => $request->post($rqPre),
@@ -277,7 +311,7 @@ class EventoController extends Controller
 
             $subEvento = new SubEvento();
             $subEvento->distancia = $dist . " " . $unidDist;
-            $subEvento->categoria = strtoupper($cate);
+            $subEvento->categoria = mb_strtoupper($cate);
             $subEvento->precio = $precio;
             $subEvento->rama = $rama;
             $subEvento->evento_id = $evento->id;
@@ -292,19 +326,26 @@ class EventoController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @link https://laravel.com/docs/10.x/routing#implicit-soft-deleted-models
      */
+    //public function destroy($id)
     public function destroy(Evento $evento)
     {
-        //
-        if (!($evento->imagen == "Indisponible")) {
-            Storage::disk('azure')->deleteDirectory($evento->imagen);
+
+        if($evento->trashed()){
+            if ($evento->imagen != "Indisponible") {
+                Storage::disk('azure')->deleteDirectory($evento->imagen);
+                $evento->forceDelete();
+            }else{
+                $evento->forceDelete();
+            }
+            $msj = "El evento ha sido eliminado definivamente";
+        }else{
             $evento->delete();
+            $msj = "El evento ha sido eliminado exitosamente";
         }
 
-
-        //$evento->delete();
-
-        return redirect()->route('eventos.index')->with('message','El evento ha sido eliminado exitosamente.');
+        return redirect()->route('eventos.index')->with('message',$msj);
 
     }
 
@@ -407,7 +448,8 @@ class EventoController extends Controller
                                           });
                                       });
                                   })
-                                  ->get();
+                                  ->paginate(15)
+                                  ->withQueryString();
 
         return view ('evento.inscripciones',compact('evento','search','competidores'));
     }

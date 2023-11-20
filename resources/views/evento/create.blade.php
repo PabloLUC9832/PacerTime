@@ -58,6 +58,7 @@
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
                             <div class="flex">
+
                                 <!--Input fecha inicial del evento-->
                                 <x-forms.date-picker name="fechaInicioEvento" message="Fecha de inicio" required="required"></x-forms.date-picker>
 
@@ -122,10 +123,11 @@
                                 <input type="number" name="distancia[]" id="distancia" class="text-white bg-primary block w-full border border-r-0 rounded-l-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
 
                                 <select id="unidadDistancia" name="unidadDistancia[]" class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-none rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                    <option value="">Selecciona la unidad de longitud</option>
+                                    <option value="">Selecciona la unidad de medida</option>
                                     <option value="Kilometros">Kilometros</option>
                                     <option value="Millas">Millas</option>
                                     <option value="Metros">Metros</option>
+                                    <option value="Horas">Horas</option>
                                 </select>
 
                             </div>

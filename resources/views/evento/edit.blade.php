@@ -190,6 +190,7 @@
                                         <option value="Kilometros" {{$distancia[1] == 'Kilometros' ? 'selected' : '' }}>Kilometros</option>
                                         <option value="Millas" {{$distancia[1] == 'Millas' ? 'selected' : '' }}>Millas</option>
                                         <option value="Metros" {{$distancia[1] == 'Metros' ? 'selected' : '' }}>Metros</option>
+                                        <option value="Metros" {{$distancia[1] == 'Horas' ? 'selected' : '' }}>Horas</option>
                                     </select>
 
                                 </div>

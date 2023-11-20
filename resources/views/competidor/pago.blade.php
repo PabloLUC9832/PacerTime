@@ -60,7 +60,7 @@
                 Lugar: {{$evento->lugarEvento}}
             </p>
             <p class="text-white">
-                Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                Fecha: {{$evento->fechaInicioEvento}} {{$evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
             </p>
             <p class="text-white">
                 Hora: {{$evento->horaEvento}}

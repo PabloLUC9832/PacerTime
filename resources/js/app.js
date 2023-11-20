@@ -7,19 +7,32 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import Datepicker from "flowbite-datepicker/Datepicker";
-import { locales } from "../../node_modules/flowbite-datepicker/js/i18n/base-locales.js";
-import es from "flowbite-datepicker/locales/es";
+/**
+ *Documentación para el datepicker
+ *
+ * https://mymth.github.io/vanillajs-datepicker/#/
+ *
+ * https://github.com/mymth/vanillajs-datepicker/issues/140
+ */
 
-Datepicker.locales.es = es.es;
+import Datepicker from '../../node_modules/vanillajs-datepicker/js/Datepicker.js';
+import es from '../../node_modules/vanillajs-datepicker/js/i18n/locales/es.js';
 
-const datepickerOptions = {
-    language: "es",
-};
+Object.assign(Datepicker.locales, es);
+
+class MyDatepicker extends Datepicker {
+    constructor(element, options = {}, rangepicker = undefined) {
+        super(element, Object.assign({
+            todayHighlight: true,
+            format:'dd/mm/yyyy',
+            language: 'es',
+            autohide: true,
+        }, options), rangepicker);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("[datepicker]").forEach(function (datepickerEl) {
-        const d = new Datepicker(datepickerEl);
-        d.setOptions(datepickerOptions);
+    document.querySelectorAll("input.date-picker").forEach(function (datepickerEl) {
+        var datepicker = new MyDatepicker(datepickerEl);
     });
 });

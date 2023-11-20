@@ -5,10 +5,10 @@
         <!-- Modal content -->
         <div class="relative rounded-lg shadow bg-gray-700">
             <!-- Modal header -->
-            {{--
+
             <div class="flex items-center justify-between p-5 border-b rounded-t border-gray-600">
                 <h3 class="text-white text-xl font-medium">
-                    Extra Large modal
+                    {{$evento->nombre}}
                 </h3>
                 <button type="button"
                         class="text-gray-400 bg-gray-600 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:text-white"
@@ -20,7 +20,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
-            --}}
+
             <!-- Modal body -->
             <div class="p-6 space-y-6 grid place-items-center">
                 {{--<img src="https://pacertime.blob.core.windows.net/files/pacerIm2.jpeg" alt="">--}}

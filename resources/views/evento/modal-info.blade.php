@@ -92,7 +92,7 @@
                 </g>
             </svg>
 
-            <span class="ml-3">{{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}</span>
+            <span class="ml-3">{{$evento->fechaInicioEvento}} {{ $evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}</span>
 
         </p>
 
@@ -168,7 +168,7 @@
                 </g>
             </svg>
 
-            <span class="ml-3">{{$evento->fechaInicioEntregaKits}} - {{$evento->fechaFinEntregaKits}}</span>
+            <span class="ml-3">{{$evento->fechaInicioEntregaKits}} {{$evento->fechaFinEntregaKits ? "- $evento->fechaFinEntregaKits" : ''}}</span>
 
         </p>
 
@@ -185,7 +185,7 @@
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.8284 6.75736C12.3807 6.75736 12.8284 7.20507 12.8284 7.75736V12.7245L16.3553 14.0653C16.8716 14.2615 17.131 14.8391 16.9347 15.3553C16.7385 15.8716 16.1609 16.131 15.6447 15.9347L11.4731 14.349C11.085 14.2014 10.8284 13.8294 10.8284 13.4142V7.75736C10.8284 7.20507 11.2761 6.75736 11.8284 6.75736Z" fill="#FFFFFF"/>
             </svg>
 
-            <span class="ml-3">{{$evento->horaInicioEntregaKits}} - {{$evento->horaFinEntregaKits}} </span>
+            <span class="ml-3">{{$evento->horaInicioEntregaKits}} {{ $evento->horaFinEntregaKits != "--:-- --" ? "- $evento->horaFinEntregaKits" : ''}}</span>
 
         </p>
 
@@ -197,7 +197,9 @@
     @auth
     <div class="grid grid-cols-1 mt-1.5 gap-2 bg-secondary sticky bottom-0">
 
-        <a href="{{route('eventos.inscripciones',$evento->slug)}}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
+        <a  dusk="competidores{{$evento->id}}"
+            href="{{route('eventos.inscripciones',$evento->slug)}}"
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
 
             <svg fill="#FFFFFF" class="w-4 h-4 ml-3" version="1.2" baseProfile="tiny"
                  id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -220,16 +222,21 @@
             Competidores inscritos
         </a>
 
-        <a href="{{route('eventos.edit',$evento->id)}}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
+        <a  id="editar{{$evento->id}}"
+            href="{{route('eventos.edit',$evento->id)}}"
+            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-800 focus:outline-none">
 
             <svg class="w-4 h-4 ml-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z" fill="#FFFFFF"/>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
+                      fill="#FFFFFF"/>
             </svg>
 
                 Editar
         </a>
 
-        <button data-modal-toggle="delete-modal{{$evento->id}}" type="button"
+        <button dusk="eliminar{{$evento->id}}"
+                data-modal-toggle="delete-modal{{$evento->id}}" type="button"
                 class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-red hover:bg-secondary-red focus:ring-2 focus:ring-secondary-red focus:outline-none">
 
             <svg class="w-4 h-4 ml-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

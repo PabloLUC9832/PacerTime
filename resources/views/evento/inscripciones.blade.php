@@ -7,20 +7,30 @@
 
     {{ Breadcrumbs::render('inscripciones',$evento) }}
 
-    <form action="{{route('eventos.inscripciones',$evento->slug)}}" method="GET" value="{{$search}}" class="mb-4">
+    <form action="{{route('eventos.inscripciones',$evento->slug)}}" method="GET" value="{{$search}}" class="flex items-center mb-4">
+
         <label for="default-search" class="mb-2 text-sm font-medium sr-only text-white">Buscar</label>
-        <div class="relative">
+        <div class="relative w-full">
+
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
             </div>
-            <input name="search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-white border border-gray-600 rounded-lg bg-gray-700 focus:ring-secondary-yellow focus:border-secondary-yellow placeholder-gray-400" placeholder="Ingresa cualquier palabra para buscar" value="{{old('',$search)}}">
 
-            <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-primary-yellow hover:bg-secondary-yellow focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Buscar</button>
+            <input name="search" type="search" id="default-search"
+                   class="block w-full p-4 pl-10 text-sm text-white border border-gray-600 rounded-lg bg-gray-700 focus:ring-secondary-yellow focus:border-secondary-yellow placeholder-gray-400" placeholder="Ingresa cualquier palabra para buscar" value="{{old('',$search)}}">
 
         </div>
+
+        <button type="submit" class="p-4 ml-2 text-sm font-medium text-white bg-primary-yellow rounded-lg hover:bg-secondary-yellow focus:ring-2 focus:outline-none focus:ring-secondary-yellow">
+            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+            <span class="sr-only">Buscar</span>
+        </button>
+
     </form>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto sm:rounded-lg">
 
         @if(count($competidores)<=0)
 
@@ -34,12 +44,6 @@
             </p>
 
         @else
-
-        @if(count($competidores)==1)
-            <p class="text-white mb-2 text-sm"> Se ha encontrado {{ count($competidores)  }} competidor inscrito.</p>
-        @else
-            <p class="text-white mb-2 text-sm"> Se han encontrado {{ count($competidores)  }} competidores inscritos.</p>
-        @endif
 
         <table class="w-full text-sm text-left text-gray-400">
             <thead class="text-xs text-gray-400 uppercase bg-gray-700">
@@ -73,7 +77,8 @@
             <tbody>
 
                 @foreach($competidores as $competidor)
-                    <tr class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
+                    <tr name="tRow"
+                        class="border-b bg-gray-800 border-gray-700 hover:bg-gray-600">
 
                         <th scope="row" class="px-6 py-4">
                             {{$competidor->nombre}}
@@ -107,6 +112,8 @@
 
             </tbody>
         </table>
+
+        {{ $competidores->links() }}
 
         @endif
 

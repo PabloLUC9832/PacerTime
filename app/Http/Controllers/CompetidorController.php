@@ -58,12 +58,22 @@ class CompetidorController extends Controller
         $email = $request->email;
         $telefono = $request->telefono;
         $telefonoEmergencia = $request->telefonoEmergencia;
+        $club = $request->club;
+        $pais = $request->pais;
+        $estado = $request->estado;
+        $municipio = $request->municipio;
         $datos = [
             "nombre" => $request->nombre,
             "apellido" => $request->apellido,
+            'fechaNacimiento' => $request->fechaNacimiento,
+            'genero' => $request->genero,
             "email" => $email,
             "telefono" => $telefono,
             "telefonoEmergencia" => $telefonoEmergencia,
+            "club" => $club,
+            "pais" => $pais,
+            "estado" => $estado,
+            "municipio" => $municipio,
             "sub_evento" => $subEv->id,
         ];
 
@@ -157,7 +167,8 @@ class CompetidorController extends Controller
                         ->orWhere('rama','like',"%{$search}%");
                 });
             })
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         if (!empty(count($eventos))){
             foreach ($eventos as $evento){
@@ -177,9 +188,15 @@ class CompetidorController extends Controller
         $datosCompetidor = Cache::get("competidor-{$nombreC}");
         list('nombre' => $nombre ,
             'apellido' => $apellido,
+            'fechaNacimiento' => $fechaNacimiento,
+            'genero' => $genero,
             'email' => $email,
             'telefono' => $telefono,
             'telefonoEmergencia' =>$telefonoEmergencia,
+            'club' =>$club,
+            'pais' =>$pais,
+            'estado' =>$estado,
+            'municipio' =>$municipio,
             'sub_evento' => $subEv) = $datosCompetidor;
 
         $message = "";
@@ -189,10 +206,16 @@ class CompetidorController extends Controller
 
                 $competidor = new Competidor();
                 $competidor->nombre = $nombre;
-                $competidor->apellido = $apellido ;
+                $competidor->apellido = $apellido;
+                $competidor->fechaNacimiento = $fechaNacimiento;
+                $competidor->genero = $genero;
                 $competidor->email = $email;
-                $competidor->telefono = $telefono ;
-                $competidor->telefonoEmergencia = $telefonoEmergencia ;
+                $competidor->telefono = $telefono;
+                $competidor->telefonoEmergencia = $telefonoEmergencia;
+                $competidor->club = $club;
+                $competidor->pais = $pais;
+                $competidor->estado = $estado;
+                $competidor->municipio = $municipio;
                 $competidor->sub_evento_id = $subEv;
                 $competidor->save();
                 $message = "Felicidades {$nombre} {$apellido} has sido inscrito con éxito. Nos vemos en la línea de meta :D.";

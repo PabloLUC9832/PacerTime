@@ -83,7 +83,7 @@
                             Lugar: {{$evento->lugarEvento}}
                         </p>
                         <p class="text-white">
-                            Fecha: {{$evento->fechaInicioEvento}} - {{$evento->fechaFinEvento}}
+                            Fecha: {{$evento->fechaInicioEvento}} {{$evento->fechaFinEvento ? "- $evento->fechaFinEvento" : ''}}
                         </p>
                         <p class="text-white">
                             Hora: {{$evento->horaEvento}}
@@ -96,10 +96,10 @@
                             Lugar: {{$evento->lugarEntregaKits}}
                         </p>
                         <p class="text-white">
-                            Fecha: {{$evento->fechaInicioEntregaKits}} - {{$evento->fechaFinEntregaKits}}
+                            Fecha: {{$evento->fechaInicioEntregaKits}} {{$evento->fechaFinEntregaKits ? "- $evento->fechaFinEntregaKits" : ''}}
                         </p>
                         <p class="text-white">
-                            Hora: {{$evento->horaInicioEntregaKits}} - {{$evento->horaFinEntregaKits}}
+                            Hora: {{$evento->horaInicioEntregaKits}} {{ $evento->horaFinEntregaKits != "--:-- --" ? "- $evento->horaFinEntregaKits" : ''}}
                         </p>
                     </div>
 
