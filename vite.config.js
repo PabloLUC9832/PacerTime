@@ -8,6 +8,7 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 'resources/js/createSubEvento.js',
+                'resources/js/countries-states-cities.js',
                 'node_modules/flowbite/dist/flowbite.js',
                 'node_modules/flowbite/dist/datepicker.js',
             ],

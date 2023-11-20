@@ -1,5 +1,5 @@
 {
-  "node_modules/flowbite/dist/datepicker.js?commonjs-entry": {
+  "node_modules/flowbite/dist/datepicker.js": {
     "file": "assets/datepicker-57ab9720.js",
     "isEntry": true,
     "src": "node_modules/flowbite/dist/datepicker.js"
@@ -18,6 +18,11 @@
     "file": "assets/app-76a9a58c.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/countries-states-cities.js": {
+    "file": "assets/countries-states-cities-a93f26dd.js",
+    "isEntry": true,
+    "src": "resources/js/countries-states-cities.js"
   },
   "resources/js/createSubEvento.js": {
     "file": "assets/createSubEvento-67314bc5.js",
