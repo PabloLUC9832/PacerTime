@@ -43,7 +43,7 @@
                             <label for="fechaNacimiento" class="label-input">Fecha nacimiento</label>
                             <span class="text-xs italic text-primary-red font-semibold">Obligatorio</span>
                         </div>
-                        q
+
                         <!--Input Fecha nacimiento del competidor-->
                         <div class="block mt-3 md:col-start-3 col-end-6">
 
@@ -119,9 +119,10 @@
                         <div class="block mt-3 md:col-start-3 col-end-4">
 
                             <select id="pais" name="pais"
-                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:rounded-l-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:rounded-l-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    onchange="loadStates()">
                                 <option value="">Selecciona el país</option>
-                                <option value="México">México</option>
+                                <!--<option value="México">México</option>-->
                             </select>
 
                         </div>
@@ -129,19 +130,20 @@
                         <div class="block mt-3 md:col-start-4 col-end-5">
 
                             <select id="estado" name="estado"
-                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                    class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    onchange="loadCities()">
                                 <option value="">Selecciona el estado</option>
-                                <option value="Veracruz">Veracruz</option>
+                                <!--<option value="Veracruz">Veracruz</option>-->
                             </select>
 
                         </div>
 
                         <div class="block mt-3 md:col-start-5 col-end-6">
 
-                            <select id="municipio" name="municipio"
+                            <select id="ciudad" name="municipio"
                                     class="text-white bg-primary inline-flex items-center px-3 bg-gray-50 rounded-lg md:rounded-none md:rounded-r-lg border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                                <option value="">Selecciona el municipio</option>
-                                <option value="Xalapa-Enriquez">Xalapa-Enriquez</option>
+                                <option value="">Selecciona la ciudad</option>
+                                <!--<option value="Xalapa-Enriquez">Xalapa-Enriquez</option>-->
                             </select>
 
                         </div>
@@ -243,5 +245,11 @@
         </div>
 
     </form>
+
+@endsection
+
+@section('script')
+
+    <script src="{{ Vite::asset('resources/js/countries-states-cities.js') }}"></script>
 
 @endsection
